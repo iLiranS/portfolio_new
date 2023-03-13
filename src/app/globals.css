@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*{
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 400;
+}
+
+.sectionLine{
+    @apply relative flex flex-col gap-2 mt-2  
+     before:h-full before:w-[2px] before:bg-darkBG before:bg-opacity-10 before:absolute before:top-0
+     dark:before:bg-white dark:before:bg-opacity-10;
+}
+.socialLink{
+    @apply ml-4 cursor-pointer transition-transform items-center flex gap-1
+    hover:text-orange-400 hover:translate-x-2;
+}
+.navLink{
+    @apply hover:underline cursor-pointer underline-offset-2 hover:text-orange-400 transition-colors;
+}
+.project_Item{
+    @apply   rounded-md aspect-video w-full h-full  m-auto overflow-y-hidden relative
+    
+    bg-darkBG  bg-opacity-10 
+    dark:bg-lightBG dark:bg-opacity-10;
+}
+.project_Item_section{
+    @apply w-[90%] left-1/2 -translate-x-1/2 h-1/2 opacity-0 -translate-y-1/2 absolute bottom-0 flex flex-col backdrop-blur-md z-10
+    rounded-t-md
+     group-hover:-translate-y-0 group-hover:opacity-100 transition-[transform,opacity] duration-300
+     bg-darkBG bg-opacity-50 text-lightBG
+    ;
+}

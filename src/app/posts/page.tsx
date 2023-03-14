@@ -18,7 +18,7 @@ async function getData(){
 
 const page = async() => {
   const posts = await getData();
-  const mappedPosts = posts.map(post => ({...post , _id:post._id.toString()} as Post));
+  const mappedPosts = posts.map(post => ({...post , _id:post._id.toString(),} as Post));
   return (
     <Posts posts={mappedPosts}/>
   )

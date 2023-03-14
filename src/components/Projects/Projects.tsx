@@ -17,7 +17,7 @@ const Project:React.FC<{projects:Project[]}> = ({projects}) => {
         router.push('/projects/'+id)
     };
 
-    const mappedProjects = projects.map(project => <ProjectItem onClick={navigateToProjectHandler} key={project._uid} project={project} />)
+    const mappedProjects = projects.map(project => <ProjectItem onClick={navigateToProjectHandler} key={project._id} project={project} />)
 
     return(
 
@@ -34,11 +34,11 @@ const Project:React.FC<{projects:Project[]}> = ({projects}) => {
 }
 
 const ProjectItem:React.FC<{project:Project;onClick:(id:string)=>void}> =({project,onClick})=>{
-    const {title,preview,description,link,_uid} = project;
+    const {title,preview,description,link,_id} = project;
 
     return (
         <li   className={`relative group aspect-video max-w-[400px]  w-full mx-auto`}>
-                <section onClick={()=>{onClick(_uid)}} className='flex items-center  justify-between p-2  z-10 hover:text-orange-400 cursor-pointer rounded-t-md
+                <section onClick={()=>{onClick(_id)}} className='flex items-center  justify-between p-2  z-10 hover:text-orange-400 cursor-pointer rounded-t-md
                  bg-darkBG bg-opacity-10
                  dark:bg-lightBG dark:bg-opacity-5'>
                     <h3  className='text-lg hover:text-orange-400'>{title}</h3>

@@ -5,18 +5,6 @@ import {BiLinkExternal} from 'react-icons/bi'
 import Link from 'next/link'
 
 
-// getting project props :  _uid , date , technologies , title , data , description , link , preview 
-// _uid : string , object but will be mapped to a list in parent
-// date : strring
-// technologies : string[]
-// title : string
-// data : { heading:string , text:string , image?string }
-// description : string,
-// link : string
-// preview : string
-
-
-
 const Project_Page:React.FC<{project:Project}> = ({project}) => {
 
   const techList = project.technologies.map((tech,index) => <TechnologyItem key={index} name={tech}/>)

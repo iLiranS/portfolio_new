@@ -18,7 +18,7 @@ const getProjects = async()=>{
 
 const page = async() => {
   const projects = await getProjects();
-  const projectsMapped = projects.map(project=>({...project , _uid:project._id.toString()} as Project))
+  const projectsMapped = projects.map(project=>({...project , _id:project._id.toString()} as Project))
 
   return (
     <Projects projects={projectsMapped}/>

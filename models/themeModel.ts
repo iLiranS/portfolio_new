@@ -2,8 +2,7 @@
 export type themeModel = {theme:'light' | 'dark' , toggleTheme:()=>void}
 
 export interface Project{
-    _uid:string;
-    _id?:any
+    _id:string;
     date:string;
     technologies:string[];
     title:string;

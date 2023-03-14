@@ -3,7 +3,9 @@ import React from 'react'
 import { MongoClient } from 'mongodb'
 import { Project } from 'models/themeModel';
 
-//TODO: add revalidation if needed in the future.
+
+export const revalidate = 3600; // revalidation every hour
+
 
 // fetch projects in here.
 const getProjects = async()=>{

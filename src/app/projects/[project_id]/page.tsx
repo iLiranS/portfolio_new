@@ -5,6 +5,8 @@ import { notFound } from 'next/navigation';
 import React from 'react'
 
 
+export const revalidate = 3600; // revalidation every 1 hour.
+
 const getProject = async(id:string)=>{
   const client = await MongoClient.connect(`mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.ym26cch.mongodb.net/?retryWrites=true&w=majority`);
   const db = client.db('Projects'); // db name

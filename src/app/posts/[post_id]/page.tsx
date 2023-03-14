@@ -4,6 +4,8 @@ import { MongoClient, ObjectId } from 'mongodb';
 import { notFound } from 'next/navigation';
 import React from 'react'
 
+export const revalidate = 3600; // every hour revalidation
+
 
 const getProject = async(id:string)=>{
   if (id.length <12) return false;

@@ -36,8 +36,8 @@ const Post_Page:React.FC<{post:Post}> = (props) => {
 
 const DataSection:React.FC<{data:{title:string;text:string;image?:string}}> = ({data}) =>
  <li className='flex flex-col gap-4  border-t-[1px] border-darkBG dark:border-lightBG dark:border-opacity-20  border-opacity-20 pt-2'>
-  <h3 className='text-lg '>{data.title}</h3> 
-  <p>{data.text}</p>
+  <h3 className='text-lg font-semibold '>{data.title}</h3> 
+  <p className='opacity-80'>{data.text}</p>
   {data.image?
    <section className='relative w-full  aspect-video m-auto rounded-md overflow-hidden'>
     <Image fill priority sizes='100%' src={data.image} alt={data.title}/>

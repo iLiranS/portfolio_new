@@ -37,20 +37,18 @@ const ProjectItem:React.FC<{project:Project;onClick:(id:string)=>void}> =({proje
     const {title,preview,description,link,_id} = project;
 
     return (
-        <li   className={`relative group aspect-video max-w-[400px]  w-full mx-auto`}>
-                <section onClick={()=>{onClick(_id)}} className='flex items-center  justify-between p-2  z-10 hover:text-orange-400 cursor-pointer rounded-t-md
+        <li onClick={()=>{onClick(_id)}}  className={`relative group aspect-video max-w-[400px] group  cursor-pointer w-full mx-auto`}>
+                <section  className='flex items-center  justify-between p-2  z-10 group-hover:text-orange-400 rounded-t-md
                  bg-darkBG bg-opacity-10
                  dark:bg-lightBG dark:bg-opacity-5'>
-                    <h3  className='text-lg hover:text-orange-400'>{title}</h3>
+                    <h3  className='text-lg'>{title}</h3>
                     {link &&<GiClick className='text-lg'/>}
                 </section>
 
-                <ul className='project_Item_section px-2'>
-                    <li>{description}</li>
-                </ul>
 
-                <section className='relative h-full aspect-video  w-full project_Item'>
+                <section className='relative h-full aspect-video   w-full project_Item'>
                 <Image fill priority sizes='100%' src={preview} alt={title}/>
+                    <section className='project_Item_section px-2'>{description}</section>
                 </section>
            
                 

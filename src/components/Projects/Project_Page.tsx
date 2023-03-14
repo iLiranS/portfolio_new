@@ -51,8 +51,8 @@ const TechnologyItem:React.FC<{name:string}> = ({name}) =>  <li className='p-2 t
 
 const DataSection:React.FC<{data:{heading:string;text:string;image?:string}}> = ({data}) =>
  <li className='flex flex-col gap-2  border-t-[1px] border-darkBG dark:border-lightBG dark:border-opacity-20  border-opacity-20 pt-2'>
-  <h3 className='text-xl'>{data.heading}</h3> 
-  <p>{data.text}</p>
+  <h3 className='text-xl font-semibold'>{data.heading}</h3> 
+  <p className=' opacity-80'>{data.text}</p>
   {data.image?
    <section className='relative w-full  aspect-video m-auto rounded-md overflow-hidden'>
     <Image fill priority sizes='100%' src={data.image} alt={data.heading}/>

@@ -1,9 +1,9 @@
 
 export type themeModel = {theme:'light' | 'dark' , toggleTheme:()=>void}
-export type Post = {_id:string;message:string} 
 
 export interface Project{
     _uid:string;
+    _id?:any
     date:string;
     technologies:string[];
     title:string;
@@ -12,3 +12,10 @@ export interface Project{
     link?:string;
     preview:string;
   }
+export interface Post{
+  _id:string;
+  title:string;
+  date:string;
+  description:string;
+  data: {title:string;text:string;image?:string}[];
+}

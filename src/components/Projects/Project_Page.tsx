@@ -2,6 +2,7 @@ import React from 'react'
 import { Project } from 'models/themeModel'
 import Image from 'next/image'
 import {BiLinkExternal} from 'react-icons/bi'
+import Link from 'next/link'
 
 
 // getting project props :  _uid , date , technologies , title , data , description , link , preview 
@@ -22,13 +23,25 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
   const dataList = project.data.map((dataObj,index) => <DataSection data={dataObj} key={index}/>)
 
   return (
-    <ul className='flex flex-col gap-3 relative w-full px-4 md:px-0 max-w-full pb-4 animate-pageIn'>
+    <ul className='flex flex-col gap-3 relative w-full px-4 md:px-0 max-w-full pb-4'>
 
-        <li className=' justify-between flex items-center font-semibold relative  border-b-[1px] border-darkBG dark:border-lightBG dark:border-opacity-20  border-opacity-20 pb-2'>
-          <h2 className='text-2xl text-orange-400'>{project.title}</h2>
-          <section className='flex items-center gap-2 h-full'>
-          <p>{project.date}</p>
-          {project.link && <a target={'_blank'} className='hover:text-orange-400 dark:hover:text-orange-400' href={project.link}> <BiLinkExternal/> </a>}
+        <li className=' justify-between grid grid-flow-row md:grid-flow-col items-center font-semibold relative  border-b-[1px] border-darkBG dark:border-lightBG dark:border-opacity-20  border-opacity-20 pb-2  animate-pageIn'>
+        <section className='flex items-center gap-2'>
+           <Link className='text-orange-400 hover:underline underline-offset-2' href={'/projects'}>Projects</Link>
+           <span>&gt;</span> 
+           <h2 className='text-2xl'>{project.title}</h2>
+        </section>
+
+          <section className='flex  items-center gap-2'>
+            <p>{project.date}</p>
+          {project.link &&
+            <div className='flex items-center gap-2 text-orange-400 text-lg md:text-base'>
+              <a className='hover:underline underline-offset-2 flex items-center gap-1' target={'_blank'} href={project.link}>
+               <p className='hidden md:block'>Visit</p>
+               <BiLinkExternal/>
+              </a>
+            </div>
+          }
           </section>
         </li>
 

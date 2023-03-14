@@ -15,15 +15,17 @@ const Header = () => {
   useEffect(()=>{
     if (currentTheme === 'dark'){
       if (!document.body.classList.contains('dark')) document.body.classList.add('dark');
+      document.body.style.backgroundColor='#202023';
     }
     else{
       if (document.body.classList.contains('dark')) document.body.classList.remove('dark');
+      document.body.style.backgroundColor='#F0E7DB';
 
     }
   },[currentTheme])
 
   return (
-    <header className='  flex justify-center px-4 fixed top-0 w-full backdrop-blur-md z-40  transition-colors
+    <header className='  flex justify-center px-4 fixed top-0 w-full backdrop-blur-lg z-40  transition-colors
      text-darkBG dark:text-lightBG'>
 
      <nav className='flex max-w-3xl  w-full  justify-between p-2 items-center'>

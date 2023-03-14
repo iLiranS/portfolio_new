@@ -21,7 +21,7 @@
     @apply hover:underline cursor-pointer underline-offset-2 hover:text-orange-400 transition-colors;
 }
 .project_Item{
-    @apply   rounded-md aspect-video w-full h-full  m-auto overflow-y-hidden relative
+    @apply   rounded-b-md aspect-video w-full h-full  m-auto overflow-y-hidden relative
     
     bg-darkBG  bg-opacity-10 
     dark:bg-lightBG dark:bg-opacity-10;

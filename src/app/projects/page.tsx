@@ -1,6 +1,7 @@
-import Project from '@/components/Projects/Project'
+import Projects from '@/components/Projects/Projects'
 import React from 'react'
 import { MongoClient } from 'mongodb'
+import { Project } from 'models/themeModel';
 
 //TODO: add revalidation if needed in the future.
 
@@ -17,17 +18,10 @@ const getProjects = async()=>{
 
 const page = async() => {
   const projects = await getProjects();
-  const projectsMapped = projects.map(project => <Project key={project._id.toString()} src={project.preview} title={project.title} id={project._id.toString()} description={project.description} link={project.link}  /> )
+  const projectsMapped = projects.map(project=>({...project , _uid:project._id.toString()} as Project))
+
   return (
-    <div className='flex flex-col px-4 md:px-0 gap-2 pb-2 animate-scaleUp'>
-        <h2 className='text-2xl font-semibold text-orange-400'>Projects</h2>
-
-        <ul className='grid w-full  gap-4 grid-cols-1 md:grid-cols-2'>
-
-         {projectsMapped}
-        
-        </ul>
-    </div>
+    <Projects projects={projectsMapped}/>
   )
 }
 

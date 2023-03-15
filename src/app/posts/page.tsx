@@ -5,6 +5,8 @@ import { Post } from 'models/themeModel';
 
 // check for new posts every 1 hour
 export const revalidate = 3600;
+export const dynamic = 'force-static';
+
 
 async function getData(){
   const client = await MongoClient.connect(`mongodb+srv://${process.env.USER_NAME}:${process.env.PASSWORD}@cluster0.ym26cch.mongodb.net/?retryWrites=true&w=majority`);

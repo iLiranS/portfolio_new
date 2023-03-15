@@ -5,6 +5,7 @@ import { Project } from 'models/themeModel';
 
 
 export const revalidate = 3600; // revalidation every hour
+export const dynamic = 'force-static';
 
 
 // fetch projects in here.

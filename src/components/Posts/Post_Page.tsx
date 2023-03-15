@@ -2,9 +2,9 @@ import { Post } from 'models/themeModel'
 import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
-
-const Post_Page:React.FC<{post:Post}> = (props) => {
-    const {title , data , date } = props.post;
+// React.FC<{post:Post}>
+const Post_Page:React.FC<{post:Post}> = ({post}) => {
+    const {title , data , date } =  post;
     const dataList = data.map((dataObj,index) => <DataSection data={dataObj} key={index}/>)
 
   return (
@@ -21,10 +21,7 @@ const Post_Page:React.FC<{post:Post}> = (props) => {
       </section>
     </li>
 
-    
-
     {dataList}
-  
   
 </ul>
   )

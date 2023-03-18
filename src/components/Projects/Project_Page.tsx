@@ -21,7 +21,7 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
    : ''
 
   return (
-    <ul className='flex flex-col gap-3 relative w-full px-4 md:px-0 max-w-full pb-4'>
+    <ul className='flex flex-col overflow-hidden gap-3 relative w-full px-4 md:px-0 max-w-full pb-4'>
 
         <li className=' justify-between grid grid-flow-row md:grid-flow-col items-center font-semibold relative  border-b-[1px] border-darkBG dark:border-lightBG dark:border-opacity-20  border-opacity-20 pb-2  animate-pageIn'>
         <section className='flex items-center gap-2'>

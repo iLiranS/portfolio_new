@@ -1,5 +1,6 @@
 import Dropdown from '@/components/DropDown/Dropdown'
-import {AiOutlineYoutube,AiOutlineGithub,AiOutlineMail} from 'react-icons/ai'
+import {AiOutlineGithub,AiOutlineMail} from 'react-icons/ai'
+import {RxDiscordLogo} from 'react-icons/rx'
 
 const foundationsExpand = `as in everything , I've started with laying the foundation which are HTML, CSS and JS`
 const reactExapnd = `I quickly realized how much easier it made the process of creating UI components, and I've been using it for most of my projects ever since.`
@@ -37,13 +38,16 @@ export default function Home() {
     </div>
 
     <div>
-     <h2 className='text-2xl hover:text-orange-400 w-fit font-semibold'>Socials</h2>
+     <h2 className='text-2xl hover:text-orange-400 w-fit font-semibold'>Contact</h2>
      <ul className='sectionLine'>
+        <p className='ml-4'>Feel free to message me on</p>
         <li className='socialLink'> <AiOutlineGithub className='text-orange-400'/> <a target='_blank' href='https://github.com/iLiranS'>Github</a> </li>
-        <li className='socialLink hover:cursor-not-allowed hover:text-gray-500'> <AiOutlineYoutube className='text-orange-400'/> Youtube </li>
-        <li  className='socialLink group'> <AiOutlineMail className='text-orange-400'/> <p>Mail</p>
-          <p className='hidden group-hover:animate-scaleUp group-hover:block text-darkBG dark:text-lightBG'>lirangamerz@gmail.com</p>
+        <li  className='socialLink group overflow-hidden'> <RxDiscordLogo className='text-orange-400'/> <p>Discord</p>
+          <p className='hidden group-hover:animate-pageIn group-hover:block text-darkBG dark:text-lightBG'>SpyNinja#9696</p>
          </li>
+        <li  className='socialLink group overflow-hidden'> <AiOutlineMail className='text-orange-400'/> <p>Mail</p>
+          <p className='hidden group-hover:animate-pageInParagraph group-hover:block text-darkBG dark:text-lightBG'>lirangamerz@gmail.com</p>
+        </li>
      </ul>
     </div>
     

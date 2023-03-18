@@ -7,6 +7,11 @@
     font-family: 'Roboto Mono', monospace;
     font-weight: 400;
 }
+body{
+    overflow: auto;
+    overflow: overlay;
+}
+
 
 .sectionLine{
     @apply relative flex flex-col gap-2 mt-2  

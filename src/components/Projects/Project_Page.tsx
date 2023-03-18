@@ -3,12 +3,22 @@ import { Project } from 'models/themeModel'
 import Image from 'next/image'
 import {BiLinkExternal} from 'react-icons/bi'
 import Link from 'next/link'
+import Dropdown from '../DropDown/Dropdown'
 
 
 const Project_Page:React.FC<{project:Project}> = ({project}) => {
 
   const techList = project.technologies.map((tech,index) => <TechnologyItem key={index} name={tech}/>)
-  const dataList = project.data.map((dataObj,index) => <DataSection data={dataObj} key={index}/>)
+  const dataList = project.data.map((dataObj,index) =>
+   <Dropdown title={dataObj.heading}  data={dataObj} key={index}>
+    {dataObj.text}
+   </Dropdown>)
+
+   const imagesList = project.images?
+   <section className='grid grid-cols-1 md:grid-cols-2 items-start gap-2 justify-center m-auto'>
+    {project.images.map((imageSrc,index)=><Image className='rounded-md' width={320} height={180}  src={imageSrc} alt={project.title} key={index}/>)}
+   </section>
+   : ''
 
   return (
     <ul className='flex flex-col gap-3 relative w-full px-4 md:px-0 max-w-full pb-4'>
@@ -41,6 +51,7 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
         </li>
 
         {dataList}
+        {imagesList}
       
       
     </ul>

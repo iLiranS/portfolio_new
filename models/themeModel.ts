@@ -6,10 +6,11 @@ export interface Project{
     date:string;
     technologies:string[];
     title:string;
-    data: {heading:string;text:string;image?:string}[];
+    data: {heading:string;text:string}[];
     description:string;
     link?:string;
     preview:string;
+    images?:string[]
   }
 export interface Post{
   _id:string;

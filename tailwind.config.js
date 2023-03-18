@@ -23,11 +23,16 @@ module.exports = {
         pageOut:{
           '0%':{transform:'translate(0,0%)',opacity:'1'},
           '100%':{transform:'translate(0,100%)',opacity:'0'}
+        },
+        pageInParagraph:{
+          '0%':{transform:'translate(0,100%)'},
+          '100%':{transform:'translate(0,0%)'}
         }
       },
       animation:{
         scaleUp:'scaleUp 0.5s ease-in-out 1 forwards',
-        pageIn:'pageIn 0.5s ease-in-out 1 forwards'
+        pageIn:'pageIn 0.5s ease-in-out 1 forwards',
+        pageInParagraph:'pageInParagraph 0.5s ease-out 1 forwards'
       }
     },
   },

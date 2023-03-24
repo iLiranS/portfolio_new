@@ -25,10 +25,10 @@ const Header = () => {
   },[currentTheme])
 
   return (
-    <header className='  flex justify-center px-4 fixed top-0 w-full backdrop-blur-lg z-40  transition-colors
+    <header className='  flex justify-center px-4 fixed top-0 w-full  z-40  transition-colors
      text-darkBG dark:text-lightBG'>
 
-     <nav className='flex max-w-3xl  w-full  justify-between p-2 items-center'>
+     <nav className='flex max-w-3xl  backdrop-blur-lg w-full  justify-between p-2 items-center'>
        <ul className='flex gap-4'>
          <li  className={`font-semibold navLink ${pathname==='/' ? 'text-orange-400' : ''}`}><Link href={'/'}>Liran</Link></li>
          <li className={`navLink ${pathname==='/projects' ? 'text-orange-400' : ''}`}><Link href={'projects'}>Projects</Link></li>
@@ -37,7 +37,7 @@ const Header = () => {
        </ul>
 
        <ul>
-       <li className={`select-none cursor-pointer p-2 text-xl rounded-md ${currentTheme==='dark' ? 'bg-lightBG text-darkBG' : 'bg-darkBG text-lightBG'}`} onClick={toggleTheme}>
+       <li className={`select-none cursor-pointer p-2 text-xl rounded-md ${currentTheme==='dark' ? 'bg-lightBG text-darkBG rotate-180' : 'bg-darkBG text-lightBG rotate-0'} transition-all`} onClick={toggleTheme}>
          {currentTheme==='dark' ? <BiSun/> : <BiMoon/>}
        </li>
        </ul>

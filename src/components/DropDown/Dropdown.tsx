@@ -7,8 +7,8 @@ const Dropdown = (props:any) => {
 
 
   return (
-<li className='ml-4 flex relative overflow-hidden  opacity-90'> 
-        <span className='text-orange-400 mr-1'>•</span>
+<li className='ml-4 flex relative overflow-hidden items-start opacity-90'> 
+        <span className='text-orange-400 mr-1 mt-1'>•</span>
         <div className='flex flex-col gap-1 w-full'>
 
        <section className='flex items-center gap-2 cursor-pointer w-full justify-between bg-darkBG dark:bg-lightBG bg-opacity-10 dark:bg-opacity-10 rounded-md p-1' onClick={toggleIsOpen}>

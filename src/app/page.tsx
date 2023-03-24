@@ -25,6 +25,7 @@ export default function Home() {
      <ul className='sectionLine relative'>
 
      <li className='ml-4 flex opacity-90'> I was always intrigued by the idea of building interfaces that could reach a large audience who will be impressed by them.</li>
+     <li className='ml-4 flex opacity-90'>My journy of getting the tools and skills:</li>
      <Dropdown title={'The Basics'}>{foundationsExpand}</Dropdown>
      <Dropdown title={'React'}>{reactExapnd}</Dropdown>
      <Dropdown title={'React Router'}>{ReactRouterExpand}</Dropdown>
@@ -40,13 +41,12 @@ export default function Home() {
     <div>
      <h2 className='text-2xl hover:text-orange-400 w-fit font-semibold'>Contact</h2>
      <ul className='sectionLine'>
-        <p className='ml-4'>Feel free to message me on</p>
         <li className='socialLink'> <AiOutlineGithub className='text-orange-400'/> <a target='_blank' href='https://github.com/iLiranS'>Github</a> </li>
         <li  className='socialLink group overflow-hidden'> <RxDiscordLogo className='text-orange-400'/> <p>Discord</p>
           <p className='hidden group-hover:animate-pageIn group-hover:block text-darkBG dark:text-lightBG'>SpyNinja#9696</p>
          </li>
         <li  className='socialLink group overflow-hidden'> <AiOutlineMail className='text-orange-400'/> <p>Mail</p>
-          <p className='hidden group-hover:animate-pageInParagraph group-hover:block text-darkBG dark:text-lightBG'>lirangamerz@gmail.com</p>
+          <p className='hidden group-hover:animate-pageInParagraph group-hover:block text-darkBG dark:text-lightBG'>liransdev@gmail.com</p>
         </li>
      </ul>
     </div>
@@ -55,10 +55,3 @@ export default function Home() {
      </div>
   )
 }
-
-
-/*
-<li className='ml-4'> <span className=' text-orange-400 mr-1'>•</span>I got into web development after experiencing with simple game dev and app dev.  I&apos;m passionate about it 😁.</li>
-<li className='ml-4'> <span className=' text-orange-400 mr-1'>•</span>I&apos;ve started my web dev journy  back in 2020 when I decided to learn  JavaScript in my free time, But my passion for programming began back in highschool.</li>
-<li className='ml-4'><span className='text-orange-400 mr-1'>•</span>Some of the technologies I use : <br/> React, Tailwind, Redux/Zustand, Next, React Router, Firebase & more.</li>
-*/

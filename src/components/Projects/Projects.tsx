@@ -23,7 +23,7 @@ const Project:React.FC<{projects:Project[]}> = ({projects}) => {
 
         <div className='flex flex-col gap-2 px-2 relative w-full h-full pb-4'>
             {didEnter && <Spinner/>}
-            <h2 className='text-2xl text-orange-400'>Projects</h2>
+            <h2>Projects</h2>
             <ul className='grid grid-flow-row md:grid-cols-2 grid-cols-1 w-full h-full relative gap-2'>
             {mappedProjects}
             </ul>

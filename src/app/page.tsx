@@ -25,7 +25,7 @@ export default function Home() {
      <ul className='sectionLine relative'>
 
      <li className='ml-4 flex opacity-90'> I was always intrigued by the idea of building interfaces that could reach a large audience who will be impressed by them.</li>
-     <li className='ml-4 flex opacity-90'>My journy of getting the tools and skills:</li>
+     <li className='ml-4 flex opacity-90'>My journy of getting my tools and skills:</li>
      <Dropdown title={'The Basics'}>{foundationsExpand}</Dropdown>
      <Dropdown title={'React'}>{reactExapnd}</Dropdown>
      <Dropdown title={'React Router'}>{ReactRouterExpand}</Dropdown>
@@ -41,7 +41,7 @@ export default function Home() {
     <div>
      <h2 className='text-2xl hover:text-orange-400 w-fit font-semibold'>Contact</h2>
      <ul className='sectionLine'>
-        <li className='socialLink'> <AiOutlineGithub className='text-orange-400'/> <a target='_blank' href='https://github.com/iLiranS'>Github</a> </li>
+        <li className='socialLink'> <AiOutlineGithub className='text-orange-400'/> <a className='w-full' target='_blank' href='https://github.com/iLiranS'>Github</a> </li>
         <li  className='socialLink group overflow-hidden'> <RxDiscordLogo className='text-orange-400'/> <p>Discord</p>
           <p className='hidden group-hover:animate-pageIn group-hover:block text-darkBG dark:text-lightBG'>SpyNinja#9696</p>
          </li>

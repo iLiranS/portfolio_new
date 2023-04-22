@@ -37,7 +37,7 @@ const ProjectItem:React.FC<{project:Project;onClick:(id:string)=>void}> =({proje
     const {title,preview,description,link,_id} = project;
 
     return (
-        <li onClick={()=>{onClick(_id)}}  className={`relative group aspect-video max-w-[400px] group  cursor-pointer w-full mx-auto`}>
+        <li onClick={()=>{onClick(_id)}}  className={`relative grid grid-rows-[max-content,auto] aspect-[16/10] w-[400px] group  cursor-pointer max-w-full mx-auto`}>
                 <section  className='flex items-center  justify-between p-2  z-10 group-hover:text-orange-400 rounded-t-md
                  bg-darkBG bg-opacity-10
                  dark:bg-lightBG dark:bg-opacity-5'>

@@ -10,7 +10,7 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
 
   const techList = project.technologies.map((tech,index) => <TechnologyItem key={index} name={tech}/>)
   const dataList = project.data.map((dataObj,index) =>
-   <Dropdown title={dataObj.heading}  data={dataObj} key={index}>
+   <Dropdown title={dataObj.heading} defaultToggle={index===0 ? true : false}  key={index}>
     {dataObj.text}
    </Dropdown>)
 

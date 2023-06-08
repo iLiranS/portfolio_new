@@ -1,9 +1,16 @@
+'use client'
 import { Post } from 'models/themeModel'
 import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
+import useData from 'store/useData';
+import Spinner from '../Spinner/Spinner';
 // React.FC<{post:Post}>
-const Post_Page:React.FC<{post:Post}> = ({post}) => {
+const Post_Page:React.FC<{post_id:string}> = ({post_id}) => {
+  const post = useData((state)=>state.posts.find(post=> post._id === post_id)) as Post;
+  if (!post){
+    return <Spinner desc='loading post'/>
+  }
     const {title , data , date } =  post;
     const dataList = data.map((dataObj,index) => <DataSection data={dataObj} key={index}/>)
 

@@ -1,6 +1,7 @@
 import Dropdown from '@/components/DropDown/Dropdown'
 import {AiOutlineGithub,AiOutlineMail} from 'react-icons/ai'
 import {RxDiscordLogo} from 'react-icons/rx'
+import Latest from '@/components/Latest/Latest'
 
 const foundationsExpand = `as in everything , I've started with laying the foundation which are HTML, CSS and JS`
 const reactExapnd = `I quickly realized how much easier it made the process of creating UI components, and I've been using it for most of my projects ever since.`
@@ -49,6 +50,11 @@ export default function Home() {
           <p className='hidden group-hover:animate-pageInParagraph group-hover:block text-darkBG dark:text-lightBG'>liransdev@gmail.com</p>
         </li>
      </ul>
+    </div>
+    
+
+    <div className='block lg:hidden'>
+    <Latest/>
     </div>
     
 

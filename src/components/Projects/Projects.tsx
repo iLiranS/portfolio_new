@@ -4,11 +4,13 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import React , {useState} from 'react'
 import {GiClick} from 'react-icons/gi'
+import useData from 'store/useData';
 import Spinner from '../Spinner/Spinner';
 
 
-const Project:React.FC<{projects:Project[]}> = ({projects}) => {
+const Project = () => {
     // title , src , description , link , id 
+    const projects = useData((state)=>state.projects)
     const router = useRouter();
     const [didEnter,setDidEnter] = useState(false);
 
@@ -33,11 +35,11 @@ const Project:React.FC<{projects:Project[]}> = ({projects}) => {
 
 }
 
-const ProjectItem:React.FC<{project:Project;onClick:(id:string)=>void}> =({project,onClick})=>{
+export const ProjectItem:React.FC<{project:Project;onClick:(id:string)=>void}> =({project,onClick})=>{
     const {title,preview,description,link,_id} = project;
 
     return (
-        <li onClick={()=>{onClick(_id)}}  className={`relative grid grid-rows-[max-content,auto] aspect-[16/10] w-[400px] group  cursor-pointer max-w-full mx-auto`}>
+        <li onClick={()=>{onClick(_id)}}  className={`relative grid grid-rows-[max-content,auto] aspect-[16/10]  w-[400px] group  cursor-pointer max-w-full mx-auto`}>
                 <section  className='flex items-center  justify-between p-2  z-10 group-hover:text-orange-400 rounded-t-md
                  bg-darkBG bg-opacity-10
                  dark:bg-lightBG dark:bg-opacity-5'>

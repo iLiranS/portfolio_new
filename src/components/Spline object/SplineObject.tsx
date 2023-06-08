@@ -14,8 +14,8 @@ const SplineObject = () => {
 
   return (
     <>
-    <Suspense fallback={<Spinner/>}>
-        {!didLoad && <Spinner/>}
+    <Suspense fallback={<Spinner desc='loading model'/>}>
+        {!didLoad && <Spinner desc='loading model'/>}
 <Spline  className={`${ didLoad ? 'animate-scaleUp' : 'scale-0'} cursor-default`}  onLoad={onLoad} scene="https://prod.spline.design/cESBr78ac2rKifS2/scene.splinecode" />
     </Suspense>
 

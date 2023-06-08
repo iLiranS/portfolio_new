@@ -1,13 +1,17 @@
+'use client'
 import React from 'react'
 import { Project } from 'models/themeModel'
 import Image from 'next/image'
 import {BiLinkExternal} from 'react-icons/bi'
 import Link from 'next/link'
 import Dropdown from '../DropDown/Dropdown'
+import useData from 'store/useData'
+import Spinner from '../Spinner/Spinner'
 
 
-const Project_Page:React.FC<{project:Project}> = ({project}) => {
-
+const Project_Page:React.FC<{project_id:string}> = ({project_id}) => {
+  const project = useData((state)=> state.projects.find(project => project._id === project_id)) as Project;
+  if (!project) return <Spinner desc='loading data'/>
   const techList = project.technologies.map((tech,index) => <TechnologyItem key={index} name={tech}/>)
   const dataList = project.data.map((dataObj,index) =>
    <Dropdown title={dataObj.heading} defaultToggle={index===0 ? true : false}  key={index}>
@@ -44,13 +48,14 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
         </li>
 
         <li className='flex justify-between items-center max-w-full'>
-          <p>Tech</p>
+          <h2>Tech</h2>
           <ul className='grid gap-2 grid-cols-3 max-w-xs justify-center '>
           {techList}
           </ul>
         </li>
 
         {dataList}
+       {imagesList && <h2>Images</h2>}
         {imagesList}
       
       

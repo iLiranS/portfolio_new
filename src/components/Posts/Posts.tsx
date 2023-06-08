@@ -3,10 +3,11 @@ import React, { useState } from 'react'
 import { Post } from 'models/themeModel'
 import { useRouter } from 'next/navigation'
 import Spinner from '../Spinner/Spinner'
+import useData from 'store/useData'
 
 
-const Posts:React.FC<{posts:Post[]}> = ({posts}) => {
-
+const Posts = () => {
+  const posts = useData((state)=>state.posts);
   const router = useRouter();
   const redirectToPostPage = (id:string) => { setDidClick(true); router.push(`/posts/${id}`);}
   const [didClick,setDidClick] = useState(false);

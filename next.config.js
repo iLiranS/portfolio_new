@@ -16,6 +16,12 @@ const nextConfig = {
         hostname:'lh3.googleusercontent.com',
         port:'',
         pathname:'/drive-viewer/**'
+      },
+      {
+        protocol:'https',
+        hostname:'i.ibb.co',
+        port:'',
+        pathname:'/**'
       }
     ],
     

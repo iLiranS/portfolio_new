@@ -7,9 +7,12 @@ import useData from 'store/useData';
 import Spinner from '../Spinner/Spinner';
 // React.FC<{post:Post}>
 const Post_Page:React.FC<{post_id:string}> = ({post_id}) => {
-  const post = useData((state)=>state.posts.find(post=> post._id === post_id)) as Post;
+  const posts = useData((state)=>state.posts);
+  if (!posts || posts.length<1) return <Spinner desc='loading data'/>
+
+  const post = posts.find(post=> post._id === post_id) as Post;
   if (!post){
-    return <Spinner desc='loading post'/>
+    return <div className='flex text-center'>Whoop... failed getting post</div>
   }
     const {title , data , date } =  post;
     const dataList = data.map((dataObj,index) => <DataSection data={dataObj} key={index}/>)

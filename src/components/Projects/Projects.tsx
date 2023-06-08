@@ -13,6 +13,7 @@ const Project = () => {
     const projects = useData((state)=>state.projects)
     const router = useRouter();
     const [didEnter,setDidEnter] = useState(false);
+    if (!projects || projects.length<1) return <Spinner desc='loading projects'/>
 
     const navigateToProjectHandler = (id:string) => {
         setDidEnter(true);

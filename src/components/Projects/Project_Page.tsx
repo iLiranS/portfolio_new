@@ -10,8 +10,11 @@ import Spinner from '../Spinner/Spinner'
 
 
 const Project_Page:React.FC<{project_id:string}> = ({project_id}) => {
-  const project = useData((state)=> state.projects.find(project => project._id === project_id)) as Project;
-  if (!project) return <Spinner desc='loading data'/>
+  const projects = useData((state)=>state.projects);
+  if (!projects || projects.length<1) return <Spinner desc='loading data'/>
+  const project = projects.find(project => project._id === project_id) as Project;
+  if (!project)     return <div className='flex text-center'>Whoop... failed getting project</div>
+
   const techList = project.technologies.map((tech,index) => <TechnologyItem key={index} name={tech}/>)
   const dataList = project.data.map((dataObj,index) =>
    <Dropdown title={dataObj.heading} defaultToggle={index===0 ? true : false}  key={index}>

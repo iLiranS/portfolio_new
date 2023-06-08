@@ -1,3 +1,4 @@
+'use client'
 // contains posts and projects. fetched at landing.
 import { Post,Project } from '../models/themeModel'
 import { create } from "zustand";

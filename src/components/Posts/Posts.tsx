@@ -7,10 +7,11 @@ import useData from 'store/useData'
 
 
 const Posts = () => {
-  const posts = useData((state)=>state.posts);
   const router = useRouter();
-  const redirectToPostPage = (id:string) => { setDidClick(true); router.push(`/posts/${id}`);}
   const [didClick,setDidClick] = useState(false);
+  const posts = useData((state)=>state.posts);
+  if (!posts || posts.length<1) return( <Spinner desc='loading posts'/> );
+  const redirectToPostPage = (id:string) => { setDidClick(true); router.push(`/posts/${id}`);}
 
     const mappedPosts = posts.map((post) =>
      <li onClick={()=>{redirectToPostPage(post._id)}} key={post._id} className='grid items-center grid-rows-2  gap-2 p-2 rounded-md cursor-pointer

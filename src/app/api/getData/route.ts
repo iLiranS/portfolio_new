@@ -19,8 +19,8 @@ export async function GET(){
     const postsCollection = postsDB.collection('posts');
     
     const [projectsData,postsData] = await Promise.all([
-        projectsCollection.find().toArray(),
-        postsCollection.find().toArray()
+        projectsCollection.find().toArray() ?? [],
+        postsCollection.find().toArray() ?? []
     ])
     const projectsMapped = projectsData.map(project=>({...project , _id:project._id.toString()} as Project))
     const postsMapped = postsData.map(post => ({...post , _id:post._id.toString(),} as Post));

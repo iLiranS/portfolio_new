@@ -1,4 +1,4 @@
-import './globals.css'
+import './globals.css' 
 import SplineObject from '@/components/Spline object/SplineObject';
 import Header from '@/components/Header/Header';
 import {Analytics } from '@vercel/analytics/react'

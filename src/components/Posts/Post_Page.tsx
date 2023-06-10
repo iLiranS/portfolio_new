@@ -7,8 +7,13 @@ import useData from 'store/useData';
 import Spinner from '../Spinner/Spinner';
 // React.FC<{post:Post}>
 const Post_Page:React.FC<{post_id:string}> = ({post_id}) => {
-  const posts = useData((state)=>state.posts);
-  if (!posts || posts.length<1) return <Spinner desc='loading data'/>
+  const dataObj = useData();
+  const posts = dataObj.posts;
+  if (!posts || posts.length<1)
+  {
+    dataObj.fetchData();
+    return <Spinner desc='loading data'/>
+  } 
 
   const post = posts.find(post=> post._id === post_id) as Post;
   if (!post){

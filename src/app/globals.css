@@ -32,9 +32,15 @@ body{
     dark:bg-lightBG dark:bg-opacity-10;
 }
 .project_Item_section{
-    @apply w-[90%] left-1/2 -translate-x-1/2 h-1/2 opacity-0 -translate-y-1/2 absolute bottom-0 flex flex-col backdrop-blur-md z-10
+    @apply w-[90%] left-1/2 -translate-x-1/2 h-1/2 opacity-0 -translate-y-1/2 absolute bottom-2 flex flex-col backdrop-blur-md z-10
     rounded-t-md
      group-hover:-translate-y-0 group-hover:opacity-100 transition-[transform,opacity] duration-300
      bg-darkBG bg-opacity-50 text-lightBG
     ;
+}
+.addInput{
+    @apply border-2 bg-transparent p-1 rounded-md dark:border-lightBG border-darkBG w-80 max-w-full;
+}
+.addSection{
+    @apply flex md:items-center gap-2 md:justify-between flex-col md:flex-row;
 }

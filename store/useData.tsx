@@ -18,8 +18,7 @@ const getInitialData = async()=>{
 
         const response = await fetch('/api/getData');
         if (!response.ok || response.status!=200){
-            // handle 
-            return;
+            throw new Error('failed fetching data');
         }
         // do whatever
         const data:finalData = await response.json();

@@ -10,10 +10,15 @@ import Spinner from '../Spinner/Spinner';
 
 const Project = () => {
     // title , src , description , link , id 
-    const projects = useData((state)=>state.projects)
+    const dataObj = useData();
+    const projects = dataObj.projects;
     const router = useRouter();
     const [didEnter,setDidEnter] = useState(false);
-    if (!projects || projects.length<1) return <Spinner desc='loading projects'/>
+    if (!projects || projects.length<1)
+    { 
+        dataObj.fetchData();
+        return <Spinner desc='loading projects'/>
+    }
 
     const navigateToProjectHandler = (id:string) => {
         setDidEnter(true);

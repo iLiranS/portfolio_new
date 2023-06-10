@@ -1,9 +1,6 @@
 import Post_Page from '@/components/Posts/Post_Page';
-import Spinner from '@/components/Spinner/Spinner';
-import { Post } from 'models/themeModel';
-import { MongoClient, ObjectId } from 'mongodb';
-import { notFound } from 'next/navigation';
-import React, { Suspense } from 'react'
+import { MongoClient } from 'mongodb';
+import React from 'react'
 
 export const revalidate = 3600; // every hour revalidation
 export const dynamicParams = false;

@@ -1,5 +1,4 @@
 import Project_Page from '@/components/Projects/Project_Page'
-import { Project } from 'models/themeModel';
 import { MongoClient } from 'mongodb';
 import React from 'react'
 

@@ -28,7 +28,7 @@ const Header = () => {
   },[currentTheme])
 
   return (
-    <header className='  flex justify-center px-4 fixed top-0 w-full  z-40  transition-colors
+    <header className='flex justify-center px-4 fixed top-0 w-full  z-40  transition-colors
      text-darkBG dark:text-lightBG'>
 
      <nav className='flex max-w-3xl  backdrop-blur-2xl w-full  justify-between p-2 items-center'>
@@ -40,7 +40,7 @@ const Header = () => {
        </ul>
 
        <ul className='flex gap-1 items-center'>
-        <li className={`items-centere flex select-none cursor-pointer p-1 md:text-xl rounded-md  ${currentTheme==='dark' ? 'bg-lightBG text-darkBG' : 'bg-darkBG text-lightBG'} `}> <a href='https://github.com/iLiranS/portfolio_new' target={'_blank'}><AiOutlineGithub/></a></li>
+        <li className={`items-center flex select-none cursor-pointer p-1 md:text-xl rounded-md  ${currentTheme==='dark' ? 'bg-lightBG text-darkBG' : 'bg-darkBG text-lightBG'} `}> <a href='https://github.com/iLiranS/portfolio_new' target={'_blank'}><AiOutlineGithub/></a></li>
        <li className={`select-none cursor-pointer p-2 md:text-xl rounded-md ${currentTheme==='dark' ? 'bg-lightBG text-darkBG rotate-180' : 'bg-darkBG text-lightBG rotate-0'} transition-all`} onClick={toggleTheme}>
          {currentTheme==='dark' ? <BiSun/> : <BiMoon/>}
        </li>

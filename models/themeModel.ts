@@ -19,3 +19,4 @@ export interface Post{
   description:string;
   data: {title:string;text:string;image?:string}[];
 }
+export type  data= {heading:string,text:string} | null;

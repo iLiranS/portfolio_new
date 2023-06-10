@@ -24,7 +24,7 @@ const Latest = () => {
   }
   
   return (
-    <div className='flex flex-col md:flex-row lg:flex-col gap-4  lg:items-center pt-12'>
+    <div className='flex flex-col md:flex-row lg:flex-col gap-4  lg:items-center'>
         <section className='flex flex-col gap-1 relative'>
           <h2 className='text-orange-400'>Latest Project</h2>
           <section className='w-[200px] relative'>

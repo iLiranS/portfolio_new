@@ -7,10 +7,15 @@ import useData from 'store/useData'
 
 
 const Posts = () => {
+  const dataObj = useData();
+  const posts = dataObj.posts;
   const router = useRouter();
   const [didClick,setDidClick] = useState(false);
-  const posts = useData((state)=>state.posts);
-  if (!posts || posts.length<1) return( <Spinner desc='loading posts'/> );
+  if (!posts || posts.length<1)
+  {
+    dataObj.fetchData();
+    return( <Spinner desc='loading posts'/> );
+  }
   const redirectToPostPage = (id:string) => { setDidClick(true); router.push(`/posts/${id}`);}
 
     const mappedPosts = posts.map((post) =>

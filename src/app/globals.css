@@ -39,8 +39,13 @@ body{
     ;
 }
 .addInput{
-    @apply border-2 bg-transparent p-1 rounded-md dark:border-lightBG border-darkBG w-80 max-w-full;
+    @apply border-[1px] bg-transparent p-1 rounded-md dark:border-lightBG border-darkBG w-80 max-w-full;
 }
 .addSection{
     @apply flex md:items-center gap-2 md:justify-between flex-col md:flex-row;
+}
+body.dark{
+    ::-webkit-calendar-picker-indicator {
+        filter: invert(1);
+    }
 }

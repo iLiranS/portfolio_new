@@ -4,6 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
 import useData from 'store/useData';
+import Dropdown from '../DropDown/Dropdown';
 import Spinner from '../Spinner/Spinner';
 // React.FC<{post:Post}>
 const Post_Page:React.FC<{post_id:string}> = ({post_id}) => {
@@ -20,7 +21,7 @@ const Post_Page:React.FC<{post_id:string}> = ({post_id}) => {
     return <div className='flex text-center'>Whoop... failed getting post</div>
   }
     const {title , data , date } =  post;
-    const dataList = data.map((dataObj,index) => <DataSection data={dataObj} key={index}/>)
+    const dataList = data.map((dataObj,index) =><Dropdown title={dataObj.heading} key={index}>{dataObj.text}</Dropdown>)
 
   return (
     <ul className='flex flex-col gap-3 relative w-full px-4 md:px-0 max-w-full pb-4 '>
@@ -46,13 +47,13 @@ const Post_Page:React.FC<{post_id:string}> = ({post_id}) => {
 
 
 
-const DataSection:React.FC<{data:{title:string;text:string;image?:string}}> = ({data}) =>
+const DataSection:React.FC<{data:{heading:string;text:string;image?:string}}> = ({data}) =>
  <li className='flex flex-col gap-4  border-t-[1px] border-darkBG dark:border-lightBG dark:border-opacity-20  border-opacity-20 pt-2'>
-  <h3 className='text-lg font-semibold '>{data.title}</h3> 
+  <h3 className='text-lg font-semibold '>{data.heading}</h3> 
   <p className='opacity-80'>{data.text}</p>
   {data.image?
    <section className='relative w-full  aspect-video m-auto rounded-md overflow-hidden'>
-    <Image fill priority sizes='100%' src={data.image} alt={data.title}/>
+    <Image fill priority sizes='100%' src={data.image} alt={data.heading}/>
   </section> 
  : '' }
  </li>

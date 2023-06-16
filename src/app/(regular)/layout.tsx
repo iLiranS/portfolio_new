@@ -1,4 +1,3 @@
-import '../globals.css' 
 import SplineObject from '@/components/Spline object/SplineObject';
 import Latest from '@/components/Latest/Latest';
 

@@ -64,7 +64,7 @@ const AddDataForm:React.FC<{addData:addDataType,cancelData:()=>void}> = ({addDat
     }
 
     return(
-        <ul className='flex flex-col gap-2 ml-2 max-w-full border-dotted border-2 p-1 relative'>
+        <ul className='flex flex-col gap-2 ml-1 max-w-full  p-1 relative bg-darkBG dark:bg-lightBG bg-opacity-5 dark:bg-opacity-5 rounded-md'>
 
         <section className='addSection'>
         <p>Heading</p>
@@ -73,13 +73,13 @@ const AddDataForm:React.FC<{addData:addDataType,cancelData:()=>void}> = ({addDat
 
         <section className='flex  gap-2 md:justify-between flex-col md:flex-row'>
         <p>Text</p>
-        <textarea ref={textRef} className='border-2 bg-transparent p-1 rounded-md dark:border-lightBG border-darkBG w-full'></textarea>
+        <textarea ref={textRef} className='border-[1px] bg-transparent p-1 rounded-md dark:border-lightBG border-darkBG w-full'></textarea>
         </section>
 
         <section className='flex justify-end gap-2 items-center'>
             {error && <p className='text-sm text-red-400'>{error}</p>}
-            <p onClick={cancelData} className='border-red-400 border-2 cursor-pointer hover:bg-red-400'>Cancel</p>
-            <p onClick={addDataHandler} className='border-green-400 border-2 cursor-pointer hover:bg-green-500'>Confirm</p>
+            <p onClick={cancelData} className='bg-red-400 cursor-pointer hover:bg-red-500 p-1 rounded-md'>Cancel</p>
+            <p onClick={addDataHandler} className='bg-green-500  cursor-pointer hover:bg-green-600 p-1 rounded-md'>Confirm</p>
         </section>
 
 

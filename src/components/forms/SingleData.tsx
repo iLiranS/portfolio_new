@@ -3,13 +3,14 @@ import React, { useState,useRef } from 'react'
 // gets Text,Heading,UpdateFunction.
 type data= {heading:string,text:string} | null;
 
-
+// this component is the section after adding data, has two options (edit mode) and (view mode).
 const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:data)=>void,deleteData:(index:number)=>void}> = ({data,updateData,index,deleteData}) => {
     const [editMode,setEditMode] = useState(false);
     const headingRef = useRef<HTMLInputElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
     const [error,setError] = useState<string|null>(null);
 
+    // saving data changes.
     const addDataHandler = () =>{
         const headingText = headingRef.current?.value;
         const text = textRef.current?.value;
@@ -21,23 +22,28 @@ const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:
         updateData(index,dataObj);
         setEditMode(false);
     }
-
+    // delete the entire section handler.
     const deleteDataHandler = () =>{
         const confirmDelete = confirm('Delete ?');
         if (!confirmDelete) return;
         deleteData(index);
     }
+    // responsible on cancel changes .
     const cancelDataHandler = () =>{
-        console.log(data?.text,textRef.current?.value,data?.heading,headingRef.current?.value)
-        if (data?.text == textRef.current?.value && data?.heading == headingRef.current?.value) setEditMode(false); // if nothing changed.
-        const confirmCancel = confirm('Cancel Changes?');
+        const didValuesChanged = data?.text !== textRef.current?.value || data?.heading !== headingRef.current?.value;
+        if (!didValuesChanged) // if nothing changed.
+        {
+            setEditMode(false);
+            return;
+        }
+        const confirmCancel = confirm('Cancel Changes?'); // confirm if data changed.
         if (confirmCancel) setEditMode(false);
         else setEditMode(true);
     }
 
     if(editMode){
         return(
-            <li key={data?.heading} className={'flex flex-col gap-2 w-full'}>
+            <li key={data?.heading} className={'flex flex-col gap-2 w-full ml-1 bg-darkBG dark:bg-lightBG bg-opacity-5 dark:bg-opacity-5 p-1 rounded-md'}>
             <section className='addSection'>
                 <p>Heading</p>
                 <input ref={headingRef} defaultValue={data?.heading} className='addInput' type='text'/>
@@ -49,11 +55,11 @@ const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:
             </section>
 
             <section className='flex justify-between gap-2 items-center'>
-            <p onClick={deleteDataHandler} className='border-red-400 border-2 cursor-pointer hover:bg-red-400'>Delete</p>
+            <p onClick={deleteDataHandler} className='bg-red-400 p-1 rounded-md cursor-pointer hover:bg-red-500'>Delete</p>
             <section className='flex items-center gap-2'>
             {error && <p className='text-sm text-red-400'>{error}</p>}
-            <p onClick={cancelDataHandler} className='border-orange-400 border-2 cursor-pointer hover:bg-orange-400'>Cancel</p>
-            <p onClick={addDataHandler} className='border-green-400 border-2 cursor-pointer hover:bg-green-500'>Confirm</p>
+            <p onClick={cancelDataHandler} className='bg-orange-400 rounded-md p-1  cursor-pointer hover:bg-orange-500'>Cancel</p>
+            <p onClick={addDataHandler} className='bg-green-500 p-1 rounded-md  cursor-pointer hover:bg-green-600'>Confirm</p>
             </section>
         </section>
     

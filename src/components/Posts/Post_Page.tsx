@@ -12,7 +12,6 @@ const Post_Page:React.FC<{post_id:string}> = ({post_id}) => {
   const posts = dataObj.posts;
   if (!posts || posts.length<1)
   {
-    dataObj.fetchData();
     return <Spinner desc='loading data'/>
   } 
 
@@ -21,7 +20,7 @@ const Post_Page:React.FC<{post_id:string}> = ({post_id}) => {
     return <div className='flex text-center'>Whoop... failed getting post</div>
   }
     const {title , data , date } =  post;
-    const dataList = data.map((dataObj,index) =><Dropdown title={dataObj.heading} key={index}>{dataObj.text}</Dropdown>)
+    const dataList = data.map((dataObj,index) =><Dropdown defaultToggle={index===0 ? true : false} title={dataObj.heading} key={index}>{dataObj.text}</Dropdown>)
 
   return (
     <ul className='flex flex-col gap-3 relative w-full px-4 md:px-0 max-w-full pb-4 '>

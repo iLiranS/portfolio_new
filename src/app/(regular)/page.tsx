@@ -53,7 +53,7 @@ export default function Home() {
     </div>
     
 
-    <div className='block lg:hidden'>
+    <div className='flex flex-col lg:hidden justify-center items-center w-full border-t-2 border-darkBG dark:border-lightBG border-opacity-20 dark:border-opacity-20'>
     <Latest/>
     </div>
     

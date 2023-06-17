@@ -9,9 +9,11 @@ import Spinner from '../Spinner/Spinner';
 const Latest = () => {
   const router = useRouter();
   const data = useData((state)=>state.fetchData);
-  data(); // initial data set.
   const projects =  useData((state)=>state.projects) ??[];
   const posts =  useData((state)=>state.posts ??[]);
+  if (projects.length <1|| posts.length<1){
+    data(); // initial data set.
+  }
   const latestProject = projects.length>0 ? projects.at(-1) : null;
   const latestPost = posts.length>0 ? posts.at(-1) : null;
 

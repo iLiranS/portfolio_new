@@ -14,7 +14,6 @@ const Project_Page:React.FC<{project_id:string}> = ({project_id}) => {
   const projects = dataObj.projects;
   if (!projects || projects.length<1) 
   {
-    dataObj.fetchData();
     return <Spinner desc='loading data'/>
   } 
   const project = projects.find(project => project._id === project_id) as Project;

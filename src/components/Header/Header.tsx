@@ -28,7 +28,7 @@ const Header = () => {
   },[currentTheme])
 
   return (
-    <header className='flex justify-center px-4 fixed top-0 w-full  z-40  transition-colors
+    <header className='flex justify-center  fixed top-0 w-full   z-40  transition-colors
      text-darkBG dark:text-lightBG'>
 
      <nav className='flex max-w-3xl  backdrop-blur-2xl w-full  justify-between p-2 items-center'>

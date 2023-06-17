@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import Spinner from '../Spinner/Spinner'
 import useData from 'store/useData'
 
-
+//TODO: heading instead of title , also make it with dropdowns like projects.
 const Posts = () => {
   const dataObj = useData();
   const posts = dataObj.posts;

@@ -2,11 +2,13 @@
 import { MongoClient } from 'mongodb'
 import { NextResponse } from 'next/server';
 import {Project,Post} from '../../../../models/themeModel'
+import { revalidateTag } from 'next/cache'
 
 
 
-export const revalidate = 3600; // revalidation every hour
+// export const revalidate = 3600; // revalidation every hour
 export async function GET(){
+    console.log('inital fetch called')
     let client;
     try{
 
@@ -24,7 +26,7 @@ export async function GET(){
     ])
     const projectsMapped = projectsData.map(project=>({...project , _id:project._id.toString()} as Project))
     const postsMapped = postsData.map(post => ({...post , _id:post._id.toString(),} as Post));
-    return NextResponse.json({projects:projectsMapped,posts:postsMapped},{status:200});
+    return NextResponse.json({projects:projectsMapped,posts:postsMapped},{status:200},);
 
 }
 catch(err){

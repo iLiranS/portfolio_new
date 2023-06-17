@@ -17,7 +17,7 @@ export default function RootLayout({
         <div className='hidden lg:block'></div>
 
         <div className=' max-w-2xl w-full relative m-auto  scroll-smooth '>
-          <div className='scale-75 md:scale-90 h-[250px]'><SplineObject/></div>
+          <div className=' w-full px-2 h-[250px]'><SplineObject/></div>
         {children}
         </div>
 

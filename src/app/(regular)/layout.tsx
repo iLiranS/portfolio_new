@@ -17,11 +17,11 @@ export default function RootLayout({
         <div className='hidden lg:block'></div>
 
         <div className=' max-w-2xl w-full relative m-auto  scroll-smooth '>
-          <div className=' w-full px-2 h-[250px]'><SplineObject/></div>
+          <div className=' w-full px-4 h-[200px] md:h-[250px] mb-2'><SplineObject/></div>
         {children}
         </div>
 
-        <aside className='hidden lg:block relative w-full'>
+        <aside className='hidden lg:block  w-full h-fit sticky top-2'>
         <Latest/>
        </aside>
 

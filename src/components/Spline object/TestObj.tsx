@@ -17,7 +17,7 @@ export default function Scene({ ...props }) {
         setRotateX((prev:any)=>{
             let fornow = prev;
             if (fornow > 360) fornow -=360;
-            return fornow+0.0001;
+            return fornow+0.00005;
         })
    },[rotateX,setRotateX])
 

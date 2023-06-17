@@ -18,7 +18,7 @@ const SplineObject = () => {
     return(
 
             <Suspense fallback={<Spinner desc='loading model'/>}>
-              <Canvas shadows flat linear>
+              <Canvas className='rounded-md' shadows flat linear>
                 <Scene />
                 <OrbitControls />
               </Canvas>

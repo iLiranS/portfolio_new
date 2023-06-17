@@ -174,19 +174,19 @@ const AddForm = () => {
 
                 <section className='addSection'>
                 <p>Images</p>
-                <TypeList title='Image' updateData={updateImagesHandler}/>
+                <TypeList data={images} title='Image' updateData={updateImagesHandler}/>
                 </section>
 
                 <section className='addSection'>
                 <p>Technologies</p>
-                <TypeList title='Tech' updateData={updateTechHandler}/>
+                <TypeList data={tech} title='Tech' updateData={updateTechHandler}/>
                 </section>
             </section>
             }
 
             <section className='flex flex-col gap-2 mt-4'>
                 <h3 className=' font-bold text-xs border-2 p-1 border-dotted w-fit p- border-darkBG dark:border-lightBG'>Data</h3>
-                <DataList updateData={updateDataHandler}/>
+                <DataList data={data} updateData={updateDataHandler}/>
             </section>
 
             {error && <p className='text-red-400 text-sm'>{error}</p>}

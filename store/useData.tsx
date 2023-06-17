@@ -1,15 +1,15 @@
 'use client'
 // contains posts and projects. fetched at landing.
-import { Post,Project } from '../models/themeModel'
+import { formData, Post,Project } from '../models/themeModel'
 import { create } from "zustand";
 type storeModel = {
-    posts:Post[],
-    projects:Project[],
+    posts:formData[],
+    projects:formData[],
     fetchData:()=>void;
 }
 type finalData = {
-    posts:Post[],
-    projects:Project[]
+    posts:formData[],
+    projects:formData[]
 }
 
 // initial fetching

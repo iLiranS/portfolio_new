@@ -30,5 +30,7 @@ export type formData ={
   preview?:string,
   link?:string,
   technologies?:string[] | null,
-  github_link?:string
+  github_link?:string,
+  _id?:string,
+  
 }

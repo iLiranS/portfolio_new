@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation'
 import Spinner from '../Spinner/Spinner'
 import useData from 'store/useData'
 
-//TODO: heading instead of title , also make it with dropdowns like projects.
 const Posts = () => {
   const dataObj = useData();
   const posts = dataObj.posts;
@@ -18,7 +17,7 @@ const Posts = () => {
   }
   const redirectToPostPage = (id:string) => { setDidClick(true); router.push(`/posts/${id}`);}
 
-    const mappedPosts = posts.map((post) =>
+    const mappedPosts = posts.reverse().map((post) =>
      <li onClick={()=>{redirectToPostPage(post._id)}} key={post._id} className='grid items-center grid-rows-2  gap-2 p-2 rounded-md cursor-pointer
       box-border  border-2 border-transparent hover:border-orange-400
      bg-darkBG bg-opacity-10

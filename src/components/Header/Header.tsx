@@ -34,8 +34,8 @@ const Header = () => {
      <nav className='flex max-w-3xl  backdrop-blur-2xl w-full  justify-between p-2 items-center'>
        <ul className='flex gap-4'>
          <li  className={`font-semibold navLink ${pathname==='/' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'/'}><FiUser/>  <p>Liran</p></Link></li>
-         <li className={`navLink ${pathname==='/projects' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'projects'}> <BsBriefcase/><p>Projects</p></Link></li>
-         <li className={`navLink ${pathname==='/posts' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'posts'}> <BiNews/> <p>Posts</p></Link></li>
+         <li className={`navLink ${pathname==='/projects' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'/projects'}> <BsBriefcase/><p>Projects</p></Link></li>
+         <li className={`navLink ${pathname==='/posts' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'/posts'}> <BiNews/> <p>Posts</p></Link></li>
          <li className='navLink'></li>
        </ul>
 

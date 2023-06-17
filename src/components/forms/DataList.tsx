@@ -4,38 +4,30 @@ import SingleData from './SingleData';
 
 type addDataType= (heading:string,text:string)=>void;
 
-const DataList:React.FC<{updateData:(data:data[])=>void}>= ({updateData})=> {
+const DataList:React.FC<{updateData:(data:data[])=>void,data:data[]}>= ({updateData,data})=> {
     const [isAdding,setIsAdding] = useState(false);
-    const [data,setData] = useState<data[]>([]);
 
-    useEffect(()=>{
-        updateData(data);
-    },[data,updateData])
+
   
     const addDataHandler:addDataType = (heading,text) =>{
-        setData(prev =>{
-            const fornow = [...prev,{heading,text}];
-            return fornow;
-        })
+            const fornow = [...data,{heading,text}];
+            updateData(fornow);
         setIsAdding(false);
     }
     const cancelDataHandler = () =>{
         setIsAdding(false);
     }
 
-    const updateDataHandler = (index:number,data:data) =>{
-        setData(prev =>{
-            const fornow = [...prev];
-            fornow[index] = data;
-            return fornow;
-        })
+    // abit confusing , newData is new data (one index in the main array)
+    const updateDataHandler = (index:number,newData:data) =>{
+            const fornow = [...data];
+            fornow[index] = newData;
+            updateData(fornow);
     }
     const deleteDataHandler = (index:number) =>{
-        setData(prev =>{
-            const fornow = [...prev];
+            const fornow = [...data];
             fornow.splice(index,1);
-            return fornow;
-        })
+            updateData(fornow);
     }
 
     const mappedData = data.map((data,index) => <SingleData key={data?.heading ?? index} data={data} index={index} updateData={updateDataHandler} deleteData={deleteDataHandler}/>)

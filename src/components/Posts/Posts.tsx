@@ -17,8 +17,8 @@ const Posts = () => {
   }
   const redirectToPostPage = (id:string) => { setDidClick(true); router.push(`/posts/${id}`);}
 
-    const mappedPosts = posts.reverse().map((post) =>
-     <li onClick={()=>{redirectToPostPage(post._id)}} key={post._id} className='grid items-center grid-rows-2  gap-2 p-2 rounded-md cursor-pointer
+    const mappedPosts = posts.map((post) =>
+     <li onClick={()=>{redirectToPostPage(post._id??'')}} key={post._id} className='grid items-center grid-rows-2  gap-2 p-2 rounded-md cursor-pointer
       box-border  border-2 border-transparent hover:border-orange-400
      bg-darkBG bg-opacity-10
      dark:bg-lightBG dark:bg-opacity-10'>
@@ -36,7 +36,7 @@ const Posts = () => {
 
   return (
     <ul className='flex flex-col gap-2 px-4 md:px-0 animate-pageIn'>
-      <h2>Posts</h2>
+      <h2 className='text-orange-400 font-semibold'>Posts</h2>
       {didClick && <Spinner/>}
         {mappedPosts}
     </ul>

@@ -70,7 +70,7 @@ const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:
 
 
   return (
-    <li className='flex items-center justify-between px-2 border-b-2'>
+    <li className='flex items-center justify-between px-2 border-b-2 border-darkBG dark:border-lightBG'>
         <p className='font-semibold'>{data?.heading}</p>
         <p onClick={()=>{setEditMode(true)}} className='font-bold cursor-pointer'>Edit</p>
     </li>

@@ -14,8 +14,8 @@ const Latest = () => {
   if (projects.length <1|| posts.length<1){
     data(); // initial data set.
   }
-  const latestProject = projects.length>0 ? projects.at(-1) : null;
-  const latestPost = posts.length>0 ? posts.at(-1) : null;
+  const latestProject = projects.length>0 ? projects[0] : null;
+  const latestPost = posts.length>0 ? posts[0] : null;
 
   if (!latestProject || !latestPost){
     return(
@@ -30,7 +30,7 @@ const Latest = () => {
         <section className='flex flex-col gap-1 relative'>
           <h2 className='text-orange-400'>Latest Project</h2>
           <section className='w-[200px] relative'>
-            <ProjectItem project={latestProject} onClick={()=>router.push('/projects/'+latestProject._id)}/>
+            <ProjectItem project={latestProject} clickNavigate={()=>router.push('/projects/'+latestProject._id)}/>
           </section>
         </section>
         <section className='w-[200px] relative flex flex-col'>

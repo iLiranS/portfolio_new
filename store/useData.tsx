@@ -22,7 +22,6 @@ const getInitialData = async()=>{
         }
         // do whatever
         const data:finalData = await response.json();
-        console.log(data);
         didFetch =true;
         return data;
 
@@ -43,8 +42,8 @@ const useData = create<storeModel>((set)=>({
             })
         }
         const data = await getInitialData();
-        const projects = data?.projects;
-        const posts = data?.posts;
+        const projects = data?.projects.reverse();
+        const posts = data?.posts.reverse();
         set(()=> {
             return ({posts:posts,projects:projects});
         })

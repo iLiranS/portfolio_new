@@ -44,8 +44,3 @@ body{
 .addSection{
     @apply flex md:items-center gap-2 md:justify-between flex-col md:flex-row;
 }
-body.dark{
-    ::-webkit-calendar-picker-indicator {
-        filter: invert(1);
-    }
-}

@@ -58,6 +58,7 @@ const EditForm = () => {
         setPreviewImage(selectedProject?.preview ?? '');
         setLink(selectedProject?.link ?? '');
         setGitHubLink(selectedProject?.github_link ?? '');
+        setProjectData(selectedProject?.data?? []);
         setError(null);
     },[selectedProject])
 
@@ -90,14 +91,11 @@ const EditForm = () => {
     const updateLinkHandler = (e:ChangeEvent<HTMLInputElement>) => setLink(e.target.value)
     const updateGithubLinkHandler = (e:ChangeEvent<HTMLInputElement>) => setGitHubLink(e.target.value)
 
-    const deleteDataHandler = (index:number) =>{
-        ///....
-        console.log('delete function called')
-    }
+ 
  
 
-    const mappedProjectsOptions = data.projects ? data.projects.reverse().map(project => <option key={project.title} className='bg-lightBG dark:bg-darkBG outline-none text-darkBG dark:text-lightBG'>{project.title}</option>) : []
-    const mappedPostsOptions = data.posts ? data.posts.reverse().map(post => <option key={post.title} className='bg-lightBG dark:bg-darkBG outline-none text-darkBG dark:text-lightBG'>{post.title}</option>) : []
+    const mappedProjectsOptions = data.projects ? data.projects.map(project => <option key={project.title} className='bg-lightBG dark:bg-darkBG outline-none text-darkBG dark:text-lightBG'>{project.title}</option>) : []
+    const mappedPostsOptions = data.posts ? data.posts.map(post => <option key={post.title} className='bg-lightBG dark:bg-darkBG outline-none text-darkBG dark:text-lightBG'>{post.title}</option>) : []
 
 
     async function updateData(formData:formData){
@@ -118,7 +116,6 @@ const EditForm = () => {
                 throw new Error('Request failed !');
             }
             const result = await response.json();
-            console.log(result);
             setError('Succesfully added')
             // successfully . redirect to new _id page maybe .
         }
@@ -154,10 +151,49 @@ const EditForm = () => {
         // post attempt.
         updateData(formData);
     }
-    console.log(selectedProject)
+
+   
+    async function deleteProjectHandler(){
+        if (!keyRef.current ||  keyRef.current?.value.trim().length<3) {
+            setError('Invalid Admin Key');
+            return;
+        }
+        if(isLoading) return;
+        setIsLoading(true);
+        const bodyObj = {Admin_Key:keyRef.current.value ?? '',_id:selectedProject?._id ?? '',type}   
+        try
+        {
+            setError(null);
+            const response = await fetch(`/api/form?id=${bodyObj._id}&key=${bodyObj.Admin_Key}&type=${bodyObj.type}`,{
+                method:'DELETE',
+                headers:{'Content-Type': 'application/json'},
+            });
+            if (!response.ok || response.status !==200){
+                if(response.status ===401) throw new Error('Wrong Admin Key!');
+                throw new Error('Request failed !');
+            }
+            const result = await response.json();
+            setError(`Succesfully removed ${type}`)
+            // successfully . redirect to new _id page maybe .
+        }
+        catch(err:any){
+            // error handling.
+            console.error('Error:',err);
+            setError(err.message);
+        }
+        setIsLoading(false);
+    }
+
+    const deleteClickHandler = () =>{
+        const isDelete = confirm(`Delete ${type} ${selectedProject?.title} ?`);
+        if (isDelete){
+            deleteProjectHandler();
+        }
+    }
+
 
   return (
-    <form onSubmit={submitFormHandler} className='flex flex-col gap-2 relative mx-auto  max-w-full w-[600px] px-2 pb-2'>
+    <form onSubmit={submitFormHandler} className='flex flex-col gap-2 relative mx-auto  max-w-full w-[600px] px-2 pb-2 bg-darkBG dark:bg-lightBG dark:bg-opacity-5 bg-opacity-5 rounded-md'>
         <h3 className='text-center text-orange-400'>Edit Page</h3>
 
         <section className='addSection'>
@@ -238,16 +274,17 @@ const EditForm = () => {
                 }
         {error && <p className='text-red-400 text-sm'>{error}</p>}
 
-        {selectedProject &&
+        {selectedProject && !isLoading &&
         <section className='w-full flex p-1 rounded-md justify-between bg-orange-400 bg-opacity-20  mt-2'>
                 <div className='flex items-center'>
-                    <button type='button' className='p-1 bg-red-500 hover:bg-red-600 rounded-md'>Delete {type}</button>
+                    <button onClick={deleteClickHandler} type='button' className='p-1 bg-red-500 hover:bg-red-600 rounded-md'>Delete {type}</button>
                 </div>
                 <section className='flex items-center gap-2'>
                     <button type='submit' className='p-1 bg-green-500 hover:bg-green-600 rounded-md'>Save</button>
                 </section>
         </section>
         }
+        {isLoading && <Spinner desc='loading...'/>}
     </form>
   )
 }

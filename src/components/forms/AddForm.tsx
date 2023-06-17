@@ -81,7 +81,6 @@ const AddForm = () => {
                 throw new Error('Request failed !');
             }
             const result = await response.json();
-            console.log(result);
             setError('Succesfully added')
             // successfully . redirect to new _id page maybe .
         }

@@ -14,7 +14,7 @@ body{
 
 
 .sectionLine{
-    @apply relative flex flex-col gap-2 mt-2  
+    @apply relative flex flex-col gap-3 md:gap-2 mt-2  
      before:h-full before:w-[2px] before:bg-darkBG before:bg-opacity-10 before:absolute before:top-0
      dark:before:bg-white dark:before:bg-opacity-10;
 }

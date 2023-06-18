@@ -1,5 +1,5 @@
 
-export type themeModel = {theme:'light' | 'dark' , toggleTheme:()=>void}
+export type themeModel = {theme:'light' | 'dark' , toggleTheme:()=>void , isModelVisible:boolean , toggleModel:()=>void}
 
 export interface Project{
     _id:string;

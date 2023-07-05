@@ -5,9 +5,9 @@ import { notFound } from 'next/navigation';
 import React from 'react'
 
 // not allowing unvalid route
-const dynamicParams = false;
-export { dynamicParams };
-export const revalidate = 60;
+// const dynamicParams = false;
+// export { dynamicParams };
+export const revalidate = 3600;
 
 
 
@@ -26,11 +26,11 @@ export async function generateMetadata({params}:{params:{post_id:string}}):Promi
 
 
 // static params
-export async function generateStaticParams() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
-  const posts = await res.json() as Post[];
-  return posts.map(project => ({post_id:project.id}));
-}
+// export async function generateStaticParams() {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
+//   const posts = await res.json() as Post[];
+//   return posts.map(project => ({post_id:project.id}));
+// }
 
 
 

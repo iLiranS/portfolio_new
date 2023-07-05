@@ -5,8 +5,8 @@ import { notFound } from 'next/navigation';
 import React from 'react'
 
 // dont allow unvalid params.
-const dynamicParams = false;
-export { dynamicParams };
+// const dynamicParams = false;
+// export { dynamicParams };
 export const revalidate = 60;
 
 //metadata
@@ -21,11 +21,11 @@ export async function generateMetadata({params}:{params:{project_id:string}}):Pr
 
 }
 
-export async function generateStaticParams() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`);
-  const projects = await res.json() as Project[];
-  return projects.map(project => ({project_id:project.id}));
-}
+// export async function generateStaticParams() {
+//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`);
+//   const projects = await res.json() as Project[];
+//   return projects.map(project => ({project_id:project.id}));
+// }
 
 
 

@@ -2,7 +2,7 @@ import { Post, PrismaClient } from "@prisma/client";
 import { NextResponse } from "next/server";
 
 const prisma = new PrismaClient()
-export const revalidate = 60;
+export const revalidate = 3600;
 
 
 

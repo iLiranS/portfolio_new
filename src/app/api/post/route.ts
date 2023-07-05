@@ -21,7 +21,7 @@ export async function GET(request:Request){
                 id:id
             }
         })
-        if (post) return NextResponse.json(post);
+        if (post) return NextResponse.json(post,{status:200});
         else throw new Error('failed getting post');
     }
     catch(err){

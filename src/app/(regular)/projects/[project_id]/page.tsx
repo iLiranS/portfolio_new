@@ -4,6 +4,9 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import React from 'react'
 
+// dont allow unvalid params.
+const dynamicParams = false;
+export { dynamicParams };
 
 //metadata
 export async function generateMetadata({params}:{params:{project_id:string}}):Promise<Metadata>{
@@ -22,16 +25,23 @@ export async function generateStaticParams() {
   const projects = await res.json() as Project[];
   return projects.map(project => ({project_id:project.id}));
 }
-const dynamicParams = false;
-export { dynamicParams };
+
 
 
 
 const getProject = async(id:string) =>{
+  console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/project?id=${id}`)
+  try{
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/project?id=${id}`);
   if (!res.ok) return null;
-  const project = await res.json();
-  return project as Project;
+
+    const project = await res.json();
+    return project as Project;
+  }
+  catch(err){
+    console.log(err);
+    return null;
+  }
 }
 
 export default async function page({params}:{params:{project_id:string}}){

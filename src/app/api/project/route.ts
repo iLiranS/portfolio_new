@@ -21,7 +21,7 @@ export async function GET(request:Request){
                 id:id
             }
         })
-        if (project) return NextResponse.json(project);
+        if (project) return NextResponse.json(project,{status:200});
         else throw new Error('failed getting project');
     }
     catch(err){

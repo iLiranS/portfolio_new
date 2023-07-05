@@ -1,7 +1,8 @@
 import './globals.css' 
 import Header from '@/components/Header/Header';
 import {Analytics } from '@vercel/analytics/react'
-
+import {Roboto_Mono} from 'next/font/google'
+const roboto_mono= Roboto_Mono({ subsets: ['latin'],weight:['400','500','600','700'] })
 
 export default function RootLayout({
   children,
@@ -19,7 +20,7 @@ export default function RootLayout({
 
       
 
-      <body>
+      <body className={roboto_mono.className}>
       <Header/>
 
        <main className=' min-h-[100dvh] transition-colors flex flex-col relative pt-16 md:pt-24

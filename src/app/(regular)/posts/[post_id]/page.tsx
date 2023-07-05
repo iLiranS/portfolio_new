@@ -35,11 +35,16 @@ export { dynamicParams };
 
 
 const getPost = async(id:string) =>{
-
+  try{
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post?id=${id}`);
   if (!res.ok) return null;
-  const post = await res.json();
-  return post as Post;
+    const post = await res.json();
+    return post as Post;
+  }
+  catch(err){
+    console.log(err);
+    return null;
+  }
 }
 
 

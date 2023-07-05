@@ -1,5 +1,5 @@
 
-export const convertDateToString = (dateString: string) => {
+export const convertDateToString = (dateString:any) => {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return 'xx-xx-xxxx';
 

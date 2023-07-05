@@ -4,7 +4,10 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import React from 'react'
 
-
+// not allowing unvalid route
+const dynamicParams = false;
+export { dynamicParams };
+export const revalidate = 60;
 
 
 
@@ -29,8 +32,6 @@ export async function generateStaticParams() {
   return posts.map(project => ({post_id:project.id}));
 }
 
-const dynamicParams = false;
-export { dynamicParams };
 
 
 
@@ -42,7 +43,8 @@ const getPost = async(id:string) =>{
     return post as Post;
   }
   catch(err){
-    console.log(err);
+    console.error('ERROR DETECTED WHEN GETTING POST DATA FOR ID OF ' + id)
+    console.error(err);
     return null;
   }
 }

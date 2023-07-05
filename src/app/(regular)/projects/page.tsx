@@ -8,6 +8,8 @@ export const metadata:Metadata={
   title:'LiranS - Projects',
   description:'explore my latest projects'
 }
+export const revalidate = 60;
+
 
 
 const getProjects = async() =>{

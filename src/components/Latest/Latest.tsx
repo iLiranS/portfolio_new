@@ -32,7 +32,7 @@ const Latest = async() => {
         <section className='flex flex-col gap-1 relative'>
           <h2 className='text-orange-400'>Latest Project</h2>
           <section className='w-[200px] relative'>
-            <ProjectItem project={project}/>
+            <ProjectItem isLatest={true} project={project}/>
           </section>
         </section>
       }

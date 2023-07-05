@@ -19,12 +19,13 @@ export async function generateMetadata({params}:{params:{post_id:string}}):Promi
 
 }
 
+
+
+
 // static params
 export async function generateStaticParams() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
-  if (!res.ok) return null;
   const posts = await res.json() as Post[];
-  
   return posts.map(project => ({post_id:project.id}));
 }
 

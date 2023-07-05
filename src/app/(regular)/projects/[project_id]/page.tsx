@@ -25,8 +25,9 @@ export async function generateStaticParams() {
 const dynamicParams = false;
 export { dynamicParams };
 
-const getProject = async(id:string) =>{
 
+
+const getProject = async(id:string) =>{
   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/project?id=${id}`);
   if (!res.ok) return null;
   const project = await res.json();

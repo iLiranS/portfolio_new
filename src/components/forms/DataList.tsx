@@ -1,16 +1,16 @@
+import { Data } from '@prisma/client';
 import React, { useEffect, useRef, useState } from 'react'
-import { data } from 'models/themeModel';
 import SingleData from './SingleData';
 
-type addDataType= (heading:string,text:string)=>void;
+type addDataType= (data:Data)=>void;
 
-const DataList:React.FC<{updateData:(data:data[])=>void,data:data[]}>= ({updateData,data})=> {
+const DataList:React.FC<{updateData:(data:Data[])=>void,data:Data[]}>= ({updateData,data})=> {
     const [isAdding,setIsAdding] = useState(false);
 
 
   
-    const addDataHandler:addDataType = (heading,text) =>{
-            const fornow = [...data,{heading,text}];
+    const addDataHandler:addDataType = (newData) =>{
+            const fornow = [...data,newData];
             updateData(fornow);
         setIsAdding(false);
     }
@@ -19,7 +19,7 @@ const DataList:React.FC<{updateData:(data:data[])=>void,data:data[]}>= ({updateD
     }
 
     // abit confusing , newData is new data (one index in the main array)
-    const updateDataHandler = (index:number,newData:data) =>{
+    const updateDataHandler = (index:number,newData:Data) =>{
             const fornow = [...data];
             fornow[index] = newData;
             updateData(fornow);
@@ -30,7 +30,7 @@ const DataList:React.FC<{updateData:(data:data[])=>void,data:data[]}>= ({updateD
             updateData(fornow);
     }
 
-    const mappedData = data.map((data,index) => <SingleData key={data?.heading ?? index} data={data} index={index} updateData={updateDataHandler} deleteData={deleteDataHandler}/>)
+    const mappedData = data.map((data,index) => <SingleData key={data?.title ?? index} data={data} index={index} updateData={updateDataHandler} deleteData={deleteDataHandler}/>)
 
 return (
     <ul className='flex flex-col gap-2 relative w-full'>
@@ -49,17 +49,17 @@ const AddDataForm:React.FC<{addData:addDataType,cancelData:()=>void}> = ({addDat
     const addDataHandler = () =>{
         const headingText = headingRef.current?.value;
         const text = textRef.current?.value;
-        if (!headingText) { setError('invalid Heading'); return;}
+        if (!headingText) { setError('invalid title'); return;}
         if (!text) {setError('invalid Text'); return;}
         // success
-        addData(headingText,text);
+        addData({title:headingText,text});
     }
 
     return(
         <ul className='flex flex-col gap-2 ml-1 max-w-full  p-1 relative bg-darkBG dark:bg-lightBG bg-opacity-5 dark:bg-opacity-5 rounded-md'>
 
         <section className='addSection'>
-        <p>Heading</p>
+        <p>Title</p>
         <input ref={headingRef} className='addInput' type='text'/>
         </section>
 

@@ -1,19 +1,19 @@
 import AddForm from '@/components/forms/AddForm'
-import { Project} from '../../../models/themeModel'
 import React from 'react'
-//TODO: admin page only needs an option to add pages. 
-// so need to add ui first with fields to fill .
-// create API endpoint to addPost which requires admin Key.
-// api returns either 200 / 500 / 401 (bad key)
-// show indicator in front.
+import { Metadata } from 'next'
+
+
+export const metadata:Metadata={
+       title:'LiranS - Admin',
+}
 
 
 
 const page = () => {
-    
- return(
-        <AddForm/>
- )
+
+return(
+<AddForm/>
+)
 }
 
 export default page

@@ -1,10 +1,9 @@
+import { Data } from '@prisma/client';
 import React, { useState,useRef } from 'react'
 // used to edit existing data blocks.
-// gets Text,Heading,UpdateFunction.
-type data= {heading:string,text:string} | null;
 
 // this component is the section after adding data, has two options (edit mode) and (view mode).
-const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:data)=>void,deleteData:(index:number)=>void}> = ({data,updateData,index,deleteData}) => {
+const SingleData:React.FC<{data:Data,index:number,updateData:(index:number,data:Data)=>void,deleteData:(index:number)=>void}> = ({data,updateData,index,deleteData}) => {
     const [editMode,setEditMode] = useState(false);
     const headingRef = useRef<HTMLInputElement>(null);
     const textRef = useRef<HTMLTextAreaElement>(null);
@@ -18,7 +17,7 @@ const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:
         if (!text) {setError('invalid Text'); return;}
         // success
         setError(null);
-        const dataObj = {heading:headingText,text};
+        const dataObj:Data = {title:headingText,text};
         updateData(index,dataObj);
         setEditMode(false);
     }
@@ -30,7 +29,7 @@ const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:
     }
     // responsible on cancel changes .
     const cancelDataHandler = () =>{
-        const didValuesChanged = data?.text !== textRef.current?.value || data?.heading !== headingRef.current?.value;
+        const didValuesChanged = data?.text !== textRef.current?.value || data?.title !== headingRef.current?.value;
         if (!didValuesChanged) // if nothing changed.
         {
             setEditMode(false);
@@ -43,10 +42,10 @@ const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:
 
     if(editMode){
         return(
-            <li key={data?.heading} className={'flex flex-col gap-2 w-full ml-1 bg-darkBG dark:bg-lightBG bg-opacity-5 dark:bg-opacity-5 p-1 rounded-md'}>
+            <li key={data?.title} className={'flex flex-col gap-2 w-full ml-1 bg-darkBG dark:bg-lightBG bg-opacity-5 dark:bg-opacity-5 p-1 rounded-md'}>
             <section className='addSection'>
-                <p>Heading</p>
-                <input ref={headingRef} defaultValue={data?.heading} className='addInput' type='text'/>
+                <p>Title</p>
+                <input ref={headingRef} defaultValue={data?.title} className='addInput' type='text'/>
             </section>
     
             <section className='flex  gap-2 md:justify-between flex-col md:flex-row'>
@@ -71,7 +70,7 @@ const SingleData:React.FC<{data:data,index:number,updateData:(index:number,data:
 
   return (
     <li className='flex items-center justify-between px-2 border-b-2 border-darkBG dark:border-lightBG'>
-        <p className='font-semibold'>{data?.heading}</p>
+        <p className='font-semibold'>{data?.title}</p>
         <p onClick={()=>{setEditMode(true)}} className='font-bold cursor-pointer'>Edit</p>
     </li>
   )

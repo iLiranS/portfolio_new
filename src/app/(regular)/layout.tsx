@@ -21,7 +21,8 @@ export default function RootLayout({
         {children}
         </div>
 
-        <aside className='hidden lg:block  w-full h-fit sticky top-2'>
+        <aside className='hidden lg:flex  w-full h-fit sticky top-4  justify-start'>
+        {/* @ts-expect-error Server Component */}
         <Latest/>
        </aside>
 

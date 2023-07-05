@@ -17,8 +17,8 @@ const Header = () => {
   const toggleTheme = useThemeStore((state)=>state.toggleTheme);
   useEffect(()=>{
     if (currentTheme === 'dark'){
-      if (!document.body.classList.contains('dark')) document.body.classList.add('dark');
-      document.body.style.backgroundColor='#202023';
+      if (!document.documentElement.classList.contains('dark')) document.body.classList.add('dark');
+      document.documentElement.style.backgroundColor='#202023';
     }
     else{
       if (document.body.classList.contains('dark')) document.body.classList.remove('dark');

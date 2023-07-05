@@ -26,7 +26,7 @@ const SplineObject = () => {
           </div>
           
     )
-
+    
 }
 
 

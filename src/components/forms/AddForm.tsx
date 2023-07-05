@@ -2,15 +2,17 @@
 import React, { useCallback, useRef, useState } from 'react'
 import DataList from './DataList';
 import TypeList from './TypeList';
-import { data , formData } from 'models/themeModel';
+// import { data , formData } from 'models/themeModel';
 import Spinner from '../Spinner/Spinner';
+import { Data, Post, Project } from '@prisma/client';
+import { redirect } from 'next/navigation';
 
 const AddForm = () => {
     //states
-    const [projectType,setType] = useState('project');
+    const [projectType,setType] = useState<'project'|'post'>('project');
     const [images,setImages] = useState<string[]>([]);
     const [tech,setTech] = useState<string[]>([]);
-    const [data,setData] = useState<data[]>([]);
+    const [data,setData] = useState<Data[]>([]);
     const [didSubmit,setDidSubmit] = useState(false);
     // refs
     const keyRef = useRef<HTMLInputElement>(null);
@@ -28,7 +30,8 @@ const AddForm = () => {
 
 
     const changeTypeHandler = (obj:React.ChangeEvent<HTMLSelectElement>) =>{
-        setType(obj.target.value);
+        const val = obj.target.value as 'post' | 'project';
+        setType(val);
     } 
 
     const updateImagesHandler = useCallback((images:string[]) =>{
@@ -38,7 +41,7 @@ const AddForm = () => {
         setTech(tech);
     },[]);
 
-    const updateDataHandler = useCallback((data:data[]) =>{
+    const updateDataHandler = useCallback((data:Data[]) =>{
         setData(data);
     },[]);
 
@@ -57,21 +60,16 @@ const AddForm = () => {
         return true;
     }
 
-    const convertDate = (date:Date) =>{
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are zero-based
-        const year = date.getFullYear();
-        const formattedDate = `${day}-${month}-${year}`;
-        return formattedDate;
-    }
 
-    async function postData(formData:formData){
-        if (didSubmit) return;
+
+    async function postData(formData:Project|Post){
+        // if (didSubmit) return;
+        console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${projectType}`)
         try
         {
             setDidSubmit(true);
             setError(null);
-            const response = await fetch('/api/form',{
+            const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/${projectType}`,{
                 method:'POST',
                 headers:{'Content-Type':'application/json'},
                 body:JSON.stringify({Admin_Key:keyRef.current?.value,data:formData})
@@ -82,6 +80,7 @@ const AddForm = () => {
             }
             const result = await response.json();
             setError('Succesfully added')
+            location.reload();
             // successfully . redirect to new _id page maybe .
         }
         catch(err:any){
@@ -103,21 +102,27 @@ const AddForm = () => {
             setError(validation);
             return;
         }
-        const stringDate = dateRef.current?.value ? convertDate(new Date (dateRef.current.value)) : convertDate(new Date());
-        const formData:formData ={
+        const projectFormData:Project ={
+            id:'',
             title:titleRef.current?.value ?? '',
-            date:stringDate,
-            project_Type:projectType ?? 'project',
+            date: dateRef.current ? new Date(dateRef.current.value) : new Date(),
             data:data,
             images:images,
             description:descRef.current?.value ?? '',
-            link: linkRef.current?.value,
-            preview:previewImageRef.current?.value,
-            technologies:tech,
-            github_link:github_linkRef.current?.value
+            link: linkRef.current?.value ?? '',
+            preview:previewImageRef.current?.value ?? '',
+            tech:tech,
+            github:github_linkRef.current?.value ?? ''
+        }
+        const postFormData:Post={
+            id:'',
+            date: dateRef.current ? new Date(dateRef.current.value) : new Date(),
+            data:data,
+            description:descRef.current?.value ?? '',
+            title:titleRef.current?.value ?? '',
         }
         // post attempt.
-        postData(formData);
+        {projectType === 'project' ? postData(projectFormData) : postData(postFormData)}
     }
 
     return (
@@ -189,7 +194,7 @@ const AddForm = () => {
             </section>
 
             {error && <p className='text-red-400 text-sm'>{error}</p>}
-           {!didSubmit ? <button className={`addInput mx-auto ${data.length>0 ? 'cursor-pointer hover:bg-darkBG hover:bg-opacity-10 hover:dark:bg-lightBG hover:dark:bg-opacity-10 transition-colors' : 'cursor-not-allowed opacity-30'}`}>Submit</button> : <Spinner desc='Submitting...' />}
+            {!didSubmit ? <button className={`addInput mx-auto ${data.length>0 ? 'cursor-pointer hover:bg-darkBG hover:bg-opacity-10 hover:dark:bg-lightBG hover:dark:bg-opacity-10 transition-colors' : 'cursor-not-allowed opacity-30'}`}>Submit</button> : <Spinner desc='Submitting...' />}
         </form>
     )
 }

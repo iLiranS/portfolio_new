@@ -26,12 +26,12 @@ export default function RootLayout({
        <main className=' min-h-[100dvh] transition-colors flex flex-col relative pt-16 md:pt-24
        bg-lightBG text-darkBG
        dark:bg-darkBG dark:text-lightBG'>
-        <Analytics/>         
         {children}
        </main>
 
       
 
+        <Analytics/>         
         </body>
     </html>
   )

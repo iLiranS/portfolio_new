@@ -8,9 +8,9 @@ const Dropdown:React.FC<{title:string,children:ReactNode,defaultToggle?:boolean}
     const toggleIsOpen = () => setIsOpen(prev=>!prev);
 
   return (
-  <li className={`ml-4  h-max flex relative  items-start opacity-90 transition-all duration-1000`}> 
+  <li className={`ml-4  h-max flex relative  items-start opacity-90`}> 
     <span className='text-orange-400 mr-1 mt-1'>•</span>
-    <div className='flex flex-col gap-1 w-full h-max transition-all'>
+    <div className='flex flex-col gap-1 w-full h-max'>
       <section className='flex items-center gap-2 select-none cursor-pointer w-full justify-between bg-darkBG dark:bg-lightBG bg-opacity-10 dark:bg-opacity-10 rounded-md p-1' onClick={toggleIsOpen}>
         {title} <AiFillCaretDown className={`${isOpen ? 'rotate-180' : 'rotate-0'} text-orange-400 transition-transform select-none`}/>
       </section> 

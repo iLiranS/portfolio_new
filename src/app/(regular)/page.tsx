@@ -4,13 +4,13 @@ import {RxDiscordLogo} from 'react-icons/rx'
 import Latest from '@/components/Latest/Latest'
 import { Metadata } from 'next'
 
-const foundationsExpand = `as in everything , I've started with laying the foundation which are HTML, CSS and JS`
-const reactExapnd = `I quickly realized how much easier it made the process of creating UI components, and I've been using it for most of my projects ever since.`
-const StateManagemntExapnd = `As I started working on more complex projects, I realized the importance of client-side state management. That's when I learned Redux and Zustand, two state management libraries that allow me to easily manage project-wide content. Currently, I prefer Zustand because of its simplicity and ease of use.`
+const foundationsExpand = `as in everything in life, I've started with laying the foundation which are HTML, CSS and JS`
+const reactExapnd = `I quickly realized how much easier it made the process of creating more than a simple website, and I've been using it for most of my projects ever since.`
+const StateManagemntExapnd = `As I started working on more complex projects, I realized the importance of client-side state management. That's when I learned Redux and Zustand, which allow me to easily manage project-wide content. Currently, I prefer Zustand because of its simplicity and ease of use.`
 const tailwindExapnd = `When it comes to styling, I can't get enough of Tailwind. it lets me quickly style components without writing custom CSS. I use it for all of my projects and I love how easy it is to create beautiful designs.`
 const nextExplaind = ` With Next.js, I can fetch data on the server side and pre-render pages for improved performance and search engine optimization. It also offers features like dynamic routing, automatic code splitting and more ,which makes the development process much smoother.`
 const backendExplanid = `Finally, I started exploring backend technologies to complement my front-end skills. Firebase and MongoDB Atlas are two technologies I've learned to replace the backend for my projects, alongside Prisma for the ORM.`
-const moreExplaind = `In addition to all above, I work with different libraries such as ui: HeadlessUI, Radix, shadcn, for auth: NextAuth and Clerk, db: Supabase,firebase,mongoDB, and many big libraries in each category`
+const moreExplaind = `In addition to all above, I work with different libraries such as HeadlessUI, Radix, shadcn, NextAuth, Clerk, Supabase, firebase, mongoDB, and many other libraries.`
 
 export const metadata:Metadata={
   title:'LiranS Portfolio',
@@ -33,7 +33,7 @@ export default function Home() {
      <ul className='sectionLine relative'>
 
      <li className='ml-4 flex opacity-90'> I was always intrigued by the idea of building interfaces that could reach a large audience who will be impressed by them.</li>
-     <li className='ml-4 flex opacity-90'>My journy of getting my tools and skills:</li>
+     <li className='ml-4 flex opacity-90'>My list of tools and skills:</li>
      <Dropdown title={'The Basics'}>{foundationsExpand}</Dropdown>
      <Dropdown title={'React'}>{reactExapnd}</Dropdown>
      <Dropdown title={'Next'}>{nextExplaind}</Dropdown>

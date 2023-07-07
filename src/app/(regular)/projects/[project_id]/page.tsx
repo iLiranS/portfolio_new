@@ -7,7 +7,7 @@ import React from 'react'
 // dont allow unvalid params.
 // const dynamicParams = false;
 // export { dynamicParams };
-export const revalidate = 60;
+export const revalidate = 3600;
 
 //metadata
 export async function generateMetadata({params}:{params:{project_id:string}}):Promise<Metadata>{

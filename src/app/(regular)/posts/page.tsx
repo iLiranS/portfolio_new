@@ -9,7 +9,7 @@ export const metadata:Metadata={
   title:'LiranS - Posts',
   description:'view my latest posts'
 }
-export const revalidate = 60;
+export const revalidate =3600;
 
 
 const getPosts = async() =>{

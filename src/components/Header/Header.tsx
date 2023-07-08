@@ -31,16 +31,20 @@ const Header = () => {
     <header className='flex justify-center  fixed top-0 w-full   z-40  transition-colors
      text-darkBG dark:text-lightBG'>
 
-     <nav className='flex max-w-3xl  backdrop-blur-2xl w-full  justify-between p-2 items-center'>
+     <nav className='flex max-w-3xl backdrop-blur-md bg-lightBG/40 dark:bg-darkBG/40 w-full  justify-between p-2 items-center'>
        <ul className='flex gap-4'>
-         <li  className={`font-semibold navLink ${pathname==='/' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'/'}><FiUser/>  <p>Liran</p></Link></li>
+         <li  className={` navLink ${pathname==='/' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'/'}><FiUser/>  <p>Liran</p></Link></li>
          <li className={`navLink ${pathname==='/projects' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'/projects'}> <BsBriefcase/><p>Projects</p></Link></li>
          <li className={`navLink ${pathname==='/posts' ? 'text-orange-400' : ''}`}><Link className='flex items-center gap-1' href={'/posts'}> <BiNews/> <p>Posts</p></Link></li>
          <li className='navLink'></li>
        </ul>
 
        <ul className='flex gap-1 items-center'>
-        <li className={`items-center flex select-none cursor-pointer p-1 md:text-xl rounded-md  ${currentTheme==='dark' ? 'bg-lightBG text-darkBG' : 'bg-darkBG text-lightBG'} `}> <a href='https://github.com/iLiranS/portfolio_new' target={'_blank'}><AiOutlineGithub/></a></li>
+        <li className={`items-center group flex select-none cursor-pointer p-1 md:text-xl rounded-md  ${currentTheme==='dark' ? 'bg-lightBG text-darkBG' : 'bg-darkBG text-lightBG'} `}> 
+          <a href='https://github.com/iLiranS/portfolio_new' target={'_blank'}>
+            <AiOutlineGithub className='group-hover:-rotate-45 transition-transform group-hover:scale-110'/>
+          </a>
+        </li>
        <li className={`select-none cursor-pointer p-2 md:text-xl rounded-md ${currentTheme==='dark' ? 'bg-lightBG text-darkBG rotate-180' : 'bg-darkBG text-lightBG rotate-0'} transition-all`} onClick={toggleTheme}>
          {currentTheme==='dark' ? <BiSun/> : <BiMoon/>}
        </li>

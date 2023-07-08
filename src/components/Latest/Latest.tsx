@@ -29,7 +29,7 @@ const Latest = async() => {
   
   return (
 
-    <div className='flex flex-col md:flex-row lg:flex-col gap-4  lg:items-center animate-scaleUp pt-4'>
+    <div className='flex flex-col md:flex-row lg:flex-col gap-4  lg:items-center animate-scaleUp'>
       {project &&
         <section className='flex flex-col gap-1 relative'>
           <h2 className='text-orange-400'>Latest Project</h2>

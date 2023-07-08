@@ -43,7 +43,7 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
               }
 
               <a className='hover:underline underline-offset-2 flex items-center gap-1' target={'_blank'} href={project.link}>
-                <p className='hidden md:block'>Visit</p>
+                <p className='text-sm'>link</p>
                 <BiLinkExternal/>
               </a>
 

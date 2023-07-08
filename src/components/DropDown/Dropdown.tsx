@@ -1,11 +1,26 @@
 'use client'
-import React, {ReactNode, useState } from 'react'
+import React, {ReactNode, useEffect, useState } from 'react'
 import {AiFillCaretDown} from 'react-icons/ai'
 const Dropdown:React.FC<{title:string,children:ReactNode,defaultToggle?:boolean}> = ({title,children,defaultToggle=false}) => {
     const [isOpen,setIsOpen] = useState(defaultToggle);
-
+    const [showOverflow,setShowOverflow] = useState(false);
     
     const toggleIsOpen = () => setIsOpen(prev=>!prev);
+
+
+    useEffect(()=>{
+      let timeout:ReturnType<typeof setTimeout>;
+      if (isOpen){
+        timeout = setTimeout(() => {
+          setShowOverflow(prev =>!prev);
+        }, 300);
+      }
+      return()=> 
+      {
+        setShowOverflow(false);
+        clearTimeout(timeout);
+      }
+    },[isOpen])
 
   return (
   <li className={`ml-4  h-max flex relative  items-start opacity-90`}> 
@@ -15,8 +30,8 @@ const Dropdown:React.FC<{title:string,children:ReactNode,defaultToggle?:boolean}
         {title} <AiFillCaretDown className={`${isOpen ? 'rotate-180' : 'rotate-0'} text-orange-400 transition-transform select-none`}/>
       </section> 
 
-      <p  className={` block overflow-hidden opacity-[0.85] text-sm leading-7 ml-2 h-max origin-top transition-all duration-500 ease-in-out 
-      ${isOpen ? `max-h-[300px] overflow-y-auto` : `max-h-0`}  `}>
+      <p  className={` block  opacity-[0.85] text-sm leading-7 ml-2 h-max origin-top transition-all duration-500 ease-in-out 
+      ${isOpen ? `max-h-[300px] ` : `max-h-0`} ${showOverflow ? 'overflow-y-auto' : 'overflow-hidden'}  `}>
       {children}
       </p>
       

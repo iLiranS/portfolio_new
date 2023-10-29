@@ -31,6 +31,10 @@ module.exports = {
         pageOutParagraph:{
           '0%':{transform:'translate(0,0%)'},
           '100%':{transform:'translate(0,100%)'}
+        },
+        pulse50To20:{
+          '0%':{opacity:'50'},
+          '100%':{opacity:'20'}
         }
       },
       animation:{
@@ -38,6 +42,7 @@ module.exports = {
         pageIn:'pageIn 0.5s ease-in-out 1 forwards',
         pageInParagraph:'pageInParagraph 0.5s ease-out 1 forwards',
         pageOutParagraph:'pageOutParagraph 0.5s ease-out 1 forwards',
+        pulse50To20:'pulse50To20 0.5s ease infinite'
       }
     },
   },

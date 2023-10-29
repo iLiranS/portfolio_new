@@ -14,7 +14,7 @@ export default function RootLayout({
  
 
   return (
-    <html lang="en">
+    <html className='dark:selection:text-orange-400 selection:text-orange-600' lang="en">
  
       <head />
 
@@ -23,7 +23,7 @@ export default function RootLayout({
       <body className={roboto_mono.className}>
       <Header/>
 
-       <main className=' min-h-[100dvh] transition-colors flex flex-col relative pt-16 md:pt-24
+       <main className=' min-h-[100dvh] transition-colors pt-14 flex flex-col relative 
        bg-lightBG text-darkBG
        dark:bg-darkBG dark:text-lightBG'>
         {children}

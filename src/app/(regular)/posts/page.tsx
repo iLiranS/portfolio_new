@@ -6,8 +6,8 @@ import { notFound } from 'next/navigation'
 
 
 export const metadata:Metadata={
-  title:'LiranS - Posts',
-  description:'view my latest posts'
+  title:'Posts - LiranS',
+  description:'View my latest blog posts'
 }
 export const revalidate =3600;
 

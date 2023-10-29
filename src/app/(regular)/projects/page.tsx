@@ -5,7 +5,7 @@ import { notFound } from 'next/navigation'
 import React from 'react'
 
 export const metadata:Metadata={
-  title:'LiranS - Projects',
+  title:'Projects - LiranS',
   description:'explore my latest projects'
 }
 export const revalidate = 3600;

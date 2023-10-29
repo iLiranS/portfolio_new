@@ -440,7 +440,7 @@ export default function Scene2({ ...props }) {
           zoom={0.6}
           far={100000}
           near={-100000}
-          position={[0, 220, 700]}
+          position={[0, 200,700]}
           rotation={[0,0,0]}
         />
         <hemisphereLight name="Default Ambient Light" intensity={0.75} color="#eaeaea" />

@@ -30,7 +30,7 @@ export default function Home() {
 
 
   return (
-    <div className=' flex flex-col px-4 md:px-0 gap-2 pb-4 w-full pt-2'>
+    <div className=' flex flex-col  md:px-0 gap-2 pb-4 w-full pt-2'>
       <h2 style={{'animationDelay':'200ms'}}  className='p-2 bg-darkBG  dark:bg-lightBG bg-opacity-10 dark:bg-opacity-10 rounded-lg text-center animate-scaleUp'> Hi ! My name is <span className='text-orange-400'>Liran</span> , I&apos;m a Front End Web Developer.</h2>
 
       <div className='animate-scaleUp mt-2'>

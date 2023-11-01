@@ -37,19 +37,21 @@ export async function POST(request:Request) {
         const {Admin_Key} = res;
         const requestData = res.data as Post;
         if (Admin_Key!==process.env.ADMIN_KEY) return NextResponse.json('Unauthorized',{status:401});
-        const {title,date,data,description} = requestData
+        const {title,date,data,description,preview} = requestData
         const project = await prisma.post.create({
         data:{
             title,
             date,
             data,
             description,
+            preview
         }
     })
     if (project) return NextResponse.json('Successfully added');
     else throw new Error('couldnt add post');
     }
     catch(err){
+        console.log(err);
         return NextResponse.json(err,{status:500});
     }
 

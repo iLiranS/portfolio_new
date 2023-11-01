@@ -15,8 +15,10 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
     {dataObj.text}
     </Dropdown>)
 
+  const imageToShow = project.images && project.images.length>1 ? project.images.splice(0,1) : null;
+  // now cutted first
   const imagesList = project.images?
-    <ul className='flex flex-col gap-2 relative mx-auto w-full'>
+    <ul className='grid grid-cols-2  gap-2 relative mx-auto w-full'>
       {project.images.map((imageSrc,index)=> 
       <li className='w-full min-h-[100px] aspect-video rounded-md border-2 border-lightBG/20 relative' key={index}>
         <Image layout='fill' objectFit='cover' src={imageSrc} alt={project.title} /> 
@@ -24,32 +26,42 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
     </ul>
     : ''
 
+    const imageBG = project.preview?
+        <li className={`relative w-full aspect-video inset-0 rounded-md overflow-hidden`}>
+          <Image layout='fill' objectFit='cover' src={project.preview} alt={project.title} /> 
+          <div className='bg-gradient-to-b to-lightBG dark:to-darkBG rounded-md from-transparent from-10% absolute -bottom-1 w-full h-8'></div>
+        </li>
+        :
+        null
+
   return (
     <ul className='flex flex-col overflow-hidden gap-3 relative w-full px-4 md:px-0 max-w-full pb-4'>
-
-        <li className='  w-full   grid grid-flow-row md:grid-flow-col items-center font-semibold relative  border-b-2 border-darkBG/20 dark:border-lightBG/20 pb-2  animate-pageIn'>
+        {imageBG}
+        <li className=' w-full grid grid-flow-row md:grid-flow-col items-center font-semibold relative  border-b-2 border-darkBG/20 dark:border-lightBG/20 pb-2  animate-pageIn'>
         <section className='flex items-center gap-2'>
             <Link className='text-orange-400 hover:underline underline-offset-2 text-xs' href={'/projects'}>Projects</Link>
             <section className=' items-center flex'>
               <BsArrowRightSquareFill/>
             </section>
-            <h2 className='text-xl'>{project.title}</h2>
+            <h2 className='text-2xl'>{project.title}</h2>
         </section>
 
           <section className='flex  justify-end  items-center gap-2'>
           {project.link &&
-            <div className='flex items-center gap-2 text-lg md:text-base'>
+            <div className='flex items-center gap-2 h-full relative text-lg'>
 
               {project.github &&
-              <a className=' text-darkBG dark:text-lightBG underline-offset-2 flex items-center gap-1 hover:text-orange-400 ' target={'_blank'} href={project.github}>
-                <section className='text-lg hover:text-orange-400'>
-                <AiOutlineGithub />
+              <a className=' text-darkBG dark:text-lightBG underline-offset-2 flex items-center gap-1 hover:text-orange-400' target={'_blank'} href={project.github}>
+                <section className='items-center hover:text-orange-400 flex gap-1'>
+                  <p className='text-sm'>github link</p>
+                  <AiOutlineGithub />
                 </section>
               </a>
               }
+              <p className='bg-darkBG/50 dark:bg-lightBG/50 w-[2px] h-4'></p>
 
               <a className='hover:underline underline-offset-2 flex items-center gap-1 hover:text-orange-400' target={'_blank'} href={project.link}>
-                <p className='text-sm '>link</p>
+                <p className='text-sm '>Visit website</p>
                 <section className='text-orange-400'>
                 <BiLinkExternal/>
                 </section>

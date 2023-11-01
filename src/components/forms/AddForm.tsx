@@ -50,9 +50,9 @@ const AddForm = () => {
         if (!titleRef.current || titleRef.current.value.trim().length <2) return 'Invalid Title'
         if(!dateRef.current || !dateRef.current.value) return 'Invalid Date'
         if(!descRef.current || descRef.current.value.trim().length <5) return 'Invalid description'
+        if(!previewImageRef.current || previewImageRef.current?.value.trim().length<5) return 'Invalid Image preview link';
         // project check
         if (projectType==='project'){
-            if(!previewImageRef.current || previewImageRef.current?.value.trim().length<5) return 'Invalid Image preview link';
             if(tech.length<1) return 'Add at least 1 tech';
             // no need for project link , optional
         }
@@ -120,6 +120,7 @@ const AddForm = () => {
             data:data,
             description:descRef.current?.value ?? '',
             title:titleRef.current?.value ?? '',
+            preview:previewImageRef.current?.value?? ''
         }
         // post attempt.
         {projectType === 'project' ? postData(projectFormData) : postData(postFormData)}
@@ -156,16 +157,15 @@ const AddForm = () => {
                 <input ref={descRef} className='addInput' type='text'/>
             </section>
 
+            <section className='addSection'>
+                <p>Preview Image (i.bb)</p>
+                <input placeholder='Image Link...' ref={previewImageRef} className='addInput' type='url'/>
+            </section>
+
 
             {projectType === 'project' &&
             <section className='flex flex-col gap-2 mt-4'>
                 <h3 className=' font-bold text-xs border-2 border-dotted w-fit p-1'>Project options</h3>
-
-                <section className='addSection'>
-                <p>Preview Image (i.bb)</p>
-                <input placeholder='Image Link...' ref={previewImageRef} className='addInput' type='url'/>
-                </section>
-
                 <section className='addSection'>
                 <p>Link</p>
                 <input placeholder='Project Link (optional)' ref={linkRef} className='addInput' type='url'/>

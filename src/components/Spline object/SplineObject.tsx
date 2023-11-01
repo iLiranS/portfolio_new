@@ -11,7 +11,7 @@ const SplineObject = () => {
     const toggleModel = useThemeStore((state)=>state.toggleModel)
 
     return(
-          <div className={`w-full px-4 ${showModel ? 'h-60' : 'h-8'}  relative  mb-2 transition-all ease-in-out duration-500`}>
+          <div className={`w-full max-w-2xl ${showModel ? 'h-60' : 'h-8'}  relative  mb-2 transition-all ease-in-out duration-500`}>
 
             <p  key={showModel.toString()} className={`absolute cursor-pointer text-lightBG dark:text-darkBG opacity-60  z-10 ${showModel ? 'right-8 bottom-2' : 'right-2  top-0 '} bg-darkBG dark:bg-lightBG p-1 rounded-md animate-scaleUp`} onClick={toggleModel}>{showModel ? 'Hide' : 'Show'} Model</p>
                 {showModel &&

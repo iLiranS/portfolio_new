@@ -6,6 +6,9 @@ module.exports = {
    ],
   theme: {
     extend: {
+      screens:{
+        asideMax:'1130px'
+      },
       colors:{
         'lightBG':'#F0E7DB',
         'darkBG':'#202023',

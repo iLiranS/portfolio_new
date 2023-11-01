@@ -35,4 +35,5 @@ model Post{
   title       String
   data        Data[]
   description String
+  preview     String
 }

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Dropdown from '../DropDown/Dropdown'
 import { Project } from '@prisma/client'
 import {BsArrowRightSquareFill} from 'react-icons/bs'
+import { Suspense } from 'react'
 
 const Project_Page:React.FC<{project:Project}> = ({project}) => {
 
@@ -15,7 +16,6 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
     {dataObj.text}
     </Dropdown>)
 
-  const imageToShow = project.images && project.images.length>1 ? project.images.splice(0,1) : null;
   // now cutted first
   const imagesList = project.images?
     <ul className='grid grid-cols-2  gap-2 relative mx-auto w-full'>
@@ -24,11 +24,11 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
         <Image layout='fill' objectFit='cover' src={imageSrc} alt={project.title} /> 
       </li>)}
     </ul>
-    : ''
+    : null
 
     const imageBG = project.preview?
         <li className={`relative w-full aspect-video inset-0 rounded-md overflow-hidden`}>
-          <Image layout='fill' objectFit='cover' src={project.preview} alt={project.title} /> 
+              <Image loading="eager" layout='fill' objectFit='cover' src={project.preview} alt={project.title} /> 
           <div className='bg-gradient-to-b to-lightBG dark:to-darkBG rounded-md from-transparent from-10% absolute -bottom-1 w-full h-8'></div>
         </li>
         :
@@ -36,10 +36,9 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
 
   return (
     <ul className='flex flex-col overflow-hidden gap-3 relative w-full px-4 md:px-0 max-w-full pb-4'>
-        {imageBG}
         <li className=' w-full grid grid-flow-row md:grid-flow-col items-center font-semibold relative  border-b-2 border-darkBG/20 dark:border-lightBG/20 pb-2  animate-pageIn'>
         <section className='flex items-center gap-2'>
-            <Link className='text-orange-400 hover:underline underline-offset-2 text-xs' href={'/projects'}>Projects</Link>
+            <Link className='text-orange-400 hover:underline underline-offset-2' href={'/projects'}>Projects</Link>
             <section className=' items-center flex'>
               <BsArrowRightSquareFill/>
             </section>
@@ -71,9 +70,9 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
           }
           </section>
         </li>
+        {imageBG}
 
-        <li className='flex flex-col md:flex-row gap-2 items-center w-full  pb-2 border-b-2 border-darkBG/20 dark:border-lightBG/20'>
-          <h2>Tech</h2>
+        <li className='w-full pb-2 border-b-2 border-darkBG/20 dark:border-lightBG/20'>
           <ul className='grid gap-2 grid-cols-[repeat(auto-fill,80px)]  md:grid-cols-[repeat(auto-fill,95px)] w-full  justify-center'>
           {techList}
           </ul>

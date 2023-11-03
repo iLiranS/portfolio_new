@@ -15,7 +15,7 @@ const Post_Page:React.FC<{post:Post}> = ({post}) => {
 
     const imageBG = post.preview?
     <li className={`relative w-full aspect-video inset-0 rounded-md overflow-hidden`}>
-      <Image layout='fill' objectFit='cover' src={post.preview} alt={post.title} /> 
+      <Image loading="eager" layout='fill' objectFit='cover' src={post.preview} alt={post.title} /> 
       <div className='bg-gradient-to-b to-lightBG dark:to-darkBG rounded-md from-transparent from-10% absolute -bottom-1 w-full h-8'></div>
     </li>
     :
@@ -24,11 +24,9 @@ const Post_Page:React.FC<{post:Post}> = ({post}) => {
 
   return (
     <ul className='flex flex-col gap-3 relative w-full px-4 md:px-0 max-w-full pb-4 '>
-      {imageBG}
-
     <li className=' justify-between flex flex-col md:flex-row  font-semibold relative animate-pageIn '>
       <section className='flex gap-2 items-center'>
-        <Link className='text-orange-400 hover:underline underline-offset-2 text-xs' href={'/posts'}>Posts</Link>
+        <Link className='text-orange-400 hover:underline underline-offset-2 ' href={'/posts'}>Posts</Link>
 
         <div className='items-center flex'>
           <BsArrowRightSquareFill/>
@@ -41,6 +39,8 @@ const Post_Page:React.FC<{post:Post}> = ({post}) => {
         <p>{stringDate}</p>
       </section>
     </li>
+      {imageBG}
+
 
     {dataList}
   

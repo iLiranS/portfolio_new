@@ -1,10 +1,8 @@
 import ProjectSkeleton from '@/components/skeletons/ProjectSkeleton'
 import React from 'react'
 
-const Loading = () => {
-  return (
-    <ProjectSkeleton/>
-  )
+const loading = () => {
+  return <ProjectSkeleton/>
 }
 
-export default Loading
+export default loading

@@ -16,7 +16,6 @@ import 'draft-js/dist/Draft.css'
 
 import BlockStyleControls from './BlockStyleControls'
 import InlineStyleControls from './InlineStyleControls'
-import { getBlockStyle } from 'models/themeModel'
 
 
 type Props = {
@@ -45,37 +44,50 @@ const RTEditor = ({ setContent,data }: Props) => {
   const [editorState, setEditorState] = useState(EditorState.createWithContent(contentState))
   
 
-
-
-
-  const handleKeyCommand = (
-    command: string,
-    editorState: EditorState,
-    eventTimeStamp: number
-  ): DraftHandleValue => {
-    const newState = RichUtils.handleKeyCommand(editorState, command)
-    if (newState) {
-      return 'handled'
+  const getBlockStyle = (block: ContentBlock) => {
+    switch (block.getType()) {
+      case 'blockquote':
+        return 'RichEditor-blockquote'
+  
+      case 'code-block':
+        return 'RichEditor-codeblock'
+      
+      case 'header-one':
+        return 'RichEditor-h1'
+  
+      case 'header-two':
+        return 'RichEditor-h2'
+  
+      case 'header-three':
+        return 'RichEditor-h3'
+  
+      case 'header-four':
+        return 'RichEditor-h4'
+  
+      case 'header-five':
+        return 'RichEditor-h5'
+  
+      case 'header-six':
+        return 'RichEditor-h6'
+      
+      case 'ordered-list-item':
+      case 'unordered-list-item':
+        return 'RichEditor-list-item'
+  
+      default:
+        return 'RichEditor-default'
     }
-    return 'not-handled'
   }
 
 
-  
-
-
-
-
   return (
-    <div className='w-[95vw] max-w-2xl relative mx-auto h-full overflow-auto  p-2 rounded-md flex flex-col gap-2'>
+    <div className=' relative mx-auto h-full  w-full rounded-md flex flex-col gap-2'>
 
-      <div className='rounded-md p-2 mx-auto w-full overflow-auto'>
+      <div className='rounded-md pl-4 mx-auto w-full overflow-auto'>
         <Editor
           editorState={editorState}
           blockStyleFn={(block: ContentBlock) => getBlockStyle(block)}
           onChange={()=>{}}
-          spellCheck={true}
-          handleKeyCommand={handleKeyCommand}
           readOnly={true}
         />
       </div>

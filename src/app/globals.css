@@ -72,7 +72,7 @@ body{
     @apply opacity-80 text-base;
 }
 .RichEditor-list-item{
-    @apply ml-1 opacity-80;
+    @apply  opacity-80;
 }
 
 }

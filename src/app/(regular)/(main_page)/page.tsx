@@ -39,8 +39,8 @@ export default function Home() {
           <h2>About</h2>
         </section>
         <ul className='sectionLine relative'>
-          <li className='ml-4 flex opacity-90'> I was always intrigued by the idea of building interfaces that could reach a large audience who will be impressed by them.</li>
-          <li className='ml-4 flex opacity-90'>My web development jounery</li>
+          <li className=' flex opacity-90'> I was always intrigued by the idea of building interfaces that could reach a large audience who will be impressed by them.</li>
+          <li className=' flex opacity-90'>My web development jounery</li>
           <Dropdown icon={<ImHtmlFive/>}          title={'The Basics'}>{foundationsExpand}</Dropdown>
           <Dropdown icon={<LiaReact/>}            title={'React'}>{reactExapnd}</Dropdown>
           <Dropdown icon={<SiNextdotjs/>}         title={'Next'}>{nextExplaind}</Dropdown>

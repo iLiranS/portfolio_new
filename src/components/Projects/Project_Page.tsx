@@ -6,15 +6,18 @@ import Dropdown from '../DropDown/Dropdown'
 import { Project } from '@prisma/client'
 import {BsArrowRightSquareFill} from 'react-icons/bs'
 import { Suspense } from 'react'
+import ReadEditor from '../forms/Editor/ReadEditor'
+import RTEditor from '../forms/Editor/WysiwygEditor'
+
 
 const Project_Page:React.FC<{project:Project}> = ({project}) => {
 
 
   const techList = project.tech.map((tech,index) => <TechnologyItem key={index} name={tech}/>)
-  const dataList = project.data.map((dataObj,index) =>
-    <Dropdown title={dataObj.title} defaultToggle={index===0 ? true : false}  key={index}>
-    {dataObj.text}
-    </Dropdown>)
+  // const dataList = project.data.map((dataObj,index) =>
+  //   <Dropdown title={dataObj.title} defaultToggle={index===0 ? true : false}  key={index}>
+  //   {dataObj.text}
+  //   </Dropdown>)
 
   // now cutted first
   const imagesList = project.images?
@@ -57,7 +60,7 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
                 </section>
               </a>
               }
-              <p className='bg-darkBG/50 dark:bg-lightBG/50 w-[2px] h-4'></p>
+              {project.github &&<p className='bg-darkBG/50 dark:bg-lightBG/50 w-[2px] h-4'></p>}
 
               <a className='hover:underline underline-offset-2 flex items-center gap-1 hover:text-orange-400' target={'_blank'} href={project.link}>
                 <p className='text-sm '>Visit website</p>
@@ -78,9 +81,15 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
           </ul>
         </li>
 
-        {dataList}
+        {/* {dataList} */}
+        <div className='w-full'>
+          <ReadEditor data={project.data}/>
+        </div>
+
         {imagesList && <h2>Images</h2>}
         {imagesList}
+
+        
       
       
     </ul>

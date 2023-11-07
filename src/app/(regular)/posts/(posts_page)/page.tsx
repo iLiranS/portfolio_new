@@ -21,6 +21,7 @@ const getPosts = async() =>{
 
 const page = async() => {
   const posts = await getPosts() as Post[];
+  console.log(posts);
   if (posts?.length <1 || !posts) return notFound();
   const reversedPosts = posts.reverse();
   return (

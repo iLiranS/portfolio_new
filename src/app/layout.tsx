@@ -14,7 +14,7 @@ export default function RootLayout({
  
 
   return (
-    <html className='dark:selection:text-orange-400 selection:text-orange-600' lang="en">
+    <html className='dark:selection:text-orange-400 selection:text-orange-600 selection:bg-darkBG/10 selection:dark:bg-lightBG/20 ' lang="en">
  
       <head />
 

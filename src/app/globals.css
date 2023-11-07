@@ -7,11 +7,12 @@ body{
     overflow: overlay;
 }
 
+@layer components{
 
-.sectionLine{
-    @apply relative flex flex-col gap-4 mt-2  
-     before:h-full before:w-[2px] before:bg-darkBG before:bg-opacity-10 before:absolute before:top-0
-     dark:before:bg-white dark:before:bg-opacity-10;
+    
+    .sectionLine{
+        @apply relative flex flex-col gap-4 mt-2  
+        border-l-2 pl-2 border-darkBG/10 dark:border-lightBG/10;
 }
 .socialLink{
     @apply ml-4 cursor-pointer transition-transform items-center flex gap-1
@@ -29,8 +30,8 @@ body{
 .project_Item_section{
     @apply w-[90%] left-1/2 -translate-x-1/2 h-1/2 opacity-0 -translate-y-1/2 absolute bottom-2 flex flex-col backdrop-blur-md z-10
     rounded-t-md
-     group-hover:-translate-y-0 group-hover:opacity-100 transition-[transform,opacity] duration-300
-     bg-darkBG bg-opacity-50 text-lightBG
+    group-hover:-translate-y-0 group-hover:opacity-100 transition-[transform,opacity] duration-300
+    bg-darkBG bg-opacity-50 text-lightBG
     ;
 }
 .addInput{
@@ -38,5 +39,41 @@ body{
 }
 .addSection{
     @apply flex md:items-center gap-2 md:justify-between flex-col md:flex-row;
+}
+.RichEditor-blockquote{
+    @apply text-gray-600/80 dark:text-gray-400/80 bg-gray-400/20 dark:bg-gray-400/10 font-serif italic text-center border-l-2 border-gray-400/80 pl-2
+}
+.RichEditor-codeblock{
+    @apply bg-gray-600 p-2 text-sm font-mono bg-darkBG/5 dark:bg-lightBG/5 first:rounded-t-md last:rounded-b-md;
+}
+.RichEditor-h1{
+    @apply text-4xl font-bold;
+}
+.RichEditor-h2{
+    @apply text-3xl font-bold;
+}
+.RichEditor-h3{
+    @apply text-2xl font-bold;
+    
+}
+.RichEditor-h4{
+    @apply text-xl font-bold;
+    
+}
+.RichEditor-h5{
+    @apply text-lg font-bold;
+    
+}
+.RichEditor-h6{
+    @apply text-base font-bold;
+    
+}
+.RichEditor-default{
+    @apply opacity-80 text-base;
+}
+.RichEditor-list-item{
+    @apply ml-1 opacity-80;
+}
+
 }
 

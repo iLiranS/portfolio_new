@@ -13,6 +13,7 @@ export async function GET(){
         else throw new Error('failed getting posts');
     }
     catch(err){
+        console.log(err);
         return NextResponse.json(err,{status:500});
     }
 }

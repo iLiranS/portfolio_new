@@ -4,13 +4,14 @@ import { convertDateToString } from 'utils/functions';
 import Dropdown from '../DropDown/Dropdown';
 import {BsArrowRightSquareFill} from 'react-icons/bs'
 import Image from 'next/image'
+import ReadEditor from '../forms/Editor/ReadEditor'
 
 
 const Post_Page:React.FC<{post:Post}> = ({post}) => {
 
 
     const {title , data , date } =  post;
-    const dataList = data.map((dataObj,index) =><Dropdown defaultToggle={index===0 ? true : false} title={dataObj.title} key={index}>{dataObj.text}</Dropdown>)
+    // const dataList = data.map((dataObj,index) =><Dropdown defaultToggle={index===0 ? true : false} title={dataObj.title} key={index}>{dataObj.text}</Dropdown>)
     const stringDate = convertDateToString(date);
 
     const imageBG = post.preview?
@@ -42,7 +43,9 @@ const Post_Page:React.FC<{post:Post}> = ({post}) => {
       {imageBG}
 
 
-    {dataList}
+    {/* {dataList} */}
+    <ReadEditor data={post.data}/>
+
   
 </ul>
   )

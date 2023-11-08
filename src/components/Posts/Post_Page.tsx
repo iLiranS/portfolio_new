@@ -3,13 +3,13 @@ import Link from 'next/link';
 import { convertDateToString } from 'utils/functions';
 import {BsArrowRightSquareFill} from 'react-icons/bs'
 import Image from 'next/image'
-import ReadEditor from '../forms/Editor/ReadEditor'
+// import ReadEditor from '../forms/Editor/ReadEditor'
 
 
-const Post_Page:React.FC<{post:Post}> = ({post}) => {
+const Post_Page:React.FC<{post:Post,dataHTML:any}> = ({post,dataHTML}) => {
 
 
-    const {title , data , date } =  post;
+    const {title , date } =  post;
     const stringDate = convertDateToString(date);
 
     const imageBG = post.preview?
@@ -24,10 +24,11 @@ const Post_Page:React.FC<{post:Post}> = ({post}) => {
   return (
     <ul className='flex flex-col gap-3 relative w-full px-4 md:px-0 max-w-full pb-4 '>
     <li className=' justify-between flex flex-col md:flex-row  font-semibold relative animate-pageIn '>
-      <section className='flex gap-2 items-center'>
-        <Link className='text-orange-400 hover:underline underline-offset-2 ' href={'/posts'}>Posts</Link>
+      <section className='flex flex-col sm:flex-row gap-2 md:items-center'>
 
-        <div className='items-center flex'>
+
+        <div className='items-center flex gap-1'>
+          <Link className='text-orange-400 hover:underline underline-offset-2 ' href={'/posts'}>Posts</Link>
           <BsArrowRightSquareFill/>
         </div>
 
@@ -41,7 +42,8 @@ const Post_Page:React.FC<{post:Post}> = ({post}) => {
       {imageBG}
 
 
-    <ReadEditor data={post.data}/>
+    {/* <ReadEditor data={post.data}/> */}
+    <div className='data' dangerouslySetInnerHTML={{__html:dataHTML}}/>
 
   
 </ul>

@@ -23,6 +23,7 @@
         "@vercel/analytics": "^1.0.0",
         "draco3d": "^1.5.6",
         "draft-js": "^0.11.7",
+        "draftjs-to-html": "^0.9.1",
         "eslint": "8.36.0",
         "eslint-config-next": "^13.4.8",
         "i": "^0.3.7",
@@ -37,7 +38,9 @@
         "zustand": "^4.3.9"
       },
       "devDependencies": {
+        "@types/draft-convert": "^2.1.7",
         "@types/draft-js": "^0.11.15",
+        "@types/draftjs-to-html": "^0.8.4",
         "autoprefixer": "^10.4.14",
         "postcss": "^8.4.21",
         "prisma": "^5.5.2",
@@ -691,6 +694,16 @@
       "resolved": "https://registry.npmjs.org/@types/draco3d/-/draco3d-1.4.7.tgz",
       "integrity": "sha512-sjx6hQ8UArRZf+2ZhpPkjJW8iCkyxar69/IElc9NHuGE40n0U9SuvxX59CHvF4xUH7qfJDQ2lIbANZ0HHJg+BQ=="
     },
+    "node_modules/@types/draft-convert": {
+      "version": "2.1.7",
+      "resolved": "https://registry.npmjs.org/@types/draft-convert/-/draft-convert-2.1.7.tgz",
+      "integrity": "sha512-8NcVpPHaAYu2hk/MnUgkiUYeWQtrKx7Pz9jQVaYvtdFEYx9B4a6qVxg5yweujahKQmpj1a3esKczZkAPMggv5g==",
+      "dev": true,
+      "dependencies": {
+        "@types/draft-js": "*",
+        "@types/react": "*"
+      }
+    },
     "node_modules/@types/draft-js": {
       "version": "0.11.15",
       "resolved": "https://registry.npmjs.org/@types/draft-js/-/draft-js-0.11.15.tgz",
@@ -699,6 +712,15 @@
       "dependencies": {
         "@types/react": "*",
         "immutable": "~3.7.4"
+      }
+    },
+    "node_modules/@types/draftjs-to-html": {
+      "version": "0.8.4",
+      "resolved": "https://registry.npmjs.org/@types/draftjs-to-html/-/draftjs-to-html-0.8.4.tgz",
+      "integrity": "sha512-5FZcjFoJL57N/IttLCTCNI0krX+181oCl5hf76u3TqPkqBAphHrJAO9ReYesx9138kcObaYmpnWC2Yrqxoqd2Q==",
+      "dev": true,
+      "dependencies": {
+        "@types/draft-js": "*"
       }
     },
     "node_modules/@types/json5": {
@@ -1682,6 +1704,11 @@
         "react": ">=0.14.0",
         "react-dom": ">=0.14.0"
       }
+    },
+    "node_modules/draftjs-to-html": {
+      "version": "0.9.1",
+      "resolved": "https://registry.npmjs.org/draftjs-to-html/-/draftjs-to-html-0.9.1.tgz",
+      "integrity": "sha512-fFstE6+IayaVFBEvaFt/wN8vdj8FsTRzij7dy7LI9QIwf5LgfHFi9zSpvCg+feJ2tbYVqHxUkjcibwpsTpgFVQ=="
     },
     "node_modules/electron-to-chromium": {
       "version": "1.4.569",

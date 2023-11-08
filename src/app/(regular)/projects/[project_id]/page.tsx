@@ -3,6 +3,8 @@ import { Project } from '@prisma/client';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import React from 'react'
+import draftToHtml from 'draftjs-to-html'
+import { RawDraftContentState} from 'draft-js';
 
 // dont allow unvalid params.
 // const dynamicParams = false;
@@ -21,11 +23,11 @@ export async function generateMetadata({params}:{params:{project_id:string}}):Pr
 
 }
 
-// export async function generateStaticParams() {
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/projects`);
-//   const projects = await res.json() as Project[];
-//   return projects.map(project => ({project_id:project.id}));
-// }
+const dataToHTML = (content: string) => {
+  const parsedState = JSON.parse(content) as RawDraftContentState;
+  const markup = draftToHtml(parsedState);
+  return markup;
+}
 
 
 
@@ -49,9 +51,11 @@ const getProject = async(id:string) =>{
 export default async function page({params}:{params:{project_id:string}}){
   const project = await getProject(params.project_id);
   if (!project) return notFound();
+  const dataHTML = dataToHTML(project.data);
+
   return (
     <div>
-      <Project_Page project={project}/>
+      <Project_Page project={project} dataHTML={dataHTML}/>
     </div>
   )
 }

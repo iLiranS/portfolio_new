@@ -2,15 +2,13 @@ import Image from 'next/image'
 import {BiLinkExternal} from 'react-icons/bi'
 import { AiOutlineGithub } from 'react-icons/ai'
 import Link from 'next/link'
-import Dropdown from '../DropDown/Dropdown'
 import { Project } from '@prisma/client'
 import {BsArrowRightSquareFill} from 'react-icons/bs'
-import { Suspense } from 'react'
 import ReadEditor from '../forms/Editor/ReadEditor'
-import RTEditor from '../forms/Editor/WysiwygEditor'
+// import RTEditor from '../forms/Editor/WysiwygEditor'
 
 
-const Project_Page:React.FC<{project:Project}> = ({project}) => {
+const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML}) => {
 
 
   const techList = project.tech.map((tech,index) => <TechnologyItem key={index} name={tech}/>)
@@ -37,12 +35,14 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
   return (
     <ul className='flex flex-col overflow-hidden gap-3 relative w-full px-4 md:px-0 max-w-full pb-4'>
         <li className=' w-full grid grid-flow-row md:grid-flow-col items-center font-semibold relative  border-b-2 border-darkBG/20 dark:border-lightBG/20 pb-2  animate-pageIn'>
-        <section className='flex items-center gap-2'>
-            <Link className='text-orange-400 hover:underline underline-offset-2' href={'/projects'}>Projects</Link>
-            <section className=' items-center flex'>
+        <section className='flex flex-col sm:flex-row gap-2 md:items-center'>
+
+            <section className='items-center flex gap-1'>
+              <Link className='text-orange-400 hover:underline underline-offset-2' href={'/projects'}>Projects</Link>
               <BsArrowRightSquareFill/>
             </section>
-            <h2 className='text-2xl'>{project.title}</h2>
+
+            <h2 className='text-xl md:text-2xl'>{project.title}</h2>
         </section>
 
           <section className='flex  justify-end  items-center gap-2'>
@@ -78,9 +78,13 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
           </ul>
         </li>
 
+          
+
+        {/* 
         <div className='w-full'>
           <ReadEditor data={project.data}/>
-        </div>
+        </div> */}
+        <div className='data' dangerouslySetInnerHTML={{__html:dataHTML}}/>
 
         {imagesList && <h2>Images</h2>}
         {imagesList}

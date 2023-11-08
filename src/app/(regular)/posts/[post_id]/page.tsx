@@ -2,7 +2,12 @@ import Post_Page from '@/components/Posts/Post_Page';
 import { Post } from '@prisma/client';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import React from 'react'
+import React from 'react';
+import draftToHtml from 'draftjs-to-html'
+import { RawDraftContentState} from 'draft-js';
+
+
+
 
 // not allowing unvalid route
 // const dynamicParams = false;
@@ -23,14 +28,13 @@ export async function generateMetadata({params}:{params:{post_id:string}}):Promi
 }
 
 
+// test to render html directly to the post page so I dont have to use the editor, I guess.
+const dataToHTML = (content: string) => {
+  const parsedState = JSON.parse(content) as RawDraftContentState;
+  const markup = draftToHtml(parsedState);
+  return markup;
+}
 
-
-// static params
-// export async function generateStaticParams() {
-//   const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/posts`);
-//   const posts = await res.json() as Post[];
-//   return posts.map(project => ({post_id:project.id}));
-// }
 
 
 
@@ -55,10 +59,11 @@ const page = async({params}:{params:{post_id:string}}) => {
 
   const post = await getPost(params.post_id);
   if (!post) return notFound();
+  const dataHTML = dataToHTML(post.data);
 
 
   return (
-      <Post_Page post={post}/>
+      <Post_Page post={post} dataHTML={dataHTML}/>
   )
 }
 

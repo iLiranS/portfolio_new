@@ -21,6 +21,7 @@ import InlineStyleControls from './InlineStyleControls'
 
 type Props = {
   setContent: (state: RawDraftContentState) => void,
+  initialEditorState:EditorState|null
 }
 
 const emptyContentState =convertFromRaw({
@@ -38,8 +39,8 @@ const emptyContentState =convertFromRaw({
 });
 
 
-const RTEditor = React.forwardRef(({ setContent }: Props,ref:React.ForwardedRef<Editor>|null) => {
-  const [editorState, setEditorState] = useState(EditorState.createWithContent(emptyContentState))
+const RTEditor = React.forwardRef(({ setContent,initialEditorState }: Props,ref:React.ForwardedRef<Editor>|null) => {
+  const [editorState, setEditorState] = useState(initialEditorState ?? EditorState.createWithContent(emptyContentState))
   
 
 

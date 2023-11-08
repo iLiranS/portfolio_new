@@ -69,10 +69,10 @@ body{
     
 }
 .RichEditor-default{
-    @apply opacity-80 text-base;
+    @apply opacity-75 text-base tracking-tighter;
 }
 .RichEditor-list-item{
-    @apply  opacity-80;
+    @apply  opacity-75 tracking-tighter;
 }
 
 }

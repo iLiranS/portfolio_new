@@ -10,12 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-type Data{
-  title String
-  text  String
-}
-
-
 model Project{
   id          String      @id @default(auto()) @map("_id") @db.ObjectId
   date        DateTime        @default(now()) 

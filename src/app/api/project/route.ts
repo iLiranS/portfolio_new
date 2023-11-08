@@ -59,3 +59,31 @@ export async function POST(request:Request) {
     }
 
 }
+
+export async function PUT(request:Request){
+    try{
+        const res = await request.json();
+        const {Admin_Key,id} = res;
+        const requestData = res.data as Project;
+        if (Admin_Key!==process.env.ADMIN_KEY) return NextResponse.json('Unauthorized',{status:401});
+        const {title,date,data,description,preview} = requestData
+        const project = await prisma.project.update({
+            where:{
+                id
+            },
+            data:{
+                title,
+                date,
+                data,
+                description,
+                preview
+            }
+        })
+        if (project) return NextResponse.json('Successfully added');
+        else throw new Error('couldnt add project');
+    }
+    catch(err){
+        console.log(err);
+        return NextResponse.json(err,{status:500});
+    }
+}

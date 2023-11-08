@@ -14,10 +14,7 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
 
 
   const techList = project.tech.map((tech,index) => <TechnologyItem key={index} name={tech}/>)
-  // const dataList = project.data.map((dataObj,index) =>
-  //   <Dropdown title={dataObj.title} defaultToggle={index===0 ? true : false}  key={index}>
-  //   {dataObj.text}
-  //   </Dropdown>)
+
 
   // now cutted first
   const imagesList = project.images?
@@ -76,12 +73,11 @@ const Project_Page:React.FC<{project:Project}> = ({project}) => {
         {imageBG}
 
         <li className='w-full pb-2 border-b-2 border-darkBG/20 dark:border-lightBG/20'>
-          <ul className='grid gap-2 grid-cols-[repeat(auto-fill,80px)]  md:grid-cols-[repeat(auto-fill,95px)] w-full  justify-center'>
+          <ul className='grid gap-2 grid-cols-[repeat(auto-fill,80px)]  md:grid-cols-[repeat(auto-fill,95px)] w-full '>
           {techList}
           </ul>
         </li>
 
-        {/* {dataList} */}
         <div className='w-full'>
           <ReadEditor data={project.data}/>
         </div>

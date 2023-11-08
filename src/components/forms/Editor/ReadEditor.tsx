@@ -3,47 +3,29 @@ import React, { useState } from 'react'
     
 import {
   EditorState,
-  RichUtils,
-  getDefaultKeyBinding,
   ContentBlock,
-  DraftHandleValue,
   convertFromRaw,
-  convertToRaw,
   RawDraftContentState,
   Editor,
 } from 'draft-js'
 import 'draft-js/dist/Draft.css'
 
-import BlockStyleControls from './BlockStyleControls'
-import InlineStyleControls from './InlineStyleControls'
 
 
 type Props = {
-  setContent: (state: RawDraftContentState) => void,
   data:string
 }
 
-const emptyContentState =convertFromRaw({
-  entityMap: {},
-  blocks: [
-  {
-      text: '',
-      key: 'foo',
-      type: 'unstyled',
-      entityRanges: [],
-      depth:0,
-      inlineStyleRanges:[]
-  },
-  ],
-});
 
 
-const RTEditor = ({ setContent,data }: Props) => {
+
+const RTEditor = ({ data }: Props) => {
   const parsedState = JSON.parse(data) as RawDraftContentState;
   const contentState = convertFromRaw(parsedState);
   const [editorState, setEditorState] = useState(EditorState.createWithContent(contentState))
   
 
+  // tried to store in different location for global settings but it results in weird behaivor for some reason.
   const getBlockStyle = (block: ContentBlock) => {
     switch (block.getType()) {
       case 'blockquote':

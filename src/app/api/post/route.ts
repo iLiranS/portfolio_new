@@ -38,7 +38,7 @@ export async function POST(request:Request) {
         const requestData = res.data as Post;
         if (Admin_Key!==process.env.ADMIN_KEY) return NextResponse.json('Unauthorized',{status:401});
         const {title,date,data,description,preview} = requestData
-        const project = await prisma.post.create({
+        const post = await prisma.post.create({
         data:{
             title,
             date,
@@ -47,7 +47,7 @@ export async function POST(request:Request) {
             preview
         }
     })
-    if (project) return NextResponse.json('Successfully added');
+    if (post) return NextResponse.json('Successfully added');
     else throw new Error('couldnt add post');
     }
     catch(err){
@@ -55,4 +55,31 @@ export async function POST(request:Request) {
         return NextResponse.json(err,{status:500});
     }
 
+}
+export async function PUT(request:Request){
+    try{
+        const res = await request.json();
+        const {Admin_Key,id} = res;
+        const requestData = res.data as Post;
+        if (Admin_Key!==process.env.ADMIN_KEY) return NextResponse.json('Unauthorized',{status:401});
+        const {title,date,data,description,preview} = requestData
+        const post = await prisma.post.update({
+            where:{
+                id
+            },
+            data:{
+                title,
+                date,
+                data,
+                description,
+                preview
+            }
+        })
+        if (post) return NextResponse.json('Successfully added');
+        else throw new Error('couldnt add post');
+    }
+    catch(err){
+        console.log(err);
+        return NextResponse.json(err,{status:500});
+    }
 }

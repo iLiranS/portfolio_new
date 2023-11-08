@@ -6,15 +6,22 @@ import {BsBriefcase} from 'react-icons/bs'
 import {AiOutlineGithub} from 'react-icons/ai'
 import Link  from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect , useState } from 'react';
 import useThemeStore from 'store/Theme'
+import Spinner from '../Spinner/Spinner'
 
 
 
 const Header = () => {
   const pathname = usePathname();
-  const currentTheme = useThemeStore((state)=>state.theme);
+  const currentTheme = useThemeStore((state)=>state.theme) || 'dark';
   const toggleTheme = useThemeStore((state)=>state.toggleTheme);
+  const [isHydrated, setIsHydrated] = useState(false)
+
+  useEffect(() => {
+    setIsHydrated(true)
+  }, [])
+
   useEffect(()=>{
     if (currentTheme === 'dark'){
       if (!document.documentElement.classList.contains('dark')) document.body.classList.add('dark');
@@ -27,9 +34,14 @@ const Header = () => {
     }
   },[currentTheme])
 
+
+  
+
   return (
     <header className='flex justify-center  fixed top-0 w-full   z-40  transition-colors
      text-darkBG dark:text-lightBG'>
+
+      {isHydrated ?
 
      <nav className='flex max-w-3xl backdrop-blur-md bg-lightBG/40 dark:bg-darkBG/40 w-full  justify-between p-2 items-center'>
        <ul className='flex gap-4'>
@@ -50,6 +62,9 @@ const Header = () => {
        </li>
        </ul>
      </nav>
+     :
+     <div className='flex max-w-3xl backdrop-blur-md bg-lightBG/40 dark:bg-darkBG/40 w-full  p-2 justify-center'><Spinner/></div>
+    }
     </header>
   )
 }

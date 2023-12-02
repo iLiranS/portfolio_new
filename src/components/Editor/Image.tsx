@@ -1,8 +1,9 @@
 import {ContentState,ContentBlock} from 'draft-js'
 import Image from 'next/image';
+import React from 'react';
 
 
-interface ImageProps { //TODO: CAUSING TS ERROR ON DEPLOYMENT ON VERCEL.
+interface ImageProps { 
     contentState: ContentState;
     entityKey: string;
     children: React.ReactNode;
@@ -12,7 +13,7 @@ interface ImageProps { //TODO: CAUSING TS ERROR ON DEPLOYMENT ON VERCEL.
 
 
 
-export const Img = ({ entityKey, contentState,children }:any) => {
+export const Img:React.FC<ImageProps> = ({ entityKey, contentState,children }) => {
     const { url } = contentState.getEntity(entityKey).getData();
 
     return (

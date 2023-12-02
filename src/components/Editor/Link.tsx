@@ -1,12 +1,13 @@
 import {ContentState,ContentBlock, EntityInstance} from 'draft-js'
+import React from 'react';
 
-interface LinkProps { //TODO: CAUSING TS ERROR ON DEPLOYMENT ON VERCEL.
+interface LinkProps {
   contentState: ContentState;
   entityKey: string;
   children: React.ReactNode;
 }
 
-const Link = ({ contentState, entityKey, children }:any) => {
+const Link:React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
   const { url } = contentState.getEntity(entityKey).getData();
   const entity = contentState.getEntity(entityKey) as EntityInstance;
 

@@ -1,4 +1,4 @@
-import {ContentState,ContentBlock} from 'draft-js'
+import {ContentState,ContentBlock, DraftDecorator} from 'draft-js'
 import Image from 'next/image';
 import React from 'react';
 
@@ -34,6 +34,8 @@ export const findImageEntities = (contentBlock:ContentBlock, callback:(start: nu
     callback
     );
 }
+interface CustomDraftDecorator extends DraftDecorator<ImageProps> {
+    component:any;
+  }
 
-
-export const testImage = {strategy:findImageEntities,component:Img}
+export const testImage:CustomDraftDecorator = {strategy:findImageEntities,component:Img}

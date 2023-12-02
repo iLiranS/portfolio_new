@@ -1,4 +1,4 @@
-import {ContentState,ContentBlock, EntityInstance} from 'draft-js'
+import {ContentState,ContentBlock, EntityInstance, DraftDecorator} from 'draft-js'
 import React from 'react';
 
 interface LinkProps {
@@ -37,5 +37,9 @@ function findLinkEntities(contentBlock: ContentBlock, callback: (start: number, 
     callback
   );
 }
+interface CustomDraftDecorator extends DraftDecorator<LinkProps> {
+  component: any;
+}
 
-export const testLink = {strategy:findLinkEntities,component:Link}
+
+export const testLink:CustomDraftDecorator = {strategy:findLinkEntities,component:Link};

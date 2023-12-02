@@ -3,7 +3,6 @@ import Link from 'next/link';
 import { convertDateToString } from 'utils/functions';
 import {BsArrowRightSquareFill} from 'react-icons/bs'
 import Image from 'next/image'
-// import ReadEditor from '../forms/Editor/ReadEditor'
 
 
 const Post_Page:React.FC<{post:Post,dataHTML:any}> = ({post,dataHTML}) => {

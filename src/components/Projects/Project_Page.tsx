@@ -4,8 +4,6 @@ import { AiOutlineGithub } from 'react-icons/ai'
 import Link from 'next/link'
 import { Project } from '@prisma/client'
 import {BsArrowRightSquareFill} from 'react-icons/bs'
-import ReadEditor from '../forms/Editor/ReadEditor'
-// import RTEditor from '../forms/Editor/WysiwygEditor'
 
 
 const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML}) => {

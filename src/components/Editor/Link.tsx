@@ -4,7 +4,7 @@ import React from 'react';
 interface LinkProps {
   contentState: ContentState;
   entityKey: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Link:React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
@@ -23,7 +23,7 @@ const Link:React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
 
   return (
     <a title={url} href={url} onClick={handleClick} className='a_link' target="_blank" rel="noopener noreferrer">
-      {children}
+      {children ?? ''}
     </a>
   );
 };

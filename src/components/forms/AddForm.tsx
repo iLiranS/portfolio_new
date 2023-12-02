@@ -3,7 +3,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import TypeList from './TypeList';
 import Spinner from '../Spinner/Spinner';
 import { Post, Project } from '@prisma/client';
-import RTEditor from './Editor/WysiwygEditor';
+import RTEditor from '../Editor/RTEditor';
 import { Editor, RawDraftContentState,EditorState,convertFromRaw } from 'draft-js';
 
 
@@ -17,15 +17,6 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
         if (initialProject)  initialRawDraftState = JSON.parse(initialProject.data) as RawDraftContentState;
         return initialRawDraftState;
     },[initialPost,initialProject])
-
-    const initialEditor = useMemo(()=>{
-        let editorState = null;
-        if (!initialRawDraftState) return editorState;
-        if (initialProject) editorState = EditorState.createWithContent(convertFromRaw(initialRawDraftState));
-        if (initialPost) editorState = EditorState.createWithContent(convertFromRaw(initialRawDraftState));
-        return editorState;
-    },[initialPost,initialProject,initialRawDraftState])
-
 
     //states
     const [projectType,setType] = useState<'project'|'post'>(initialPost ? 'post' : 'project');
@@ -284,7 +275,7 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
 
 
                 <div className='w-full min-w-full'>
-                <RTEditor initialEditorState={initialEditor} ref={EditorRef} setContent={setContentHandler}/>
+                <RTEditor initialEditorState={initialRawDraftState} ref={EditorRef} setContent={setContentHandler}/>
                 </div>
 
             </div>

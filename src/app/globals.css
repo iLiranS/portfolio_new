@@ -7,10 +7,10 @@ body{
     overflow: overlay;
 }
 
+
 @layer components{
 
-    
-    .sectionLine{
+.sectionLine{
         @apply relative flex flex-col gap-4 mt-2  
         border-l-2 pl-2 border-darkBG/10 dark:border-lightBG/10;
 }
@@ -40,17 +40,22 @@ body{
 .addSection{
     @apply flex md:items-center gap-2 md:justify-between flex-col md:flex-row;
 }
-
+  /* RTEdior styles */
 .RichEditor-default , .data > p{
-    @apply opacity-75 text-base tracking-tighter;
+    @apply  text-base;
 }
 
 .RichEditor-blockquote, .data blockquote{
-    @apply text-gray-600/80 dark:text-gray-400/80 bg-gray-400/20 dark:bg-gray-400/10 font-serif italic  border-l-2 border-gray-400/80 px-1
+    @apply text-gray-600/80 dark:text-gray-400/80 bg-gray-400/20 dark:bg-gray-400/10 font-serif italic  border-l-2 border-gray-400/80 px-1 py-3;
 }
 .RichEditor-codeblock , .data pre{
-    @apply bg-gray-600 p-2 text-sm font-mono bg-darkBG/5 dark:bg-lightBG/5 first:rounded-t-md last:rounded-b-md;
+    @apply p-2 text-sm bg-popover-foreground/90 text-popover ;
 }
+div .RichEditor-codeblock, .data pre{
+    @apply first:rounded-t-md last:rounded-b-md first:mt-3 last:mb-3;
+}
+
+
 .RichEditor-h1 , .data h1{
     @apply text-4xl font-bold my-2;
 }
@@ -59,34 +64,70 @@ body{
 }
 .RichEditor-h3 , .data h3{
     @apply text-2xl font-bold my-2;
-    
 }
 .RichEditor-h4 , .data h4{
-    @apply text-xl font-bold my-2;
-    
-}
+    @apply text-xl font-bold my-2; 
+} 
 .RichEditor-h5 , .data h5{
     @apply text-lg font-bold my-2;
-    
 }
 .RichEditor-h6 , .data h6{
-    @apply text-base font-bold my-2;
-    
+    @apply text-base font-bold my-2; 
 }
 
-.RichEditor-list-item , .data li{
-    @apply  opacity-75 tracking-tighter;
+.RichEditor-link{
+    @apply underline
 }
 .data ol{
-    @apply list-inside list-decimal ;
+    @apply list-inside list-decimal;
 }
+.data ol  ol, .richE{
+    @apply ml-7;
+}
+  /* LISTS STYLES */
+.data ul > ul{
+    list-style-type:circle;
+    list-style-position: inside;
+    margin-left: 1.75rem;
+}
+.data ul > ul > ul{
+    list-style-type: square;
+}
+.data ol > ol{
+    list-style-type:lower-alpha;
+}
+.data ol > ol > ol{
+    list-style-type:lower-roman;
+}
+
 .data ul{
     @apply list-inside list-disc
 }
-.data ul > ul{
-    @apply list-inside ml-6;
+
+.data a , .a_link{
+    @apply underline  text-violet-500 cursor-pointer;
 }
-
-
+.data{
+    @apply leading-relaxed;
 }
+.data *{
+    @apply my-2;
+}
+.RTEImageContainer{
+    @apply my-3;
+}
+.maxHeightSize{
+    @apply max-h-[500px]
+}
+} 
 
+@layer base{
+    :root{
+        --background: #F0E7DB;
+        --foreground: #202023;
+    }
+    .dark{
+        --background: #202023;
+        --foreground: #F0E7DB;
+    }
+}

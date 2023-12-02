@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import React from 'react'
 import draftToHtml from 'draftjs-to-html'
 import { RawDraftContentState} from 'draft-js';
+import { customEntityTransform } from '@/components/Editor/Renderer/customEntity';
 
 // dont allow unvalid params.
 // const dynamicParams = false;
@@ -25,7 +26,7 @@ export async function generateMetadata({params}:{params:{project_id:string}}):Pr
 
 const dataToHTML = (content: string) => {
   const parsedState = JSON.parse(content) as RawDraftContentState;
-  const markup = draftToHtml(parsedState);
+  const markup = draftToHtml(parsedState,{},false,customEntityTransform);
   return markup;
 }
 

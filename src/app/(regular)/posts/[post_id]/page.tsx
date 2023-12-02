@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import React from 'react';
 import draftToHtml from 'draftjs-to-html'
 import { RawDraftContentState} from 'draft-js';
+import { customEntityTransform } from '@/components/Editor/Renderer/customEntity';
 
 
 
@@ -31,7 +32,7 @@ export async function generateMetadata({params}:{params:{post_id:string}}):Promi
 // test to render html directly to the post page so I dont have to use the editor, I guess.
 const dataToHTML = (content: string) => {
   const parsedState = JSON.parse(content) as RawDraftContentState;
-  const markup = draftToHtml(parsedState);
+  const markup = draftToHtml(parsedState,{},false,customEntityTransform);
   return markup;
 }
 

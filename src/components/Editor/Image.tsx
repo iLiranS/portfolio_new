@@ -13,7 +13,7 @@ interface ImageProps {
 
 
 export const Img = ({ entityKey, contentState,children }:ImageProps) => {
-    const { url, alt } = contentState.getEntity(entityKey).getData();
+    const { url } = contentState.getEntity(entityKey).getData();
 
     return (
         <div className=' relative w-full aspect-video RTEImageContainer'>
@@ -35,4 +35,4 @@ export const findImageEntities = (contentBlock:ContentBlock, callback:(start: nu
 }
 
 
-export const testImage = {strategy:findImageEntities,component:Img as React.ComponentType<ImageProps>}
+export const testImage = {strategy:findImageEntities,component:Img}

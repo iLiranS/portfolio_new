@@ -1,12 +1,12 @@
 import {ContentState,ContentBlock, EntityInstance} from 'draft-js'
 
-interface LinkProps {
+interface LinkProps { 
   contentState: ContentState;
   entityKey: string;
   children: React.ReactNode;
 }
 
-const Link: React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
+const Link = ({ contentState, entityKey, children }:LinkProps) => {
   const { url } = contentState.getEntity(entityKey).getData();
   const entity = contentState.getEntity(entityKey) as EntityInstance;
 
@@ -37,4 +37,4 @@ function findLinkEntities(contentBlock: ContentBlock, callback: (start: number, 
   );
 }
 
-export const testLink = {strategy:findLinkEntities,component:Link as React.ComponentType<LinkProps>}
+export const testLink = {strategy:findLinkEntities,component:Link}

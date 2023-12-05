@@ -1,13 +1,12 @@
 import {ContentState,ContentBlock, EntityInstance, DraftDecorator} from 'draft-js'
-import React from 'react';
 
 interface LinkProps {
   contentState: ContentState;
   entityKey: string;
-  children?: React.ReactNode;
+  children: React.ReactNode;
 }
 
-const Link:React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
+const Link: React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
   const { url } = contentState.getEntity(entityKey).getData();
   const entity = contentState.getEntity(entityKey) as EntityInstance;
 
@@ -23,7 +22,7 @@ const Link:React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
 
   return (
     <a title={url} href={url} onClick={handleClick} className='a_link' target="_blank" rel="noopener noreferrer">
-      {children ?? ''}
+      {children}
     </a>
   );
 };
@@ -37,9 +36,10 @@ function findLinkEntities(contentBlock: ContentBlock, callback: (start: number, 
     callback
   );
 }
+
+// vercel deployment typesafe error solution
 interface CustomDraftDecorator extends DraftDecorator<LinkProps> {
-  component: any;
+  component:any;
 }
 
-
-export const testLink:CustomDraftDecorator = {strategy:findLinkEntities,component:Link};
+export const testLink:CustomDraftDecorator = {strategy:findLinkEntities,component:Link}

@@ -21,7 +21,7 @@ const StyleButton = ({ active, style, label, onToggle,title,className }: Props) 
 
   return (
     <button title={title}
-      className={`${active ? 'opacity-100' : 'opacity-50'} ${!active && `hover:opacity-70`} rounded-md  aspect-square h-10 grid place-items-center p-2 bg-darkBG/10 dark:bg-lightBG/10`}
+      className={`${active ? 'opacity-100' : 'opacity-50'} ${!active && `hover:opacity-70`} rounded-md aspect-square h-10 grid place-items-center p-2 bg-darkBG/10 dark:bg-lightBG/10`}
       onClick={_onToggle}
     >
       <section className={className}>

@@ -13,7 +13,7 @@ const Post_Page:React.FC<{post:Post,dataHTML:any}> = ({post,dataHTML}) => {
 
     const imageBG = post.preview?
     <li className={`relative w-full aspect-video inset-0 rounded-md overflow-hidden`}>
-      <Image loading="eager" layout='fill' objectFit='cover' src={post.preview} alt={post.title} /> 
+      <Image loading="eager" fill objectFit='cover' priority src={post.preview} alt={post.title} /> 
       <div className='bg-gradient-to-b to-lightBG dark:to-darkBG rounded-md from-transparent from-10% absolute -bottom-1 w-full h-8'></div>
     </li>
     :

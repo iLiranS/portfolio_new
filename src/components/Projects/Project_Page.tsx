@@ -24,7 +24,7 @@ const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML
 
     const imageBG = project.preview?
         <li className={`relative w-full aspect-video inset-0 rounded-md overflow-hidden`}>
-              <Image loading="eager" layout='fill' objectFit='cover' src={project.preview} alt={project.title} /> 
+              <Image loading="eager" layout='fill' priority objectFit='cover' src={project.preview} alt={project.title} /> 
           <div className='bg-gradient-to-b to-lightBG dark:to-darkBG rounded-md from-transparent from-10% absolute -bottom-1 w-full h-8'></div>
         </li>
         :

@@ -1,5 +1,5 @@
 'use client'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
     
 import {
   EditorState,
@@ -24,11 +24,11 @@ import { useToast } from '../ui/use-toast'
 
 
 // requires update function.
-// initial state is for updating existing state. (for example editing post => give this component raw state of content)
+// initial state is for updating existing state. (for example editing post => give this component raw draft of content)
 // ref -> used for focusing issue, MUST have.
 type Props =  {
   setContent: (state: RawDraftContentState) => void,
-  initialEditorState?:RawDraftContentState  | null
+  initialEditorState?:RawDraftContentState | null
 }
 
 const emptyContentState =convertFromRaw({
@@ -49,7 +49,7 @@ const emptyContentState =convertFromRaw({
 
 
 const RTEditor = React.forwardRef(({ setContent,initialEditorState,}: Props,ref:React.ForwardedRef<Editor>) => {
-  const [editorState, setEditorState] = useState(initialEditorState ? EditorState.createWithContent(convertFromRaw(initialEditorState),combinedDecorator)  : EditorState.createWithContent(emptyContentState,combinedDecorator))
+  const [editorState, setEditorState] = useState(initialEditorState ? EditorState.createWithContent(convertFromRaw(initialEditorState),combinedDecorator)  :EditorState.createWithContent(emptyContentState,combinedDecorator))
   const {toast} = useToast();
 
   const toastNotify = (title:string,description:string,variant:'default'|'destructive') =>{
@@ -103,7 +103,7 @@ const RTEditor = React.forwardRef(({ setContent,initialEditorState,}: Props,ref:
       case 'blockquote':
         return 'RichEditor-blockquote'
   
-      case 'code-block':
+      case 'code':
         return 'RichEditor-codeblock'
       
       case 'header-one':
@@ -124,11 +124,7 @@ const RTEditor = React.forwardRef(({ setContent,initialEditorState,}: Props,ref:
       case 'header-six':
         return 'RichEditor-h6'
       
-      case 'ordered-list-item':
-        return 'RichEditor-ol'
-        
-      case 'unordered-list-item':
-        return 'RichEditor-li'
+
       
       
   

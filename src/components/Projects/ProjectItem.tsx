@@ -12,10 +12,10 @@ const ProjectItem:React.FC<{project:Project,isLatest?:boolean}> =({project,isLat
     
 
     return (
-        <li  className={`relative grid grid-rows-[max-content,auto] aspect-[16/10]  w-[400px] group  cursor-pointer max-w-full mx-auto`}>
+        <li  className={`relative grid grid-rows-[max-content,auto] aspect-[16/10]  w-[400px] group  cursor-pointer max-w-full mx-auto overflow-hidden`}>
                 <section  className='flex items-center  justify-between p-2  z-10 group-hover:text-orange-400 rounded-t-md
-                    bg-darkBG bg-opacity-10
-                    dark:bg-lightBG dark:bg-opacity-5'>
+                    bg-darkBG/10
+                    dark:bg-lightBG/10'>
                     <Link className="flex justify-between w-full items-center" href={`/project/${project.id}`}>
                     <h3  className='text-lg'>{title}</h3>
                     {link &&<GiClick className='text-lg'/>}
@@ -23,11 +23,13 @@ const ProjectItem:React.FC<{project:Project,isLatest?:boolean}> =({project,isLat
                 </section>
 
 
-                <section className='relative h-full aspect-video   w-full project_Item'>
-                <Image fill priority sizes='100%' src={preview??''} alt={title}/>
-                    {!isLatest && <section className='project_Item_section px-2'>{description}</section>}
+                <section className='relative h-full aspect-video w-full project_Item overflow-hidden'>
+                    <div className="relative w-full h-full overflow-hidden group-hover:scale-105 transition-transform ease-in">
+                        <Image fill priority sizes='100%' src={preview??''} alt={title}/>
+                    </div>
                 </section>
                 
+                    {!isLatest && <section className='project_Item_section px-2'>{description}</section>}
                 <Link href={`/projects/${project.id}`} className='h-full z-10 w-full absolute top-0 left-0'/>
             </li>
     )

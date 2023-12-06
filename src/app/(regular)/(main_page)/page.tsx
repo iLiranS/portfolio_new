@@ -40,7 +40,7 @@ export default function Home() {
         </section>
         <ul className='sectionLine relative'>
           <li className=' flex opacity-90'> I was always intrigued by the idea of building interfaces that could reach a large audience who will be impressed by them.</li>
-          <li className=' flex opacity-90'>My web development jounery</li>
+          <li className=' flex opacity-90'>My web stack journy</li>
           <Dropdown icon={<ImHtmlFive/>}          title={'The Basics'}>{foundationsExpand}</Dropdown>
           <Dropdown icon={<LiaReact/>}            title={'React'}>{reactExapnd}</Dropdown>
           <Dropdown icon={<SiNextdotjs/>}         title={'Next'}>{nextExplaind}</Dropdown>
@@ -48,7 +48,7 @@ export default function Home() {
           <Dropdown icon={<TbBrandTailwind/>}     title={'Tailwind'}>{tailwindExapnd}</Dropdown>
           <Dropdown icon={<BiSolidServer/>}       title={'Backend'}>{backendExplanid}</Dropdown>
           <Dropdown icon={<AiFillFolderOpen/>}    title='Libraries'>{moreExplaind}</Dropdown>
-          <li className='ml-4 flex opacity-90'><p><span className='text-orange-400'>In conclustion</span>, I&apos;m passionate about web development and I&apos;m always looking for ways to improve my skills in order to create better user experiences and beautiful web apps.</p></li>
+          <li className='ml-4 flex opacity-90'><p><span className='font-semibold'>In conclustion</span>, I&apos;m passionate about web development and I&apos;m always looking for ways to improve my skills in order to create better user experiences and beautiful web apps.</p></li>
       </ul>
     </div>
 

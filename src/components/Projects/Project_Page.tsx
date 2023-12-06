@@ -13,7 +13,7 @@ const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML
 
 
   // now cutted first
-  const imagesList = project.images?
+  const imagesList = project.images && project.images.length>0?
     <ul className='grid grid-cols-2  gap-2 relative mx-auto w-full'>
       {project.images.map((imageSrc,index)=> 
       <li className='w-full min-h-[100px] aspect-video rounded-md border-2 border-lightBG/20 relative' key={index}>
@@ -44,7 +44,7 @@ const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML
         </section>
 
           <section className='flex  justify-end  items-center gap-2'>
-          {project.link &&
+          {project.link || project.github &&
             <div className='flex items-center gap-2 h-full relative text-lg'>
 
               {project.github &&
@@ -55,14 +55,16 @@ const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML
                 </section>
               </a>
               }
-              {project.github &&<p className='bg-darkBG/50 dark:bg-lightBG/50 w-[2px] h-4'></p>}
+              {project.github && project.link && <p className='bg-darkBG/50 dark:bg-lightBG/50 w-[2px] h-4'></p>}
 
+              {project.link &&
               <a className='hover:underline underline-offset-2 flex items-center gap-1 hover:text-orange-400' target={'_blank'} href={project.link}>
                 <p className='text-sm '>Visit website</p>
                 <section className='text-orange-400'>
                 <BiLinkExternal/>
                 </section>
               </a>
+              }
 
             </div>
           }

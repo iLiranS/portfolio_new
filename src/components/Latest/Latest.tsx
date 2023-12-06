@@ -1,6 +1,7 @@
 import { Post, Project } from "@prisma/client";
 import SinglePost from "../Posts/SinglePost";
 import ProjectItem from "../Projects/ProjectItem"
+import { FaRegLightbulb } from "react-icons/fa";
 
 
 interface latestObj{
@@ -29,23 +30,23 @@ const Latest = async() => {
   
   return (
 
-    <div className='flex flex-col sm:flex-row gap-4 animate-scaleUp'>
-      {project &&
-        <section className='flex flex-col  relative'>
-          <h2 className='text-orange-400'>Latest Project</h2>
-          <section className='self-start sm:w-[200px] relative'>
+    <div className='flex flex-col  gap-1 animate-scaleUp'>
+      <section className="flex gap-1 items-center text-2xl font-semibold">
+        <FaRegLightbulb />
+        <h3>Recently</h3>
+      </section>
+      <div className="flex flex-col md:flex-row gap-2">
+        {project &&
+          <section title={project.description} className='self-start sm:w-[200px] max-w-[200px] relative'>
             <ProjectItem isLatest={true} project={project}/>
           </section>
-        </section>
-      }
-      {post &&
-        <section className='relative flex flex-col'>
-          <h2 className='text-orange-400 '>Latest Post</h2>
-          <section className='relative overflow-hidden sm:max-w-[200px] md:max-w-full'>
+        }
+        {post &&
+          <section title={post.description} className='relative overflow-hidden max-w-[200px]'>
             <SinglePost isLatest={true} post={post}/>
           </section>
-        </section>
-        }
+          }
+      </div>
     </div>
 
   )

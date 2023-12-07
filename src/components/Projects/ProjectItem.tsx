@@ -12,7 +12,7 @@ const ProjectItem:React.FC<{project:Project,isLatest?:boolean}> =({project,isLat
     
 
     return (
-        <li  className={`relative grid grid-rows-[max-content,auto] aspect-[16/10]  w-[400px] group  cursor-pointer max-w-full mx-auto overflow-hidden`}>
+        <li  className={`relative grid grid-rows-[max-content,auto] aspect-[16/10] w-[400px] max-w-full group  cursor-pointer  mx-auto overflow-hidden`}>
                 <section  className='flex items-center  justify-between p-2  z-10 group-hover:text-orange-400 rounded-t-md
                     bg-darkBG/10
                     dark:bg-lightBG/10'>

@@ -19,7 +19,7 @@ body{
     hover:text-orange-400 hover:translate-x-2;
 }
 .navLink{
-    @apply hover:underline cursor-pointer underline-offset-4 hover:text-orange-400 transition-colors text-xs md:text-base;
+    @apply hover:underline cursor-pointer underline-offset-4 hover:text-orange-400 transition-colors ;
 }
 .project_Item{
     @apply   rounded-b-md aspect-video w-full h-full  m-auto overflow-y-hidden relative

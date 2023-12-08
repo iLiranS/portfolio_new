@@ -33,7 +33,7 @@ const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML
   return (
     <ul className='flex flex-col overflow-hidden gap-3 relative w-full px-4 md:px-0 max-w-full pb-4'>
         <li className=' w-full grid grid-flow-row md:grid-flow-col items-center font-semibold relative  border-b-2 border-darkBG/20 dark:border-lightBG/20 pb-2  animate-pageIn'>
-        <section className='flex flex-col sm:flex-row gap-2 md:items-center'>
+        <section className='flex  sm:flex-row gap-2 md:items-center'>
 
             <section className='items-center flex gap-1'>
               <Link className='text-orange-400 hover:underline underline-offset-2' href={'/projects'}>Projects</Link>
@@ -43,23 +43,21 @@ const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML
             <h2 className='text-xl md:text-2xl'>{project.title}</h2>
         </section>
 
-          <section className='flex  justify-end  items-center gap-2'>
-          {project.link || project.github &&
-            <div className='flex items-center gap-2 h-full relative text-lg'>
-
+          {project.link || project.github ?
+            <div className={`flex items-center gap-2 h-full relative text-lg  sm:w-auto w-full py-1 justify-end ${project.link && project.github && 'justify-between md:justify-end'}`}>
+              
               {project.github &&
-              <a className=' text-darkBG dark:text-lightBG underline-offset-2 flex items-center gap-1 hover:text-orange-400' target={'_blank'} href={project.github}>
+              <a className={`text-darkBG dark:text-lightBG underline-offset-2 flex items-center gap-1 hover:text-orange-400`} target={'_blank'} href={project.github}>
                 <section className='items-center hover:text-orange-400 flex gap-1'>
-                  <p className='text-sm'>github link</p>
+                  <p className='text-sm'>Repo</p>
                   <AiOutlineGithub />
                 </section>
               </a>
               }
-              {project.github && project.link && <p className='bg-darkBG/50 dark:bg-lightBG/50 w-[2px] h-4'></p>}
 
               {project.link &&
               <a className='hover:underline underline-offset-2 flex items-center gap-1 hover:text-orange-400' target={'_blank'} href={project.link}>
-                <p className='text-sm '>Visit website</p>
+                <p className='text-sm'>Visit website</p>
                 <section className='text-orange-400'>
                 <BiLinkExternal/>
                 </section>
@@ -67,8 +65,8 @@ const Project_Page:React.FC<{project:Project,dataHTML:any}> = ({project,dataHTML
               }
 
             </div>
+            :''
           }
-          </section>
         </li>
         {imageBG}
 

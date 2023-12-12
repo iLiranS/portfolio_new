@@ -5,7 +5,7 @@ import {BsArrowRightSquareFill} from 'react-icons/bs'
 import Image from 'next/image'
 
 
-const Post_Page:React.FC<{post:Post,dataHTML:any}> = ({post,dataHTML}) => {
+const Post_Page:React.FC<{post:Post}> = ({post}) => {
 
 
     const {title , date } =  post;
@@ -39,12 +39,6 @@ const Post_Page:React.FC<{post:Post,dataHTML:any}> = ({post,dataHTML}) => {
       </section>
     </li>
       {imageBG}
-
-
-    {/* <ReadEditor data={post.data}/> */}
-    <div className='data' dangerouslySetInnerHTML={{__html:dataHTML}}/>
-
-  
 </ul>
   )
 }

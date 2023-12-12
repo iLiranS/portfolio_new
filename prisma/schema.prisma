@@ -10,12 +10,17 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+type Project_Data{
+  html        String
+  json        String
+}
+
 model Project{
   id          String      @id @default(auto()) @map("_id") @db.ObjectId
   date        DateTime        @default(now()) 
   tech        String[]
   title       String
-  data        String
+  data        Project_Data
   description String
   link        String
   preview     String
@@ -27,7 +32,7 @@ model Post{
   id          String      @id @default(auto()) @map("_id") @db.ObjectId
   date        DateTime        @default(now()) 
   title       String
-  data        String
+  data        Project_Data
   description String
   preview     String
 }

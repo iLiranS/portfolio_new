@@ -3,9 +3,7 @@ import { Post } from '@prisma/client';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import React from 'react';
-import draftToHtml from 'draftjs-to-html'
-import { RawDraftContentState} from 'draft-js';
-import { customEntityTransform } from '@/components/Editor/Renderer/customEntity';
+import { allPreCodeToHighlighted } from '@/components/Editor/Renderer/rendererFunctions';
 
 
 // not allowing unvalid route
@@ -23,12 +21,7 @@ export async function generateMetadata({params}:{params:{post_id:string}}):Promi
   }
 
 }
-// test to render html directly to the post page so I dont have to use the editor, I guess.
-const dataToHTML = (content: string) => {
-  const parsedState = JSON.parse(content) as RawDraftContentState;
-  const markup = draftToHtml(parsedState,{},false,customEntityTransform);
-  return markup;
-}
+
 
 const getPost = async(id:string) =>{
   try{
@@ -48,11 +41,15 @@ const page = async({params}:{params:{post_id:string}}) => {
 
   const post = await getPost(params.post_id);
   if (!post) return notFound();
-  const dataHTML = dataToHTML(post.data);
-
+  const dataHTML = post.data.html;
+  const htmlHighlighted = allPreCodeToHighlighted(dataHTML);
 
   return (
-      <Post_Page post={post} dataHTML={dataHTML}/>
+    <>
+      <Post_Page post={post}/>
+      <div className='data' dangerouslySetInnerHTML={{__html:htmlHighlighted}}/>      
+    </>
+
   )
 }
 

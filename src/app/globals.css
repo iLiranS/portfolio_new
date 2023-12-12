@@ -8,6 +8,22 @@ body{
 }
 
 
+@layer base{
+  :root{
+      --background: #F0E7DB;
+      --foreground: #202023;
+      --codeBackground: 220, 13%, 18%;
+      --codeForeground: 210 40% 98%;
+  }
+  .dark{
+      --background: #202023;
+      --foreground: #F0E7DB;
+  }
+  
+}
+
+
+
 @layer components{
 
 .sectionLine{
@@ -40,139 +56,155 @@ body{
 .addSection{
     @apply flex md:items-center gap-2 md:justify-between flex-col md:flex-row;
 }
-  /* RTEdior styles */
+/* RTEdior styles */
  
 
-  .RichEditor-default , .data > p{
-    @apply  text-base leading-relaxed my-2;
+.RichEditor-default , .data > p{
+  @apply  text-base leading-relaxed my-2;
 }
 
-  .RichEditor-blockquote, .data blockquote{
-    @apply text-gray-600/80 dark:text-gray-400/80 bg-gray-400/20 dark:bg-gray-400/10 font-serif italic border-l-[3px] border-gray-400/80 px-1 py-3 pl-2 my-3;
-  }
-  .RichEditor-codeblock, .data pre{
-    @apply p-2 text-sm bg-darkBG/90 dark:bg-lightBG/90 text-lightBG/80 dark:text-darkBG/80 font-mono overflow-x-auto;
-  }
-  .RichEditor-codeblock div{
-    @apply whitespace-nowrap;
-  }
-  /* codeblocks rounded corners */
+.RichEditor-blockquote, .data blockquote{
+  @apply text-gray-600/80 dark:text-gray-400/80 bg-gray-400/20 dark:bg-gray-400/10 font-serif italic border-l-[3px] border-gray-400/80 px-1 py-3 pl-2 my-3;
+}
+.RichEditor-codeblock ,.data pre{
+  @apply p-2 text-sm overflow-x-auto font-mono;
+}
+/* data uses syntax highlight no need for some of editor */
+.RichEditor-codeblock{
+  @apply font-mono opacity-80 ;
+}
+/* render only dark mode code */
+.data pre{
+  @apply bg-zinc-800 text-lightBG;
+}
 
-  /* first in each sequence */
-  .RichEditor-codeblock:has( + .RichEditor-codeblock) , *:not(.RichEditor-codeblock) > .RichEditor-codeblock:first-of-type
-  ,.data pre:has(+ pre), .data pre:first-of-type
-  {
-    @apply rounded-t-md;
-  }
-  /* last of each sequence */
-  .RichEditor-codeblock:not(:has(+ .RichEditor-codeblock))
-  , .data pre:not(:has(+ pre))
-  {
-    @apply rounded-b-md;
-  }
-  /* disable rounded in between  */
-  .RichEditor-codeblock + .RichEditor-codeblock:has(+ .RichEditor-codeblock)
-  , .data pre + pre:has(+ pre)
-  {
-    @apply rounded-none;
-  }
 
-  .data p{
-    @apply min-h-[1.625rem];
-  }
+.RichEditor-codeblock div{
+  @apply whitespace-nowrap;
+}
+/* codeblocks rounded corners */
 
-  .RichEditor-h1 , .data h1{
-    @apply text-4xl font-bold my-2;
-  }
-  .RichEditor-h2 , .data h2{
-    @apply text-3xl font-bold my-2;
-  }
-  .RichEditor-h3 , .data h3{
-    @apply text-2xl font-bold my-2;
-    
-  }
-  .RichEditor-h4 , .data h4{
-    @apply text-xl font-bold my-2;
-    
-  } 
-  .RichEditor-h5 , .data h5{
-    @apply text-lg font-bold my-2;
-  }
-  .RichEditor-h6 , .data h6{
-    @apply text-base font-bold my-2; 
-  }
 
-  .RichEditor-link{
-    @apply underline
-  }
 
-  .data ol{
-    @apply list-inside list-decimal;
-  }
-  .data ol li::before{
-    content: counter(li);
-    height: 100%;
-    width: 1rem;
-    opacity: 0;
-  }
+/* first in each sequence */
+.RichEditor-codeblock:has( + .RichEditor-codeblock) , *:not(.RichEditor-codeblock) > .RichEditor-codeblock:first-of-type, *:not(.RichEditor-codeblock) + .RichEditor-codeblock
+,.data pre:has(+ pre), .data pre:first-of-type
+{
+  @apply rounded-t-md;
+}
+/* last of each sequence */
+.RichEditor-codeblock:not(:has(+ .RichEditor-codeblock))
+, .data pre:not(:has(+ pre))
+{
+  @apply rounded-b-md shadow-md shadow-black/50;
+}
+/* disable rounded in between  */
+.RichEditor-codeblock + .RichEditor-codeblock:has(+ .RichEditor-codeblock)
+, .data pre + pre:has(+ pre)
+{
+  @apply rounded-none;
+}
 
-  .data ol  ol{
-    @apply ml-7;
-  }
-  /* LISTS STYLES */
-  .data ul > ul{
-    list-style-type:circle;
-    list-style-position: inside;
-    margin-left: 1.75rem;
-  }
-  .data ul > ul > ul{
-    list-style-type: square;
-  }
-  .data ol > ol{
-    list-style-type:lower-alpha;
-  }
-  .data ol > ol > ol{
-    list-style-type:lower-roman;
-  }
+.data p{
+  @apply min-h-[1.625rem];
+}
 
-  .data ul{
-    @apply list-inside list-disc
+.RichEditor-h1 , .data h1{
+  @apply text-4xl font-bold my-2;
+}
+.RichEditor-h2 , .data h2{
+  @apply text-3xl font-bold my-2;
+}
+.RichEditor-h3 , .data h3{
+  @apply text-2xl font-bold my-2;
+  
+}
+.RichEditor-h4 , .data h4{
+  @apply text-xl font-bold my-2;
+  
+} 
+.RichEditor-h5 , .data h5{
+  @apply text-lg font-bold my-2;
+}
+.RichEditor-h6 , .data h6{
+  @apply text-base font-bold my-2; 
+}
+
+.RichEditor-link{
+  @apply underline
+}
+
+.data ol{
+  @apply list-inside list-decimal;
+}
+/* markers opacity dim */
+.data ol li::marker, .data ul li::marker, .RichEditor-default::marker, .RichEditor-default::before{
+  @apply text-darkBG/60 dark:text-lightBG/60;
+}
+
+/* for spacing */
+.data ol li::before{
+  content: counter(li);
+  height: 100%;
+  width: 1rem;
+  opacity: 0;
+}
+.data ol li, .data ul li{
+  @apply pt-1;
+}
+
+.data ol  ol{
+  @apply ml-7;
+}
+/* LISTS STYLES */
+.data ul > ul{
+  list-style-type:circle;
+  list-style-position: inside;
+  margin-left: 1.75rem;
+}
+.data ul > ul > ul{
+  list-style-type: square;
+}
+.data ol > ol{
+  list-style-type:lower-alpha;
+}
+.data ol > ol > ol{
+  list-style-type:lower-roman;
+}
+
+.data ul{
+  @apply list-inside list-disc
+}
+.data a , .a_link{
+  @apply underline  text-violet-500 cursor-pointer;
+}
+.data *:not(pre){ /* pre should be without space for background consistancy */
+  @apply my-2;
+}
+.RTEImageContainer{
+  @apply my-3;
+}
+.maxHeightSize{
+  @apply max-h-[500px]
+}
+/* data image pos fix */
+.data img{
+  @apply mx-auto;
+}
+/*  custom codeblock scroll bar styles */
+.RichEditor-codeblock::-webkit-scrollbar-thumb, .data pre::-webkit-scrollbar-thumb {
+    @apply bg-violet-400/75 max-h-2  rounded-md hover:bg-violet-400;
   }
-  .data a , .a_link{
-    @apply underline  text-violet-500 cursor-pointer;
-  }
-  .data *:not(pre){ /* pre should be without space for background consistancy */
-    @apply my-2;
-  }
-  .RTEImageContainer{
-    @apply my-3;
-  }
-  .maxHeightSize{
-    @apply max-h-[500px]
-  }
-  /* data image pos fix */
-  .data img{
-    @apply mx-auto;
-  }
-  /*  custom codeblock scroll bar styles */
-  .RichEditor-codeblock::-webkit-scrollbar-thumb, .data pre::-webkit-scrollbar-thumb {
-      @apply bg-violet-400/75 max-h-2  rounded-md hover:bg-violet-400;
-    }
-  .RichEditor-codeblock::-webkit-scrollbar, .data pre::-webkit-scrollbar {
-    @apply w-4 max-h-3;
-  }
+.RichEditor-codeblock::-webkit-scrollbar, .data pre::-webkit-scrollbar {
+  @apply w-4 max-h-2;
+}
 .RichEditor-codeblock::-webkit-scrollbar-track, .data pre::-webkit-scrollbar-track {
-  @apply bg-lightBG/20 dark:bg-darkBG/20 rounded-md
+@apply bg-darkBG/20 dark:bg-lightBG/20 rounded-md
+}
+.RichEditor-default{
+@apply select-text;
+}
+.data code{
+@apply bg-darkBG/10  px-2 rounded-md opacity-70;
 }
 } 
-
-@layer base{
-    :root{
-        --background: #F0E7DB;
-        --foreground: #202023;
-    }
-    .dark{
-        --background: #202023;
-        --foreground: #F0E7DB;
-    }
-}

@@ -4,7 +4,8 @@ import TypeList from './TypeList';
 import Spinner from '../Spinner/Spinner';
 import { Post, Project } from '@prisma/client';
 import RTEditor from '../Editor/RTEditor';
-import { Editor, RawDraftContentState,EditorState,convertFromRaw } from 'draft-js';
+import { Editor, RawDraftContentState } from 'draft-js';
+import { getContentHTML } from '../Editor/Renderer/rendererFunctions';
 
 
 // should also be edit form if getting initial project/post ?
@@ -13,15 +14,14 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
     // initial content for editor
     const initialRawDraftState = useMemo(()=>{
         let initialRawDraftState = null;
-        if (initialPost)  initialRawDraftState = JSON.parse(initialPost.data) as RawDraftContentState;
-        if (initialProject)  initialRawDraftState = JSON.parse(initialProject.data) as RawDraftContentState;
+        if (initialPost)  initialRawDraftState = JSON.parse(initialPost.data.json) as RawDraftContentState;
+        if (initialProject)  initialRawDraftState = JSON.parse(initialProject.data.json) as RawDraftContentState;
         return initialRawDraftState;
     },[initialPost,initialProject])
 
     //states
     const [projectType,setType] = useState<'project'|'post'>(initialPost ? 'post' : 'project');
     const [step,setStep] = useState(0); // either settings or text editor.
-    const [images,setImages] = useState<string[]>(initialProject ? initialProject.images : []);
     const [tech,setTech] = useState<string[]>(initialProject ? initialProject.tech : []);
     const [content,setContent] = useState<RawDraftContentState | null>(null);
     const stringContent = content ? JSON.stringify(content) : '';
@@ -49,9 +49,7 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
         setType(val);
     } 
 
-    const updateImagesHandler = useCallback((images:string[]) =>{
-        setImages(images);
-    },[]);
+
     const updateTechHandler = useCallback((tech:string[]) =>{
         setTech(tech);
     },[]);
@@ -133,18 +131,20 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
     // using server actions instead of route handler.
     const submitFormHandler = (event:React.FormEvent) =>{
         event.preventDefault();
+        if (!content) return;
         // validate form.
         const validation:boolean|string = isFormValid();
         if (validation !== true){
             setError(validation);
             return;
         }
+        const data = { html: getContentHTML(content),json:stringContent}
         const projectFormData:Project ={
             id:'',
             title:titleRef.current?.value ?? '',
             date: dateRef.current ? new Date(dateRef.current.value) : new Date(),
-            data:stringContent,
-            images:images,
+            data,
+            images:[],
             description:descRef.current?.value ?? '',
             link: linkRef.current?.value ?? '',
             preview:previewImageRef.current?.value ?? '',
@@ -154,7 +154,7 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
         const postFormData:Post={
             id:'',
             date: dateRef.current ? new Date(dateRef.current.value) : new Date(),
-            data:stringContent,
+            data,
             description:descRef.current?.value ?? '',
             title:titleRef.current?.value ?? '',
             preview:previewImageRef.current?.value?? ''
@@ -186,7 +186,6 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
 
     // used for initial data inputs set if its an edit (eiditing refs values)
     useEffect(()=>{
-        console.log('test')
         if (initialPost){
             if(dateRef.current)  dateRef.current.value = new Date(initialPost.date).toISOString().split('T')[0]; // o_o
             if(titleRef.current) titleRef.current.value = initialPost.title;
@@ -203,6 +202,7 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
         }
 
     },[initialPost,initialProject,titleRef,dateRef,descRef,previewImageRef,linkRef,github_linkRef])
+
 
 
 
@@ -260,10 +260,7 @@ const AddForm:React.FC<{initialProject?:Project,initialPost?:Post}> = ({initialP
                         <input placeholder='Github repo Link (optional)' ref={github_linkRef} className='addInput' type='url'/>
                         </section>
 
-                        <section className='addSection'>
-                        <p>Images</p>
-                        <TypeList data={images} title='Image' updateData={updateImagesHandler}/>
-                        </section>
+
 
                         <section className='addSection'>
                         <p>Technologies</p>

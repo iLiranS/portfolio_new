@@ -38,7 +38,7 @@ const dataInput = useRef<HTMLInputElement>(null);
         {mappedDataList}
         <li className='w-80 max-w-full  flex relative rounded-md'>
             <input placeholder={'Add '+title+'...'} onChange={()=>{setError(null)}} ref={dataInput} className='bg-transparent w-full outline-none' type='text'/>
-            <section onClick={addDataHandler} className='grid place-items-center text-darkBG dark:text-lightBG cursor-pointer text-lg'> <IoMdAddCircle/> </section>
+            <button onClick={addDataHandler} className='grid place-items-center text-darkBG dark:text-lightBG cursor-pointer text-lg'> <IoMdAddCircle/> </button>
         </li>
         {error && <li className='text-red-400 text-sm'>{error}</li>}
     </ol>

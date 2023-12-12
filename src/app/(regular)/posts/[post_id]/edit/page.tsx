@@ -17,7 +17,6 @@ export async function generateMetadata({params}:{params:{post_id:string}}):Promi
 
 
   const getPost = async(id:string) =>{
-    console.log(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post?id=${id}`)
     try{
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/post?id=${id}`);
     if (!res.ok) return null;

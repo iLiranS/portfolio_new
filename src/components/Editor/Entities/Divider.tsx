@@ -1,16 +1,12 @@
 import React from 'react';
-import { ContentState, ContentBlock, DraftDecorator } from 'draft-js';
+import { ContentState, ContentBlock } from 'draft-js';
 
-interface DividerProps {
-    contentState: ContentState;
-    entityKey: string;
-    children: React.ReactNode;
-}
 
-export const Divider: React.FC<DividerProps> = ({ contentState, children }) => {
+
+export const Divider = (props:any) => {
     return (
         <div className='w-full h-[0.1rem] bg-darkBG/10 dark:bg-lightBG/20 relative'>
-            <p className='opacity-0'>{children}</p>
+            <p className='opacity-0'>{props.children}</p>
         </div>
     );
 };

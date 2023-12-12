@@ -1,28 +1,12 @@
-import {ContentState,ContentBlock, EntityInstance, DraftDecorator} from 'draft-js'
-
-interface LinkProps {
-  contentState: ContentState;
-  entityKey: string;
-  children: React.ReactNode;
-}
-
-export const Link: React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
-  const { url } = contentState.getEntity(entityKey).getData();
-  const entity = contentState.getEntity(entityKey) as EntityInstance;
+import {ContentState,ContentBlock} from 'draft-js'
 
 
-  const handleClick = (event: React.MouseEvent) => {
-    if (!entity.getMutability().includes('IMMUTABLE')) {
-      event.preventDefault();
-      // Handle the link click (e.g., open a new window or navigate)
-      window.open(url, '_blank');
-    }
-  };
 
-
+export const Link = (props:any) => {
+  const {url} = props.contentState.getEntity(props.entityKey).getData();
   return (
-    <a title={url} href={url} onClick={handleClick} className='a_link' target="_blank" rel="noopener noreferrer">
-      {children}
+    <a className='a_link' target='a_blank' href={url} >
+      {props.children}
     </a>
   );
 };

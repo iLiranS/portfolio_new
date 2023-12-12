@@ -24,6 +24,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","typings/*.d.ts", "src/components/Editor/Entities/Link.js", "src/components/Editor/Entities/Image.js", "src/components/Editor/Entities/Divider.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts","typings/*.d.ts"],
   "exclude": ["node_modules"]
 }

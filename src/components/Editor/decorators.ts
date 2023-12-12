@@ -1,9 +1,22 @@
-import {  testLink } from "./Entities/Link";
-import {  testImage } from './Entities/Image';
+import {  findLinkEntities, Link } from "./Entities/Link";
+import {  findImageEntities, Img } from './Entities/Image';
 import { CompositeDecorator } from "draft-js";
-import { DividerDecorator } from "./Entities/Divider";
+import { Divider, findDividerEntities } from "./Entities/Divider";
 
 
 
 
-export const combinedDecorator = new CompositeDecorator([testLink,testImage,DividerDecorator]);
+export const combinedDecorator = new CompositeDecorator([
+    {
+        strategy:findImageEntities,
+        component:Img
+    },
+    {
+        strategy:findLinkEntities,
+        component:Link
+    },
+    {
+        strategy:findDividerEntities,
+        component:Divider
+    }
+]);

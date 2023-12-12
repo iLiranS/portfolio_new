@@ -1,4 +1,4 @@
-import {ContentState,ContentBlock, DraftDecorator} from 'draft-js'
+import {ContentState,ContentBlock, DraftDecorator, DraftDecoratorComponentProps} from 'draft-js'
 import React from 'react';
 
 
@@ -32,7 +32,7 @@ export const findImageEntities = (contentBlock:ContentBlock, callback:(start: nu
 }
 // vercel deployment typesafe error solution
 interface CustomDraftDecorator extends DraftDecorator<ImageProps> {
-    component:any;
+    component: (props: DraftDecoratorComponentProps & ImageProps) => React.ReactNode;
 }
 
 export const testImage:CustomDraftDecorator = {strategy:findImageEntities,component:Img}

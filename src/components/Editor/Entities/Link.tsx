@@ -1,4 +1,4 @@
-import {ContentState,ContentBlock, EntityInstance, DraftDecorator} from 'draft-js'
+import {ContentState,ContentBlock, EntityInstance, DraftDecorator, DraftDecoratorComponentProps} from 'draft-js'
 
 interface LinkProps {
   contentState: ContentState;
@@ -39,7 +39,7 @@ function findLinkEntities(contentBlock: ContentBlock, callback: (start: number, 
 
 // vercel deployment typesafe error solution
 interface CustomDraftDecorator extends DraftDecorator<LinkProps> {
-  component:any;
+  component: (props: DraftDecoratorComponentProps & LinkProps) => React.ReactNode;
 }
 
 export const testLink:CustomDraftDecorator = {strategy:findLinkEntities,component:Link}

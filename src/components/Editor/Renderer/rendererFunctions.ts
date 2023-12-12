@@ -31,7 +31,7 @@ const customEntityTransform = (entity: DraftEntity, text: string):string | undef
 
 const processHTMLString = (text: string): string => {
     //  "---" replace with divider style.
-    const processedText = text.replace(/---/g, `<div class='w-full h-[0.1rem] bg-foreground/10'></div>`);
+    const processedText = text.replace(/---/g, `<div class='w-full h-[0.1rem] bg-darkBG/10 dark:bg-lightBG/20'></div>`);
     // add more if u want to render some text as component...
     return processedText;
 };

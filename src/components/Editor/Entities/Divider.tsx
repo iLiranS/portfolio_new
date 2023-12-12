@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentState, ContentBlock, DraftDecorator } from 'draft-js';
+import { ContentState, ContentBlock, DraftDecorator, DraftDecoratorComponentProps } from 'draft-js';
 
 interface DividerProps {
     contentState: ContentState;
@@ -35,7 +35,7 @@ function findDividerEntities(contentBlock: ContentBlock, callback: (start: numbe
 
 // Vercel deployment typesafe error solution
 interface CustomDraftDecorator extends DraftDecorator<DividerProps> {
-    component: React.FC<DividerProps>;
+    component: (props: DraftDecoratorComponentProps & DividerProps) => React.ReactNode;
 }
 
 export const DividerDecorator: CustomDraftDecorator = {

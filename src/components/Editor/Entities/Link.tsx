@@ -6,26 +6,6 @@ interface LinkProps {
   children: React.ReactNode;
 }
 
-const Link: React.FC<LinkProps> = ({ contentState, entityKey, children }) => {
-  const { url } = contentState.getEntity(entityKey).getData();
-  const entity = contentState.getEntity(entityKey) as EntityInstance;
-
-
-  const handleClick = (event: React.MouseEvent) => {
-    if (!entity.getMutability().includes('IMMUTABLE')) {
-      event.preventDefault();
-      // Handle the link click (e.g., open a new window or navigate)
-      window.open(url, '_blank');
-    }
-  };
-
-
-  return (
-    <a title={url} href={url} onClick={handleClick} className='a_link' target="_blank" rel="noopener noreferrer">
-      {children}
-    </a>
-  );
-};
 
 function findLinkEntities(contentBlock: ContentBlock, callback: (start: number, end: number) => void, contentState: ContentState) {
   contentBlock.findEntityRanges(
@@ -42,4 +22,21 @@ interface CustomDraftDecorator extends DraftDecorator<LinkProps> {
   component: (props: DraftDecoratorComponentProps & LinkProps) => React.ReactNode;
 }
 
-export const testLink:CustomDraftDecorator = {strategy:findLinkEntities,component:Link}
+export const testLink:CustomDraftDecorator = {strategy:findLinkEntities,component:(props: DraftDecoratorComponentProps & LinkProps) => {
+  const { url } = props.contentState.getEntity(props.entityKey).getData();
+  const Mutability = props.contentState.getEntity(props.entityKey).getMutability();
+
+
+  const handleClick = (event: React.MouseEvent) => {
+    if (!Mutability.includes('IMMUTABLE')) {
+      event.preventDefault();
+      // Handle the link click (e.g., open a new window or navigate)
+      window.open(url, '_blank');
+    }
+  };
+  return(
+    <a title={url} href={url} onClick={handleClick} className='a_link' target="_blank" rel="noopener noreferrer">
+    {props.children}
+  </a>
+  )
+}}

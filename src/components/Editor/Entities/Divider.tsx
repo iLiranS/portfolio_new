@@ -40,5 +40,11 @@ interface CustomDraftDecorator extends DraftDecorator<DividerProps> {
 
 export const DividerDecorator: CustomDraftDecorator = {
     strategy: findDividerEntities,
-    component: Divider,
+    component: (props: DraftDecoratorComponentProps & DividerProps) => {
+        return(
+            <div className='w-full h-[0.1rem] bg-darkBG/10 dark:bg-lightBG/10 relative'>
+                <p className='opacity-0'>{props.children}</p>
+            </div>
+        )
+    },
 };

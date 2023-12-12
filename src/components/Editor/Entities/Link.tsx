@@ -1,14 +1,16 @@
 import {ContentState,ContentBlock} from 'draft-js'
+import { ReactNode } from 'react';
 
 
 
 export const Link = (props:any) => {
   const {url} = props.contentState.getEntity(props.entityKey).getData();
+  if (!url) return props.children;
   return (
-    <a className='a_link' target='a_blank' href={url} >
+    <a title={url} className='a_link' target='a_blank' href={url} >
       {props.children}
     </a>
-  );
+  ) as ReactNode;
 };
 
 export function findLinkEntities(contentBlock: ContentBlock, callback: (start: number, end: number) => void, contentState: ContentState) {

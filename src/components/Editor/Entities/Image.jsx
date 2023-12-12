@@ -2,11 +2,11 @@ import {ContentState,ContentBlock, DraftDecorator, DraftDecoratorComponentProps}
 import React from 'react';
 
 
-interface ImageProps {
-    contentState: ContentState;
-    entityKey: string;
-    children: React.ReactNode;
-}
+// interface ImageProps {
+//     contentState: ContentState;
+//     entityKey: string;
+//     children: React.ReactNode;
+// }
 
 
 // export const Img:React.FC<ImageProps> = ({ entityKey, contentState,children }) => {
@@ -21,9 +21,9 @@ interface ImageProps {
 //         </div>)
 // }
 
-export const findImageEntities = (contentBlock:ContentBlock, callback:(start: number, end: number)=>void, contentState:ContentState) => {
+export const findImageEntities = (contentBlock, callback, contentState) => {
     contentBlock.findEntityRanges(
-    (character:any) => {
+    (character) => {
         const entityKey = character.getEntity();
         return entityKey !== null && contentState.getEntity(entityKey).getType() === 'IMG';
     },
@@ -31,11 +31,11 @@ export const findImageEntities = (contentBlock:ContentBlock, callback:(start: nu
     );
 }
 // vercel deployment typesafe error solution
-interface CustomDraftDecorator extends DraftDecorator<ImageProps> {
-    component: (props: DraftDecoratorComponentProps & ImageProps) => React.ReactNode;
-}
+// interface CustomDraftDecorator extends DraftDecorator<ImageProps> {
+//     component: (props: DraftDecoratorComponentProps & ImageProps | any) => React.ReactNode;
+// }
 
-export const testImage:CustomDraftDecorator = {strategy:findImageEntities,component:(props: DraftDecoratorComponentProps & ImageProps) => {
+export const testImage = {strategy:findImageEntities,component:(props) => {
     const { url } = props.contentState.getEntity(props.entityKey).getData();
     return(
         <div className=' relative w-full aspect-video RTEImageContainer'>

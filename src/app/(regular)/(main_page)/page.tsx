@@ -16,12 +16,12 @@ const reactExapnd = `I quickly realized how much easier it made the process of c
 const StateManagemntExapnd = `As I started working on more complex projects, I realized the importance of client-side state management. That's when I learned Redux and Zustand, which allow me to easily manage project-wide content. Currently, I prefer Zustand because of its simplicity and ease of use.`
 const tailwindExapnd = `When it comes to styling, I can't get enough of Tailwind. it lets me quickly style components without writing custom CSS. I use it for all of my projects and I love how easy it is to create beautiful designs.`
 const nextExplaind = ` With Next.js, I can fetch data on the server side and pre-render pages for improved performance and search engine optimization. It also offers features like dynamic routing, automatic code splitting and more ,which makes the development process much smoother.`
-const backendExplanid = `Finally, I started exploring backend technologies to complement my front-end skills. Firebase and MongoDB Atlas are two technologies I've learned to replace the backend for my projects, alongside Prisma for the ORM.`
+const backendExplanid = `Finally, I started exploring backend technologies to complement my front-end skills. Firebase and MongoDB Atlas are two technologies I've learned to replace the backend for my projects, alongside Prisma for the ORM alongside a full course in Node+Express+MongoDB+Mongoose.`
 const moreExplaind = `In addition to all above, I work with different libraries such as HeadlessUI, Radix, shadcn, NextAuth, Clerk, Supabase, firebase, mongoDB, and many other libraries.`
 
 export const metadata:Metadata={
   title:'LiranS - Home',
-  description:'Personal portfolio of LiranS - Front end web developer specialized in React & Next.JS'
+  description:'Personal portfolio of LiranS - Full-Stack web developer'
 }
 
 
@@ -31,7 +31,7 @@ export default function Home() {
 
   return (
     <div className=' flex flex-col  md:px-0 gap-2 pb-4 w-full pt-2'>
-      <h2 style={{'animationDelay':'200ms'}}  className='p-2 bg-darkBG  dark:bg-lightBG bg-opacity-10 dark:bg-opacity-10 rounded-lg text-center animate-scaleUp'> Hi ! My name is <span className='text-orange-400'>Liran</span> , I&apos;m a Front End Web Developer.</h2>
+      <h2 style={{'animationDelay':'200ms'}}  className='p-2 bg-darkBG  dark:bg-lightBG bg-opacity-10 dark:bg-opacity-10 rounded-lg text-center animate-scaleUp'> Hi ! My name is <span className='text-orange-400'>Liran</span> , I&apos;m a Full-Stack Web Developer.</h2>
 
       <div className='animate-scaleUp mt-2'>
         <section className='text-2xl  font-semibold flex items-center gap-2'>
